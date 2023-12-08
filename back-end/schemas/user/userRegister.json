@@ -1,0 +1,93 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "userRegister"
+    ],
+    "properties": {
+        "userRegister": {
+            "type": "object",
+            "default": {},
+            "title": "The userRegister Schema",
+            "required": [
+                "username",
+                "firstName",
+                "lastName",
+                "password",
+                "email",
+                "listId"
+            ],
+            "properties": {
+                "username": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The username Schema",
+                    "examples": [
+                        "testuser"
+                    ]
+                },
+                "firstName": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The firstName Schema",
+                    "examples": [
+                        "Jane"
+                    ]
+                },
+                "lastName": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The lastName Schema",
+                    "examples": [
+                        "Doe"
+                    ]
+                },
+                "password": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The password Schema",
+                    "examples": [
+                        "password"
+                    ]
+                },
+                "email": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The email Schema",
+                    "examples": [
+                        "email@email.com"
+                    ]
+                },
+                "listId": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The listId Schema",
+                    "examples": [
+                        5
+                    ]
+                }
+            },
+            "examples": [{
+                "username": "testuser",
+                "firstName": "Jane",
+                "lastName": "Doe",
+                "password": "password",
+                "email": "email@email.com",
+                "listId": 5
+            }]
+        }
+    },
+    "examples": [{
+        "userRegister": {
+            "username": "testuser",
+            "firstName": "Jane",
+            "lastName": "Doe",
+            "password": "password",
+            "email": "email@email.com",
+            "listId": 5
+        }
+    }]
+}

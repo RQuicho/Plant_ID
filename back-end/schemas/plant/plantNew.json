@@ -1,0 +1,190 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "default": {},
+  "title": "Root Schema",
+  "required": [
+      "plantNew"
+  ],
+  "properties": {
+      "plantNew": {
+          "type": "object",
+          "default": {},
+          "title": "The plantNew Schema",
+          "required": [
+              "commonName",
+              "scientificName",
+              "defaultImg"
+          ],
+          "properties": {
+              "commonName": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The commonName Schema",
+                  "examples": [
+                      "European Silver Fir"
+                  ]
+              },
+              "scientificName": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The scientificName Schema",
+                  "examples": [
+                      "Abies alba"
+                  ]
+              },
+              "type": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The type Schema",
+                  "examples": [
+                      "tree"
+                  ]
+              },
+              "flowers": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The flowers Schema",
+                  "examples": [
+                      true
+                  ]
+              },
+              "color": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The color Schema",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "fruits": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The fruits Schema",
+                  "examples": [
+                      false
+                  ]
+              },
+              "edibleFruit": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The edibleFruit Schema",
+                  "examples": [
+                      false
+                  ]
+              },
+              "fruitColor": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The fruitColor Schema",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "leaf": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The leaf Schema",
+                  "examples": [
+                      true
+                  ]
+              },
+              "leafColor": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The leafColor Schema",
+                  "examples": [
+                      ""
+                  ]
+              },
+              "edibleLeaf": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The edibleLeaf Schema",
+                  "examples": [
+                      false
+                  ]
+              },
+              "poisonousToHumans": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The poisonousToHumans Schema",
+                  "examples": [
+                      false
+                  ]
+              },
+              "poisonousToPets": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The poisonousToPets Schema",
+                  "examples": [
+                      false
+                  ]
+              },
+              "thorny": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The thorny Schema",
+                  "examples": [
+                      false
+                  ]
+              },
+              "description": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The description Schema",
+                  "examples": [
+                      "description"
+                  ]
+              },
+              "defaultImg": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The defaultImg Schema",
+                  "examples": [
+                      "sampleImg.jpg"
+                  ]
+              }
+          },
+          "examples": [{
+              "commonName": "European Silver Fir",
+              "scientificName": "Abies alba",
+              "type": "tree",
+              "flowers": true,
+              "color": "",
+              "fruits": false,
+              "edibleFruit": false,
+              "fruitColor": "",
+              "leaf": true,
+              "leafColor": "",
+              "edibleLeaf": false,
+              "poisonousToHumans": false,
+              "poisonousToPets": false,
+              "thorny": false,
+              "description": "description",
+              "defaultImg": "sampleImg.jpg"
+          }]
+      }
+  },
+  "examples": [{
+      "plantNew": {
+          "commonName": "European Silver Fir",
+          "scientificName": "Abies alba",
+          "type": "tree",
+          "flowers": true,
+          "color": "",
+          "fruits": false,
+          "edibleFruit": false,
+          "fruitColor": "",
+          "leaf": true,
+          "leafColor": "",
+          "edibleLeaf": false,
+          "poisonousToHumans": false,
+          "poisonousToPets": false,
+          "thorny": false,
+          "description": "description",
+          "defaultImg": "sampleImg.jpg"
+      }
+  }]
+}

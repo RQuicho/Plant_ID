@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "default": {},
+  "title": "Root Schema",
+  "required": [
+      "userUpdate"
+  ],
+  "properties": {
+      "userUpdate": {
+          "type": "object",
+          "default": {},
+          "title": "The userUpdate Schema",
+          "required": [],
+          "properties": {
+              "password": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The password Schema",
+                  "examples": [
+                      "newPassword"
+                  ]
+              },
+              "firstName": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The firstName Schema",
+                  "examples": [
+                      "John"
+                  ]
+              },
+              "lastName": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The lastName Schema",
+                  "examples": [
+                      "Doe"
+                  ]
+              },
+              "email": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The email Schema",
+                  "examples": [
+                      "newemail@email.com"
+                  ]
+              }
+          },
+          "examples": [{
+              "password": "newPassword",
+              "firstName": "John",
+              "lastName": "Doe",
+              "email": "newemail@email.com"
+          }]
+      }
+  },
+  "examples": [{
+      "userUpdate": {
+          "password": "newPassword",
+          "firstName": "John",
+          "lastName": "Doe",
+          "email": "newemail@email.com"
+      }
+  }]
+}

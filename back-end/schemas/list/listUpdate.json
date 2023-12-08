@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "default": {},
+  "title": "Root Schema",
+  "required": [
+      "listUpdate"
+  ],
+  "properties": {
+      "listUpdate": {
+          "type": "object",
+          "default": {},
+          "title": "The listUpdate Schema",
+          "required": [],
+          "properties": {
+              "name": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The name Schema",
+                  "examples": [
+                      "New Trail"
+                  ]
+              },
+              "description": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The description Schema",
+                  "examples": [
+                      "hiking trail in USA"
+                  ]
+              }
+          },
+          "examples": [{
+              "name": "New Trail",
+              "description": "hiking trail in USA"
+          }]
+      }
+  },
+  "examples": [{
+      "listUpdate": {
+          "name": "New Trail",
+          "description": "hiking trail in USA"
+      }
+  }]
+}
