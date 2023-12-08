@@ -2,7 +2,7 @@
 
 (link to website)
 
-This application uses the perenual plant api to retreive data on plants, and the (api for recognizing plant images) api to get a plant name based on an uploaded image. A user can upload a photo and get information on that plant based on the photo. Plants can be added/deleted to user-created lists. Lists are tied to user accounts and will be remembered!
+This application uses the perenual plant api to retreive data on plants, and the plantnet api to get a plant name based on an uploaded image. A user can upload a photo and get information on that plant based on the photo. Plants can be added/deleted to user-created lists. Lists are tied to user accounts and will be remembered!
 
 Features Implemented:
 
@@ -25,7 +25,7 @@ User Flow:
 APIs:
 
 - https://perenual.com/docs/api (plant data)
-- (api to recognize photo of plant) (photo recognition)
+- https://my.plantnet.org/doc/openapi (photo recognition)
 
 Tech Stack:
 
