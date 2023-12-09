@@ -1,70 +1,59 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://example.com/example.json",
-  "type": "object",
-  "default": {},
-  "title": "Root Schema",
-  "required": [
-      "listNew"
-  ],
-  "properties": {
-      "listNew": {
-          "type": "object",
-          "default": {},
-          "title": "The listNew Schema",
-          "required": [
-              "name",
-              "description",
-              "userId"
-          ],
-          "properties": {
-              "name": {
-                  "type": "string",
-                  "default": "",
-                  "title": "The name Schema",
-                  "examples": [
-                      "Mountain Trail"
-                  ]
-              },
-              "description": {
-                  "type": "string",
-                  "default": "",
-                  "title": "The description Schema",
-                  "examples": [
-                      "hiking trail in USA"
-                  ]
-              },
-              "userId": {
-                  "type": "integer",
-                  "default": 0,
-                  "title": "The userId Schema",
-                  "examples": [
-                      3
-                  ]
-              },
-              "plantId": {
-                  "type": "integer",
-                  "default": 0,
-                  "title": "The plantId Schema",
-                  "examples": [
-                      49032
-                  ]
-              }
-          },
-          "examples": [{
-              "name": "Mountain Trail",
-              "description": "hiking trail in USA",
-              "userId": 3,
-              "plantId": 49032
-          }]
-      }
-  },
-  "examples": [{
-      "listNew": {
-          "name": "Mountain Trail",
-          "description": "hiking trail in USA",
-          "userId": 3,
-          "plantId": 49032
-      }
-  }]
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "listNew"
+    ],
+    "properties": {
+        "listNew": {
+            "type": "object",
+            "default": {},
+            "title": "The listNew Schema",
+            "required": [
+                "name",
+                "description"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The name Schema",
+                    "examples": [
+                        "Mountain Trail"
+                    ]
+                },
+                "description": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The description Schema",
+                    "examples": [
+                        "description"
+                    ]
+                },
+                "plantId": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The plantId Schema",
+                    "examples": [
+                        4
+                    ]
+                }
+            },
+            "examples": [{
+                "name": "Mountain Trail",
+                "description": "description",
+                "plantId": 4
+            }]
+        }
+    },
+    "examples": [{
+        "listNew": {
+            "name": "Mountain Trail",
+            "description": "description",
+            "plantId": 4
+        }
+    }]
 }
