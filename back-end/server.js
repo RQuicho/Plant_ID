@@ -1,5 +1,8 @@
-const app = require("./app");
+"use strict";
 
-app.listen(3001, function () {
-  console.log("Listening on port 3001");
+const app = require("./app");
+const {PORT} = require("./config");
+
+app.listen(PORT, function () {
+  console.log(`Listening on port ${PORT}`);
 });
