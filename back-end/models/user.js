@@ -2,12 +2,14 @@
 
 const db = require("../db");
 const bcrypt = require("bcrypt");
+const {sqlForPartialUpdate} = require("../helpers/sql");
 const {
   NotFoundError,
   BadRequestError,
   UnauthorizedError
 } = require("../expressError");
 const {BCRYPT_WORK_FACTOR} = require("../config");
+const { query } = require("express");
 
 class User {
   // Authenticate
@@ -89,14 +91,14 @@ class User {
 
     if (!user) throw new NotFoundError(`No user: ${username}`);
 
-    const userListsRes = await db.query(
-      `SELECT l.id
-       FROM lists AS l
-       WHERE l.username = $1`,
+    const userListRes = await db.query(
+      `SELECT ul.list_id
+       FROM userlist AS ul
+       WHERE ul.username = $1`,
        [username]
     );
 
-    user.lists = userListsRes.rows.map(l => l.id);
+    user.userlist = userListRes.rows.map(ul => ul.list_id);
     return user;
 
   }
@@ -107,33 +109,30 @@ class User {
       data.password = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
     }
 
-    const result = await db.query(
-      `UPDATE users SET
-        password=($1),
-        first_name=($2),
-        last_name=($3),
-        email=($4)
-        WHERE username=$5
-      RETURNING username,
-                first_name,
-                last_name,
-                email`,
-      [
-        hashedPassword,
-        data.first_name,
-        data.last_name,
-        data.email,
-        username
-      ],
-    );
-    
+    const {setCols, values} = sqlForPartialUpdate(
+      data,
+      {
+        firstName: 'first_name',
+        lastName: 'last_name',
+      });
+    const usernameVarIdx = "$" + (values.length + 1);
+
+    const querySql = `UPDATE users
+                      SET ${setCols}
+                      WHERE username=${usernameVarIdx}
+                      RETURNING username,
+                                first_name AS "firstName",
+                                last_name AS "lastName",
+                                email`;
+    const result = await db.query(querySql, [...values, username]);
+      
     const user = result.rows[0];
     if (!user) {
       throw new NotFoundError(`No user: ${username}`);
     }
 
-    delete result.rows[0].password;
-    return result.rows[0];
+    delete user.password;
+    return user;
   }
 
   // REMOVE
@@ -150,5 +149,6 @@ class User {
       throw new NotFoundError(`No user: ${username}`);
     }
   }
-
 }
+
+module.exports = User;

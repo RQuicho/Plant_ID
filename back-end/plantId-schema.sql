@@ -1,14 +1,3 @@
-CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
-  username VARCHAR(25),
-  first_name TEXT NOT NULL,
-  last_name TEXT NOT NULL,
-  password TEXT NOT NULL,
-  email TEXT NOT NULL,
-  list_id INTEGER
-    REFERENCES lists ON DELETE CASCADE
-);
-
 CREATE TABLE plants (
   id SERIAL PRIMARY KEY,
   common_name TEXT NOT NULL,
@@ -36,3 +25,23 @@ CREATE TABLE lists (
   plant_id INTEGER
     REFERENCES plants ON DELETE CASCADE
 );
+
+CREATE TABLE users (
+  id SERIAL,
+  username VARCHAR(25) PRIMARY KEY,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  password TEXT NOT NULL,
+  email TEXT NOT NULL,
+  list_id INTEGER
+    REFERENCES lists ON DELETE CASCADE
+);
+
+CREATE TABLE userlist (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(25)
+    REFERENCES users ON DELETE CASCADE,
+  list_id int
+    REFERENCES lists ON DELETE CASCADE
+);
+
