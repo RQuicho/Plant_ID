@@ -19,11 +19,11 @@ CREATE TABLE plants (
 );
 
 CREATE TABLE lists (
-  id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
+  id SERIAL,
+  name TEXT PRIMARY KEY,
   description TEXT NOT NULL,
   plant_id INTEGER
-    REFERENCES plants ON DELETE CASCADE
+    REFERENCES plants(id) ON DELETE CASCADE
 );
 
 CREATE TABLE users (
@@ -33,15 +33,23 @@ CREATE TABLE users (
   last_name TEXT NOT NULL,
   password TEXT NOT NULL,
   email TEXT NOT NULL,
-  list_id INTEGER
-    REFERENCES lists ON DELETE CASCADE
+  list_name TEXT
+    REFERENCES lists(name) ON DELETE CASCADE
 );
 
-CREATE TABLE userlist (
+CREATE TABLE userList (
   id SERIAL PRIMARY KEY,
   username VARCHAR(25)
-    REFERENCES users ON DELETE CASCADE,
-  list_id int
-    REFERENCES lists ON DELETE CASCADE
+    REFERENCES users(username) ON DELETE CASCADE,
+  list_name TEXT
+    REFERENCES lists(name) ON DELETE CASCADE
+);
+
+CREATE TABLE listPlant (
+  id SERIAL PRIMARY KEY,
+  list_name TEXT
+    REFERENCES lists(name) ON DELETE CASCADE,
+  plant_id INTEGER
+    REFERENCES plants(id) ON DELETE CASCADE
 );
 

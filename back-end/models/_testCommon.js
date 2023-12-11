@@ -2,13 +2,23 @@ const bcrypt = require("bcrypt");
 const db = require("../db");
 const {BCRYPT_WORK_FACTOR} = require("../config");
 
-const testListIds = [];
+const testListNames = [];
+const testPlantIds = [];
 
 async function commonBeforeAll() {
   await db.query("DELETE FROM users");
   await db.query("DELETE FROM lists");
+  await db.query("DELETE FROM plants");
 
-  await db.query(`
+  const resultsLists = await db.query(`
+    INSERT INTO lists(name, description)
+    VALUES ('list1', 'test for list1'),
+           ('list2', 'test for list2'),
+           ('list3', 'test for list3')
+    RETURNING name`);
+  testListNames.splice(0, 0, ...resultsLists.rows.map(r => r.name));
+
+  const resultsIds = await db.query(`
     INSERT INTO plants(common_name,
                        scientific_name,
                        type,
@@ -40,15 +50,9 @@ async function commonBeforeAll() {
             'false',
             'false',
             'Amazing garden plant that is sure to capture attention...',
-            'https://perenual.com/storage/species_image/2_abies_alba_pyramidalis/og/49255769768_df55596553_b.jpg')`);
-
-  const resultsLists = await db.query(`
-    INSERT INTO lists(name, description)
-    VALUES ('list1', 'test for list1'),
-           ('list2', 'test for list2'),
-           ('list3', 'test for list3')
+            'https://perenual.com/storage/species_image/2_abies_alba_pyramidalis/og/49255769768_df55596553_b.jpg')
     RETURNING id`);
-  testListIds.splice(0, 0, ...resultsLists.rows.map(r => r.id));
+  testPlantIds.splice(0, 0, ...resultsIds.rows.map(r => r.id));
 
   await db.query(`
     INSERT INTO users(username, first_name, last_name, password, email)
@@ -61,9 +65,14 @@ async function commonBeforeAll() {
     ]);
 
   await db.query(`
-    INSERT INTO userlist(username, list_id)
+    INSERT INTO userList(username, list_name)
     VALUES ('user1', $1)`,
-    [testListIds[0]]);
+    [testListNames[0]]);
+
+  await db.query(`
+    INSERT INTO listPlant(list_name, plant_id)
+    VALUES ($1, $2)`,
+    [testListNames[0], testPlantIds[0]]);
 }
 
 async function commonBeforeEach() {
@@ -83,5 +92,5 @@ module.exports = {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  testListIds
+  testListNames
 };

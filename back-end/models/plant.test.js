@@ -12,7 +12,7 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  testListIds
+  testListNames
 } = require("./_testCommon");
 const User = require("./user");
 

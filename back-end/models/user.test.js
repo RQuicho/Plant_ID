@@ -12,7 +12,7 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  testListIds
+  testListNames
 } = require("./_testCommon");
 
 beforeAll(commonBeforeAll);
@@ -86,7 +86,7 @@ describe("get", function() {
       firstName: 'Jane',
       lastName: 'Doe',
       email: 'user1@email.com',
-      userlist: [testListIds[0]]
+      userlist: [testListNames[0]]
     });
   });
   test("not found if no such user", async function() {

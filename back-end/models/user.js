@@ -92,13 +92,13 @@ class User {
     if (!user) throw new NotFoundError(`No user: ${username}`);
 
     const userListRes = await db.query(
-      `SELECT ul.list_id
-       FROM userlist AS ul
+      `SELECT ul.list_name
+       FROM userList AS ul
        WHERE ul.username = $1`,
        [username]
     );
 
-    user.userlist = userListRes.rows.map(ul => ul.list_id);
+    user.userlist = userListRes.rows.map(ul => ul.list_name);
     return user;
 
   }
