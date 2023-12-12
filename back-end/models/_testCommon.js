@@ -92,5 +92,6 @@ module.exports = {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  testListNames
+  testListNames,
+  testPlantIds
 };

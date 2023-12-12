@@ -47,7 +47,7 @@ class List {
     const listPlantRes = await db.query(
       `SELECT lp.plant_id
        FROM listPlant AS lp
-       WHERE lp.name = $1`,
+       WHERE lp.list_name = $1`,
        [name]
     );
 
@@ -60,7 +60,6 @@ class List {
     const {setCols, values} = sqlForPartialUpdate(
       data,
       {
-        name: 'name',
         description: 'description',
       });
     const nameVarIdx = "$" + (values.length +1);
