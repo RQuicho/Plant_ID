@@ -12,16 +12,10 @@
             "type": "object",
             "default": {},
             "title": "The listUpdate Schema",
-            "required": [],
+            "required": [
+                "description"
+            ],
             "properties": {
-                "name": {
-                    "type": "string",
-                    "default": "",
-                    "title": "The name Schema",
-                    "examples": [
-                        "New Trail"
-                    ]
-                },
                 "description": {
                     "type": "string",
                     "default": "",
@@ -32,14 +26,12 @@
                 }
             },
             "examples": [{
-                "name": "New Trail",
                 "description": "description"
             }]
         }
     },
     "examples": [{
         "listUpdate": {
-            "name": "New Trail",
             "description": "description"
         }
     }]
