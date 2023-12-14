@@ -157,8 +157,8 @@ describe("remove", function() {
   });
 });
 
-// Create a list
-describe("create a list", function() {
+// Add list to user
+describe("add list to user", function() {
   test("works", async function() {
     await User.addListToUser('user1', testListNames[1]);
 

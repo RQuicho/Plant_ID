@@ -101,3 +101,32 @@ describe("remove", function() {
     }
   });
 });
+
+// Add plant to list
+describe("add plant to list", function() {
+  test("works", async function() {
+    await List.addPlantToList('list2', testPlantIds[0]);
+
+    const res = await db.query(
+      "SELECT list_name, plant_id FROM listPlant WHERE plant_id = $1", [testPlantIds[0]]
+    );
+    expect(res.rows).toEqual([
+      {
+        list_name: 'list1',
+        plant_id: testPlantIds[0]
+      },
+      {
+        list_name: 'list2',
+        plant_id: testPlantIds[0]
+      }
+    ]);
+  });
+  test("not found if no such user", async function() {
+    try {
+      await List.addPlantToList('non-existing list', [testPlantIds[0]]);
+      fail();
+    } catch (err) {
+      expect(err instanceof NotFoundError).toBeTruthy();
+    }
+  });
+});

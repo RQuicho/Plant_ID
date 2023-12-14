@@ -92,6 +92,33 @@ class List {
       throw new NotFoundError(`No list: ${name}`);
     }
   }
+
+  // Add plant to list
+  static async addPlantToList(listName, plantId) {
+    const checkListName = await db.query(
+      `SELECT name
+       FROM lists
+       WHERE name = $1`,
+       [listName]
+    );
+    const list = checkListName.rows[0];
+    if (!list) throw new NotFoundError(`No list: ${listName}`);
+
+    const checkPlantId = await db.query(
+      `SELECT id
+       FROM plants
+       WHERE id = $1`,
+       [plantId]
+    );
+    const plant = checkPlantId.rows[0];
+    if (!plant) throw new NotFoundError(`No plant: ${plantId}`);
+
+    await db.query(
+      `INSERT INTO listPlant (list_name, plant_id)
+       VALUES ($1, $2)`,
+       [listName, plantId]
+    );
+  }
 }
 
 module.exports = List;
