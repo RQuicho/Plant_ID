@@ -149,6 +149,33 @@ class User {
       throw new NotFoundError(`No user: ${username}`);
     }
   }
+
+  // Create a list
+  static async addListToUser(username, listName) {
+    const checkList = await db.query(
+      `SELECT name
+       FROM lists
+       WHERE name = $1`,
+       [listName]
+    );
+    const list = checkList.rows[0];
+    if (!list) throw new NotFoundError(`No list: ${listName}`);
+
+    const checkUser = await db.query(
+      `SELECT username
+       FROM users
+       WHERE username = $1`,
+       [username]
+    );
+    const user = checkUser.rows[0];
+    if (!user) throw new NotFoundError(`No user: ${username}`);
+
+    await db.query(
+      `INSERT INTO userList (username, list_name)
+       VALUES ($1, $2)`,
+       [username, listName]
+    );
+  }
 }
 
 module.exports = User;

@@ -156,3 +156,26 @@ describe("remove", function() {
     }
   });
 });
+
+// Create a list
+describe("create a list", function() {
+  test("works", async function() {
+    await User.addListToUser('user1', testListNames[1]);
+
+    const res = await db.query(
+      "SELECT username, list_name FROM userList WHERE list_name = $1", [testListNames[1]]
+    );
+    expect(res.rows).toEqual([{
+      username: "user1",
+      list_name: testListNames[1]
+    }]);
+  });
+  test("not found if no such user", async function() {
+    try {
+      await User.addListToUser('non-existing user', [testListNames[1]]);
+      fail();
+    } catch (err) {
+      expect(err instanceof NotFoundError).toBeTruthy();
+    }
+  });
+});
