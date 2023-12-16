@@ -9,7 +9,6 @@ const {
   UnauthorizedError
 } = require("../expressError");
 const {BCRYPT_WORK_FACTOR} = require("../config");
-const { query } = require("express");
 
 class User {
   // Authenticate

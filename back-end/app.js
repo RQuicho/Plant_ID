@@ -3,11 +3,14 @@
 const express = require("express");
 const {NotFoundError} = require("./expressError");
 const {authenticateJWT} = require("./middleware/auth");
-
+const authRoutes = require("./routes/auth");
 
 const app = express();
 
+app.use(express.json());
+app.use(authenticateJWT);
 
+app.use("/auth", authRoutes);
 
 
 // 404 Error
