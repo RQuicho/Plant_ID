@@ -42,14 +42,18 @@ const fs = require('fs'); // File System | Node.js
 const axios = require('axios'); // HTTP client
 const FormData = require('form-data'); // Readable "multipart/form-data" streams
 const {PLANT_IMAGE_API_KEY} = require("../my_secret");
+const express = require('express');
+const multer = require('multer');
+const storage = multer.memoryStorage(); // stores files in memory
+const upload = multer({storage: storage});
 
 const image_1 = '/home/raymond/Media/test_image.jpg';
 
-(async () => {
+const getScientificNameFromImg = (async () => {
 	let form = new FormData();
 
-	console.log('Current working directory:', process.cwd());
-	console.log('Files in the directory:', fs.readdirSync('/home/raymond/Media/'));
+	// console.log('Current working directory:', process.cwd());
+	// console.log('Files in the directory:', fs.readdirSync('/home/raymond/Media/'));
 
 	form.append('images', fs.createReadStream(image_1));
 
@@ -62,11 +66,17 @@ const image_1 = '/home/raymond/Media/test_image.jpg';
 				headers: form.getHeaders()
 			}
 		);
+		// console.log('status', status); // should be: 200
+		// console.log('data', require('util').inspect(data, false, null, true));
 
-		console.log('status', status); // should be: 200
-		console.log('data', require('util').inspect(data, false, null, true));
+		const scientificName = data.results[0].species.scientificNameWithoutAuthor;
+		console.log('scientificName:', scientificName);
+		return scientificName;
+
 		} catch (error) {
 			console.error('error', error);
 		}
 	}
 )();
+
+module.exports = {getScientificNameFromImg};
