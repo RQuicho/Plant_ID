@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(authenticateJWT);
 
 app.use("/auth", authRoutes);
-app.use("/plant", plantRoutes);
+app.use("/plants", plantRoutes);
 
 
 // 404 Error

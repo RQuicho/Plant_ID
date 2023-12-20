@@ -8,32 +8,30 @@ const Plant = require("../models/plant");
 const plantNewSchema = require("../schemas/plant/plantNew.json");
 const {BadRequestError} = require("../expressError");
 
-const {getScientificNameFromImage} = require("./plantImg");
+const {getScientificNameFromImages} = require("./plantImg");
 const multer = require("multer");
-const storage = multer.memoryStorage();
-const upload = multer({storage: storage});
-// const upload = multer({dest: 'uploads/'});
-
+const upload = multer({dest: 'uploads/'});
 
 
 // Upload a photo and use API to id image
 // from myplantnet.org/docs and multer docs
-router.post('/upload', upload.single('plantImg'), async (req, res, next) => {
+router.post('/upload', upload.array('images', 5), async (req, res, next) => {
+  console.log(req.files);
+  const images = req.files.map(file => ({
+    fieldname: file.fieldname,
+    originalname: file.originalname,
+    encoding: file.encoding,
+    mimetype: file.mimetype,
+    buffer: file.buffer,
+  }));
   try {
-    console.log('req.file:', req.file);
-    if (!req.file) {
-      return res.status(400).json({error: 'No file uploaded'});
-    }
-    const scientificName = await getScientificNameFromImage(req.file);
+    const scientificName = await getScientificNameFromImages(images);
 		return res.status(201).json({scientificName});
   } catch (err) {
     console.error('Error', err);
     return next(err);
   }
 });
-
-
-router.get('/test')
 
 
 // // GET id and name of plant from api list
