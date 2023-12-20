@@ -15,7 +15,6 @@ const upload = multer({storage: storage});
 // const upload = multer({dest: 'uploads/'});
 
 
-
 // Upload a photo and use API to id image
 // from myplantnet.org/docs and multer docs
 router.post('/upload', upload.single('plantImg'), async (req, res, next) => {
@@ -31,9 +30,6 @@ router.post('/upload', upload.single('plantImg'), async (req, res, next) => {
     return next(err);
   }
 });
-
-
-router.get('/test')
 
 
 // // GET id and name of plant from api list
