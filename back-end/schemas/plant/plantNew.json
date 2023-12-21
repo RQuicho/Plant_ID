@@ -1,190 +1,144 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://example.com/example.json",
-  "type": "object",
-  "default": {},
-  "title": "Root Schema",
-  "required": [
-      "plantNew"
-  ],
-  "properties": {
-      "plantNew": {
-          "type": "object",
-          "default": {},
-          "title": "The plantNew Schema",
-          "required": [
-              "commonName",
-              "scientificName",
-              "defaultImg"
-          ],
-          "properties": {
-              "commonName": {
-                  "type": "string",
-                  "default": "",
-                  "title": "The commonName Schema",
-                  "examples": [
-                      "European Silver Fir"
-                  ]
-              },
-              "scientificName": {
-                  "type": "string",
-                  "default": "",
-                  "title": "The scientificName Schema",
-                  "examples": [
-                      "Abies alba"
-                  ]
-              },
-              "type": {
-                  "type": "string",
-                  "default": "",
-                  "title": "The type Schema",
-                  "examples": [
-                      "tree"
-                  ]
-              },
-              "flowers": {
-                  "type": "boolean",
-                  "default": false,
-                  "title": "The flowers Schema",
-                  "examples": [
-                      true
-                  ]
-              },
-              "color": {
-                  "type": "string",
-                  "default": "",
-                  "title": "The color Schema",
-                  "examples": [
-                      ""
-                  ]
-              },
-              "fruits": {
-                  "type": "boolean",
-                  "default": false,
-                  "title": "The fruits Schema",
-                  "examples": [
-                      false
-                  ]
-              },
-              "edibleFruit": {
-                  "type": "boolean",
-                  "default": false,
-                  "title": "The edibleFruit Schema",
-                  "examples": [
-                      false
-                  ]
-              },
-              "fruitColor": {
-                  "type": "string",
-                  "default": "",
-                  "title": "The fruitColor Schema",
-                  "examples": [
-                      ""
-                  ]
-              },
-              "leaf": {
-                  "type": "boolean",
-                  "default": false,
-                  "title": "The leaf Schema",
-                  "examples": [
-                      true
-                  ]
-              },
-              "leafColor": {
-                  "type": "string",
-                  "default": "",
-                  "title": "The leafColor Schema",
-                  "examples": [
-                      ""
-                  ]
-              },
-              "edibleLeaf": {
-                  "type": "boolean",
-                  "default": false,
-                  "title": "The edibleLeaf Schema",
-                  "examples": [
-                      false
-                  ]
-              },
-              "poisonousToHumans": {
-                  "type": "boolean",
-                  "default": false,
-                  "title": "The poisonousToHumans Schema",
-                  "examples": [
-                      false
-                  ]
-              },
-              "poisonousToPets": {
-                  "type": "boolean",
-                  "default": false,
-                  "title": "The poisonousToPets Schema",
-                  "examples": [
-                      false
-                  ]
-              },
-              "thorny": {
-                  "type": "boolean",
-                  "default": false,
-                  "title": "The thorny Schema",
-                  "examples": [
-                      false
-                  ]
-              },
-              "description": {
-                  "type": "string",
-                  "default": "",
-                  "title": "The description Schema",
-                  "examples": [
-                      "description"
-                  ]
-              },
-              "defaultImg": {
-                  "type": "string",
-                  "default": "",
-                  "title": "The defaultImg Schema",
-                  "examples": [
-                      "sampleImg.jpg"
-                  ]
-              }
-          },
-          "examples": [{
-              "commonName": "European Silver Fir",
-              "scientificName": "Abies alba",
-              "type": "tree",
-              "flowers": true,
-              "color": "",
-              "fruits": false,
-              "edibleFruit": false,
-              "fruitColor": "",
-              "leaf": true,
-              "leafColor": "",
-              "edibleLeaf": false,
-              "poisonousToHumans": false,
-              "poisonousToPets": false,
-              "thorny": false,
-              "description": "description",
-              "defaultImg": "sampleImg.jpg"
-          }]
-      }
-  },
-  "examples": [{
-      "plantNew": {
-          "commonName": "European Silver Fir",
-          "scientificName": "Abies alba",
-          "type": "tree",
-          "flowers": true,
-          "color": "",
-          "fruits": false,
-          "edibleFruit": false,
-          "fruitColor": "",
-          "leaf": true,
-          "leafColor": "",
-          "edibleLeaf": false,
-          "poisonousToHumans": false,
-          "poisonousToPets": false,
-          "thorny": false,
-          "description": "description",
-          "defaultImg": "sampleImg.jpg"
-      }
-  }]
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "common_name",
+        "scientific_name",
+        "image_url"
+    ],
+    "properties": {
+        "common_name": {
+            "type": "string",
+            "default": "",
+            "title": "The common_name Schema",
+            "examples": [
+                "Angel's-trumpet"
+            ]
+        },
+        "scientific_name": {
+            "type": "string",
+            "default": "",
+            "title": "The scientific_name Schema",
+            "examples": [
+                "Brugmansia × candida"
+            ]
+        },
+        "image_url": {
+            "type": "string",
+            "default": "",
+            "title": "The image_url Schema",
+            "examples": [
+                "https://bs.plantnet.org/image/o/5ce4a5a2cfe26392e7356b0bc4a87dce4652ecf2"
+            ]
+        },
+        "vegetable": {
+            "type": "boolean",
+            "default": false,
+            "title": "The vegetable Schema",
+            "examples": [
+                false
+            ]
+        },
+        "edible_part": {
+            "type": "null",
+            "default": null,
+            "title": "The edible_part Schema",
+            "examples": [
+                null
+            ]
+        },
+        "edible": {
+            "type": "boolean",
+            "default": false,
+            "title": "The edible Schema",
+            "examples": [
+                false
+            ]
+        },
+        "flower_color": {
+            "type": "null",
+            "default": null,
+            "title": "The flower_color Schema",
+            "examples": [
+                null
+            ]
+        },
+        "foliage_texture": {
+            "type": "null",
+            "default": null,
+            "title": "The foliage_texture Schema",
+            "examples": [
+                null
+            ]
+        },
+        "foliage_color": {
+            "type": "null",
+            "default": null,
+            "title": "The foliage_color Schema",
+            "examples": [
+                null
+            ]
+        },
+        "fruit_or_seed_color": {
+            "type": "null",
+            "default": null,
+            "title": "The fruit_or_seed_color Schema",
+            "examples": [
+                null
+            ]
+        },
+        "fruit_or_seed_shape": {
+            "type": "null",
+            "default": null,
+            "title": "The fruit_or_seed_shape Schema",
+            "examples": [
+                null
+            ]
+        },
+        "growth_form": {
+            "type": "null",
+            "default": null,
+            "title": "The growth_form Schema",
+            "examples": [
+                null
+            ]
+        },
+        "growth_habit": {
+            "type": "null",
+            "default": null,
+            "title": "The growth_habit Schema",
+            "examples": [
+                null
+            ]
+        },
+        "toxicity": {
+            "type": "null",
+            "default": null,
+            "title": "The toxicity Schema",
+            "examples": [
+                null
+            ]
+        }        
+    },
+    "examples": [{
+        "plant": {
+            "common_name": "Angel's-trumpet",
+            "scientific_name": "Brugmansia × candida",
+            "image_url": "https://bs.plantnet.org/image/o/5ce4a5a2cfe26392e7356b0bc4a87dce4652ecf2",
+            "vegetable": false,
+            "edible_part": null,
+            "edible": false,
+            "flower_color": null,
+            "foliage_texture": null,
+            "foliage_color": null,
+            "fruit_or_seed_color": null,
+            "fruit_or_seed_shape": null,
+            "growth_form": null,
+            "growth_habit": null,
+            "toxicity": null
+        }
+    }]
 }

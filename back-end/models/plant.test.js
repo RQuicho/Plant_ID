@@ -24,22 +24,20 @@ afterAll(commonAfterAll);
 // Create
 describe("create plant", function() {
   let newPlant = {
-    commonName: 'succulent',
-    scientificName: 'cactaceae',
-    type: 'plant',
-    flowers: true,
-    color: 'green',
-    fruits: false,
-    edibleFruit: false,
-    fruitColor: 'white',
-    leaf: false,
-    leafColor: '',
-    edibleLeaf: false,
-    poisonousToHumans: false,
-    poisonousToPets: false,
-    thorny: true,
-    description: 'description',
-    defaultImg: 'https://i.pinimg.com/originals/5a/98/44/5a984454dd37f8f2b7d865f2cec95f25.jpg'
+    commonName: 'Impala-lily',
+    scientificName: 'Adenium obesum',
+    imageUrl: 'https://bs.plantnet.org/image/o/6f5723747152abdfcf163ea41f34c7aae8a2f0b9',
+    vegetable: false,
+    ediblePart: null,
+    edible: false,
+    flowerColor: null,
+    foliageTexture: null,
+    foliageColor: null,
+    fruitOrSeedColor: null,
+    fruitOrSeedShape: null,
+    growthForm: null,
+    growthHabit: null,
+    toxicity: null
   }
   test("works", async function() {
     let plant = await Plant.create(newPlant);
@@ -53,10 +51,10 @@ describe("create plant", function() {
 // GET
 describe("get a plant", function() {
   test("works", async function() {
-    let plant = await Plant.get('Abies alba');
-    expect(plant.commonName).toEqual('European Silver Fir');
-    expect(plant.type).toEqual('tree');
-    expect(plant.description).toEqual('Amazing garden plant that is sure to capture attention...');
+    let plant = await Plant.get('Brugmansia candida');
+    expect(plant.commonName).toEqual('Angels trumpet');
+    expect(plant.edible).toEqual(false);
+    expect(plant.flowerColor).toEqual(null);
   });
   test("not found if no such plant", async function() {
     try {
@@ -71,9 +69,9 @@ describe("get a plant", function() {
 // REMOVE
 describe("remove a plant", function() {
   test("works", async function() {
-    await Plant.remove('Abies alba');
+    await Plant.remove('Brugmansia candida');
     const res = await db.query(
-      "SELECT * FROM plants WHERE scientific_name='Abies alba'"
+      "SELECT * FROM plants WHERE scientific_name='Brugmansia candida'"
     );
     expect(res.rows.length).toEqual(0);
   });

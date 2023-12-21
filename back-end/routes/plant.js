@@ -7,17 +7,19 @@ const {createToken} = require("../helpers/tokens");
 const Plant = require("../models/plant");
 const plantNewSchema = require("../schemas/plant/plantNew.json");
 const {BadRequestError} = require("../expressError");
+const {PLANT_INFO_API_KEY} = require("../my_secret");
 
 const {getScientificNameFromImage} = require("./plantImg");
 const multer = require("multer");
+const { axios } = require("axios");
 const storage = multer.memoryStorage();
 const upload = multer({storage: storage});
-// const upload = multer({dest: 'uploads/'});
-
 
 // Upload a photo and use API to id image
 // from myplantnet.org/docs and multer docs
 router.post('/upload', upload.single('plantImg'), async (req, res, next) => {
+  // check that image is jpeg image.. return some error message
+  // check that first call returns proper result before calling next api
   try {
     console.log('req.file:', req.file);
     if (!req.file) {
@@ -25,6 +27,19 @@ router.post('/upload', upload.single('plantImg'), async (req, res, next) => {
     }
     const scientificName = await getScientificNameFromImage(req.file);
 		return res.status(201).json({scientificName});
+  } catch (err) {
+    console.error('Error', err);
+    return next(err);
+  }
+});
+
+router.get('/details', async (req, res, next) => {
+  // stringify result from json to string
+
+  try {
+    const plantData = await axios.get(`https://trefle.io/api/v1/plants/search?token=${PLANT_INFO_API_KEY}&q=${scientificName}`);
+    const foundPlantId = plantData.data[0].id;
+    return res.json({foundPlantId});
   } catch (err) {
     console.error('Error', err);
     return next(err);

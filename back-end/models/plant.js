@@ -6,22 +6,20 @@ const { BadRequestError, NotFoundError } = require("../expressError");
 
 class Plant {
   // Create a plant
-  static async create({commonName,
+  static async create({ commonName,
                         scientificName,
-                        type,
-                        flowers,
-                        color,
-                        fruits,
-                        edibleFruit,
-                        fruitColor,
-                        leaf,
-                        leafColor,
-                        edibleLeaf,
-                        poisonousToHumans,
-                        poisonousToPets,
-                        thorny,
-                        description,
-                        defaultImg}) {
+                        imageUrl,
+                        vegetable,
+                        ediblePart,
+                        edible,
+                        flowerColor,
+                        foliageTexture,
+                        foliageColor,
+                        fruitOrSeedColor,
+                        fruitOrSeedShape,
+                        growthForm,
+                        growthHabit,
+                        toxicity}) {
     const duplicateCheck = await db.query(
       `SELECT scientific_name AS "scientificName"
        FROM plants
@@ -30,57 +28,51 @@ class Plant {
     if (duplicateCheck.rows[0]) throw new BadRequestError(`Duplicate plant: ${scientificName}`);
 
     const result = await db.query(
-      `INSERT INTO plants (common_name,
-                           scientific_name,
-                           type,
-                           flowers,
-                           color,
-                           fruits,
-                           edible_fruit,
-                           fruit_color,
-                           leaf,
-                           leaf_color,
-                           edible_leaf,
-                           poisonous_to_humans,
-                           poisonous_to_pets,
-                           thorny,
-                           description,
-                           default_img)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
+      `INSERT INTO plants ( common_name,
+                            scientific_name,
+                            image_url,
+                            vegetable,
+                            edible_part,
+                            edible,
+                            flower_color,
+                            foliage_texture,
+                            foliage_color,
+                            fruit_or_seed_color,
+                            fruit_or_seed_shape,
+                            growth_form,
+                            growth_habit,
+                            toxicity)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
       RETURNING id, 
-                common_name AS "commonName", 
+                common_name AS "commonName",
                 scientific_name AS "scientificName",
-                type,
-                flowers, 
-                color,
-                fruits,
-                edible_fruit AS "edibleFruit",
-                fruit_color AS "fruitColor",
-                leaf,
-                leaf_color AS "leafColor",
-                edible_leaf AS "edibleLeaf",
-                poisonous_to_humans AS "poisonousToHumans",
-                poisonous_to_pets AS "poisonousToPets",
-                thorny,
-                description,
-                default_img AS "defaultImg"`,
+                image_url AS "imageUrl",
+                vegetable,
+                edible_part AS "ediblePart",
+                edible,
+                flower_color AS "flowerColor",
+                foliage_texture AS "foliageTexture",
+                foliage_color AS "foliageColor",
+                fruit_or_seed_color AS "fruitOrSeedColor",
+                fruit_or_seed_shape AS "fruitOrSeedShape",
+                growth_form AS "growthForm",
+                growth_habit AS "growthHabit",
+                toxicity`,
       [
         commonName,
         scientificName,
-        type,
-        flowers,
-        color,
-        fruits,
-        edibleFruit,
-        fruitColor,
-        leaf,
-        leafColor,
-        edibleLeaf,
-        poisonousToHumans,
-        poisonousToPets,
-        thorny,
-        description,
-        defaultImg
+        imageUrl,
+        vegetable,
+        ediblePart,
+        edible,
+        flowerColor,
+        foliageTexture,
+        foliageColor,
+        fruitOrSeedColor,
+        fruitOrSeedShape,
+        growthForm,
+        growthHabit,
+        toxicity
       ]
     );
     const plant = result.rows[0];
@@ -90,22 +82,20 @@ class Plant {
   // Get a plant
   static async get(scientificName) {
     const plantRes = await db.query(
-      `SELECT common_name AS "commonName", 
+      `SELECT common_name AS "commonName",
               scientific_name AS "scientificName",
-              type,
-              flowers, 
-              color,
-              fruits,
-              edible_fruit AS "edibleFruit",
-              fruit_color AS "fruitColor",
-              leaf,
-              leaf_color AS "leafColor",
-              edible_leaf AS "edibleLeaf",
-              poisonous_to_humans AS "poisonousToHumans",
-              poisonous_to_pets AS "poisonousToPets",
-              thorny,
-              description,
-              default_img AS "defaultImg"
+              image_url AS "imageUrl",
+              vegetable,
+              edible_part AS "ediblePart",
+              edible,
+              flower_color AS "flowerColor",
+              foliage_texture AS "foliageTexture",
+              foliage_color AS "foliageColor",
+              fruit_or_seed_color AS "fruitOrSeedColor",
+              fruit_or_seed_shape AS "fruitOrSeedShape",
+              growth_form AS "growthForm",
+              growth_habit AS "growthHabit",
+              toxicity
        FROM plants
        WHERE scientific_name = $1`,
       [scientificName]
@@ -113,17 +103,6 @@ class Plant {
     const plant = plantRes.rows[0];
 
     if (!plant) throw new NotFoundError(`No plant: ${scientificName}`);
-
-    // const listRes = await db.query(
-    //   `SELECT name,
-    //           description
-    //    FROM lists
-    //    WHERE scientificName = $1`,
-    //   [plant.scientificName]
-    // );
-
-    // delete plant.scientificName;
-    // plant.list = listRes.rows[0];
 
     return plant;
   }

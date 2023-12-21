@@ -2,20 +2,18 @@ CREATE TABLE plants (
   id SERIAL PRIMARY KEY,
   common_name TEXT NOT NULL,
   scientific_name TEXT NOT NULL,
-  type TEXT,
-  flowers BOOLEAN,
-  color TEXT,
-  fruits BOOLEAN,
-  edible_fruit BOOLEAN,
-  fruit_color TEXT,
-  leaf BOOLEAN,
-  leaf_color TEXT,
-  edible_leaf BOOLEAN,
-  poisonous_to_humans BOOLEAN,
-  poisonous_to_pets BOOLEAN,
-  thorny BOOLEAN,
-  description TEXT,
-  default_img TEXT NOT NULL
+  image_url TEXT,
+  vegetable BOOLEAN,
+  edible_part TEXT,
+  edible BOOLEAN,
+  flower_color TEXT,
+  foliage_texture TEXT,
+  foliage_color TEXT,
+  fruit_or_seed_color TEXT,
+  fruit_or_seed_shape TEXT,
+  growth_form TEXT,
+  growth_habit TEXT,
+  toxicity TEXT
 );
 
 CREATE TABLE lists (
