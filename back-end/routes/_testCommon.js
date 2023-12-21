@@ -23,61 +23,55 @@ async function commonBeforeAll() {
 
   testPlantIds[0] = 
     (await Plant.create({
-      commonName: "Pine Tree",
-      scientificName: "Pine Tree in Latin",
-      type: 'tree',
-      flowers: false,
-      color: 'dark green',
-      fruits: false,
-      edibleFruit: false,
-      fruitColor: "",
-      leaf: false,
-      leafColor: "",
-      edibleLeaf: false,
-      poisonousToHumans: false,
-      poisonousToPets: false,
-      thorny: false,
-      description: "This tree is commonly used as decoration during Christmas.",
-      defaultImg: "https://i.pinimg.com/originals/1c/4e/bd/1c4ebddd9cfe015080fcbd25751bbae9.jpg"
+      commonName: 'Pine Tree',
+      scientificName: 'Pine Tree in Latin',
+      imageUrl: 'https://i.pinimg.com/originals/1c/4e/bd/1c4ebddd9cfe015080fcbd25751bbae9.jpg',
+      vegetable: false,
+      ediblePart: null,
+      edible: false,
+      flowerColor: null,
+      foliageTexture: 'prickly',
+      foliageColor: 'green',
+      fruitOrSeedColor: null,
+      fruitOrSeedShape: null,
+      growthForm: null,
+      growthHabit: null,
+      toxicity: null
     })).id;
   testPlantIds[1] =  
     (await Plant.create({
-      commonName: "Cactus",
-      scientificName: "Cactus in Latin",
-      type: 'plant',
-      flowers: true,
-      color: 'green',
-      fruits: false,
-      edibleFruit: false,
-      fruitColor: "",
-      leaf: false,
-      leafColor: "",
-      edibleLeaf: false,
-      poisonousToHumans: false,
-      poisonousToPets: false,
-      thorny: true,
-      description: "Cacti are adapted to live in very dry environments.",
-      defaultImg: "https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2F7p6iiofyg0q41.jpg"
+      commonName: 'Cactus',
+      scientificName: 'Cactus in Latin',
+      imageUrl: 'https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2F7p6iiofyg0q41.jpg',
+      vegetable: false,
+      ediblePart: null,
+      edible: false,
+      flowerColor: 'pink',
+      foliageTexture: 'prickly',
+      foliageColor: 'green',
+      fruitOrSeedColor: null,
+      fruitOrSeedShape: null,
+      growthForm: 'bush',
+      growthHabit: null,
+      toxicity: null
     })).id;
   testPlantIds[2] =  
-  (await Plant.create({
-    commonName: "Rose",
-    scientificName: "Rose in Latin",
-    type: 'flower',
-    flowers: true,
-    color: 'red',
-    fruits: false,
-    edibleFruit: false,
-    fruitColor: "",
-    leaf: true,
-    leafColor: "green",
-    edibleLeaf: false,
-    poisonousToHumans: false,
-    poisonousToPets: false,
-    thorny: true,
-    description: "Roses are red",
-    defaultImg: "https://1.bp.blogspot.com/-4e_hEdBJ3m0/T-B9ZKBqIeI/AAAAAAAADlw/JYMHMwsWEQg/s1600/Rose-Wallpaper-69.jpg"
-  })).id;
+    (await Plant.create({
+      commonName: 'Rose',
+      scientificName: 'Rose in Latin',
+      imageUrl: 'https://1.bp.blogspot.com/-4e_hEdBJ3m0/T-B9ZKBqIeI/AAAAAAAADlw/JYMHMwsWEQg/s1600/Rose-Wallpaper-69.jpg',
+      vegetable: false,
+      ediblePart: null,
+      edible: false,
+      flowerColor: 'red, pink, yellow',
+      foliageTexture: 'thorny',
+      foliageColor: 'green',
+      fruitOrSeedColor: null,
+      fruitOrSeedShape: null,
+      growthForm: 'bush',
+      growthHabit: null,
+      toxicity: null
+    })).id;
   
   await List.addPlantToList('List1', testPlantIds[0]);
 

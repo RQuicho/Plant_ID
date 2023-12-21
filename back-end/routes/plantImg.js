@@ -9,8 +9,8 @@ const getScientificNameFromImage = (async (uploadedFile) => {
 	let form = new FormData();
 	// console.log('Current working directory:', process.cwd());
 	// console.log('Files in the directory:', fs.readdirSync('/home/raymond/Media/'));
+	// console.log('uploadedFile.buffer', uploadedFile.buffer);
 
-	console.log('uploadedFile.buffer', uploadedFile.buffer);
 	form.append('images', uploadedFile.buffer, {
 		filename: uploadedFile.originalname,
 		contentType: uploadedFile.mimetype,
@@ -24,8 +24,8 @@ const getScientificNameFromImage = (async (uploadedFile) => {
 				headers: form.getHeaders()
 			}
 		);
-		console.log('status', status); // should be: 200
-		console.log('data', require('util').inspect(data, false, null, true));
+		// console.log('status', status); // should be: 200
+		// console.log('data', require('util').inspect(data, false, null, true));
 
 		const scientificName = data.results[0].species.scientificNameWithoutAuthor;
 		console.log('scientificName:', scientificName);
