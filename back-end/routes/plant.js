@@ -30,17 +30,19 @@ router.post('/upload', upload.single('plantImg'), async (req, res, next) => {
     // console.log('scientificName:', scientificName);
 
     const plantData = await getPlantData(scientificName);
-    console.log('plantData:', plantData);
+    // console.log('plantData:', plantData);
 
     // const validator = jsonschema.validate(req.body, plantNewSchema);
     // if (!validator.valid) {
     //   const errs = validator.errors.map(e => e.stack);
     //   throw new BadRequestError(errs);
     // }
-    return res.status(201).json({plantData});
-    // const plant = await createPlant(plantData);
 
-    // return res.status(201).json({plant});
+    // return res.status(201).json({plantData});
+    // return plantData;
+
+    const plant = await createPlant(plantData);
+    return res.status(201).json({plant});
   
   } catch (err) {
     console.error('Error', err);

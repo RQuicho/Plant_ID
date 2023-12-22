@@ -45,14 +45,16 @@ const getPlantData = async (scientificName) => {
 
 		const foundPlantId = response.data.data[0].id;
 		const rawData = await axios.get(`${trefleBaseUrl}/${foundPlantId}?token=${PLANT_INFO_API_KEY}`);
-		const plantData = rawData.data.data;
-		console.log('plantData:', plantData);
-		// console.log('plantDataCommonName:', plantData.common_name);
+		const plantData = rawData.data.data.main_species;
+		// console.log('plantData:', plantData);
+		console.log('plantDataCommonName:', plantData.common_name);
+		console.log('plantDataEdiblePart:', plantData.edible_part);
+		console.log('plantDataFlowerColor:', plantData.flower.color);
 		return plantData;
 	} catch (err) {
 		console.error('Error:', err.message);
 	}
-}
+};
 
 // Function that creates a plant in database
 const createPlant = async (plantData) => {
@@ -61,40 +63,41 @@ const createPlant = async (plantData) => {
 	const scientific_name = plantData.scientific_name;
 	const image_url = plantData.image_url;
 	const vegetable = plantData.vegetable;
-	const edible_part = plantData.main_species.edible_part;
-	const edible = plantData.main_species.edible;
-	const flower_color = plantData.main_species.flower.color;
-	const foliage_texture = plantData.main_species.foliage.foliage_texture;
-	const foliage_color = plantData.main_species.foliage.foliage_color;
-	const fruit_or_seed_color = plantData.main_species.fruit_or_seed.color;
-	const fruit_or_seed_shape = plantData.main_species.fruit_or_seed.shape;
-	const growth_form = plantData.main_species.specifications.growth_form;
-	const growth_habit = plantData.main_species.specifications.growth_habit;
-	const toxicity = plantData.main_species.specifications.toxicity;
+	const edible_part = plantData.edible_part;
+	const edible = plantData.edible;
+	const flower_color = plantData.flower.color;
+	const foliage_texture = plantData.foliage.texture;
+	const foliage_color = plantData.foliage.color;
+	const fruit_or_seed_color = plantData.fruit_or_seed.color;
+	const fruit_or_seed_shape = plantData.fruit_or_seed.shape;
+	const growth_form = plantData.specifications.growth_form;
+	const growth_habit = plantData.specifications.growth_habit;
+	const toxicity = plantData.specifications.toxicity;
 
 	try {
 		const plant = await Plant.create({
-			common_name,
-			scientific_name,
-			image_url,
-			vegetable,
-			edible_part,
-			edible,
-			flower_color,
-			foliage_texture,
-			foliage_color,
-			fruit_or_seed_color,
-			fruit_or_seed_shape,
-			growth_form,
-			growth_habit,
-			toxicity
+			commonName: common_name,
+			scientificName: scientific_name,
+			imageUrl: image_url,
+			vegetable: vegetable,
+			ediblePart: edible_part,
+			edible: edible,
+			flowerColor: flower_color,
+			foliageTexture: foliage_texture,
+			foliageColor: foliage_color,
+			fruitOrSeedColor: fruit_or_seed_color,
+			fruitOrSeedShape: fruit_or_seed_shape,
+			growthForm: growth_form,
+			growthHabit: growth_habit,
+			toxicity: toxicity
 		});
+		console.log('Created plant:', plant);
 		return plant;
 	} catch (err) {
 		console.error('Error:', err);
 		return ('Plant not created');
 	}
-}
+};
 
 module.exports = {
 	getScientificNameFromImage,

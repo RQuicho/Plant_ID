@@ -47,55 +47,81 @@ describe('getScientificNameFromImage', () => {
   });
 });
 
+// describe('getPlantData', () => {
+//   test('should return plant data from trefle api', async () => {
+//     const scientificName = 'Strelitzia reginae';
+//     const response = await getPlantData(scientificName);
+//     expect(response).toBeDefined();
+//     expect(typeof response).toBe('object');
+//     expect(response.common_name).toEqual('Bird of paradise');
+//     expect(response.image_url).toEqual('https://bs.plantnet.org/image/o/e4f2713e640f0a4d549e9517b5c3f0f12b531188');   
+//   });
+// });
+
 describe('getPlantData', () => {
-  test('should return plant data from trefle api', async () => {
-    const scientificName = 'Strelitzia reginae';
-    const response = await getPlantData(scientificName);
-    expect(response).toBeDefined();
-    expect(typeof response).toBe('object');
-    expect(response.common_name).toEqual('Bird of paradise');
-    expect(response.image_url).toEqual('https://bs.plantnet.org/image/o/e4f2713e640f0a4d549e9517b5c3f0f12b531188');   
+  test('should return plant data from trefle api', async() => {
+    const data = {    
+      id: 150762,
+      common_name: "Bird of paradise",
+      scientific_name: "Strelitzia reginae",
+      image_url: "https://bs.plantnet.org/image/o/e4f2713e640f0a4d549e9517b5c3f0f12b531188",
+    };
+    // axios.get.mockResolvedValue((response));
+    const result = await getPlantData('Strelitzia reginae');
+    expect(result).toBeDefined();
+    expect(typeof result).toBe('object');
+    expect(result.common_name).toEqual('Bird of paradise');
+    expect(result.image_url).toEqual('https://bs.plantnet.org/image/o/e4f2713e640f0a4d549e9517b5c3f0f12b531188');
   });
 });
 
 // describe('getPlantData', () => {
-//   test('should return plant data from trefle api', async() => {
-//     const apiKey = PLANT_INFO_API_KEY;
-//     const response = {
+//   test('should return plant data from trefle api', async () => {
+//     const scientificName = 'Strelitzia reginae';
+//     const mockApiResponse = {
 //       data: {
-//         data: {
-//           id: 150827,
-// 		      common_name: "Bird of paradise",
-// 		      scientific_name: "Strelitzia reginae"
-//         }
+//         common_name: "Bird of paradise",
+//         scientific_name: "Strelitzia reginae",
+//         image_url: "https://bs.plantnet.org/image/o/e4f2713e640f0a4d549e9517b5c3f0f12b531188",
 //       }
 //     };
-//     axios.get.mockImplementationOnce(() => Promise.resolve(response));
-//     const result = await getPlantData('Strelitzia reginae', apiKey);
-//     expect(result).toEqual(response.data.data);
+//     axios.post.mockResolvedValue(mockApiResponse);
+//     const result = await getPlantData(scientificName);
+//     expect(result.common_name).toEqual('Bird of paradise');
 //   });
 // });
 
 
-// describe('createPlant', () => {
-//   test('should create a plant in the database', async () => {
-//     const plantData = {
-//       common_name: 'Test Plant',
-// 			scientific_name: 'Test Plant in Latin',
-// 			image_url: 'https://thumbs.dreamstime.com/b/test-plant-samples-microscope-slide-close-up-laboratory-80350262.jpg',
-//       vegetable: null,
-// 			edible_part: null,
-// 			edible: false,
-// 			flower_color: 'green',
-// 			foliage_texture: 'smooth',
-// 			foliage_color: 'green',
-// 			fruit_or_seed_color: null,
-// 			fruit_or_seed_shape: null,
-// 			growth_form: null,
-// 			growth_habit: null,
-// 			toxicity: null
-//     };
-//     const plant = await createPlant(plantData);
-//     expect(plant.common_name).toEqual('Test Plant');
-//   });
-// });
+describe('createPlant', () => {
+  test('should create a plant in the database', async () => {
+    const plantData = {
+      id: 150762,
+		  common_name: "Bird of paradise",
+		  scientific_name: "Strelitzia reginae",
+		  vegetable: false,
+		  image_url: "https://bs.plantnet.org/image/o/e4f2713e640f0a4d549e9517b5c3f0f12b531188",
+		  edible_part: null,
+		  edible: false,
+      flower: {
+        color: null,
+      },
+      foliage: {
+        texture: null,
+        color: null,
+      },
+      fruit_or_seed: {
+        color: null,
+        shape: null,
+      },
+      specifications: {
+        growth_form: null,
+        growth_habit: null,
+        toxicity: null,
+      }
+    };
+      const plant = await createPlant(plantData);
+      expect(plant).toBeDefined();
+      expect(plant.commonName).toEqual('Bird of paradise');
+      expect(plant.toxicity).toEqual(null);
+    });
+  });
