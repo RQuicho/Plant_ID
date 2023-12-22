@@ -20,6 +20,7 @@ class Plant {
                         growthForm,
                         growthHabit,
                         toxicity}) {
+    if (!commonName || !scientificName) throw new BadRequestError("Common name and scientific name are required.");
     const duplicateCheck = await db.query(
       `SELECT scientific_name AS "scientificName"
        FROM plants
@@ -120,6 +121,7 @@ class Plant {
     );
     const plant = result.rows[0];
     if (!plant) throw new NotFoundError(`No plant: ${scientificName}`);
+    return {message: `Plant ${scientificName} successfully removed.`};
   }
 }
 

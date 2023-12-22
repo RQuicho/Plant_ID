@@ -3,13 +3,11 @@
 const jsonschema = require("jsonschema");
 const express = require("express");
 const router = new express.Router();
-const {createToken} = require("../helpers/tokens");
-const Plant = require("../models/plant");
 const plantNewSchema = require("../schemas/plant/plantNew.json");
 const {BadRequestError, NotFoundError} = require("../expressError");
 const {PLANT_INFO_API_KEY} = require("../my_secret");
 
-const {getScientificNameFromImage} = require("./plantImg");
+const {getScientificNameFromImage, getPlantData, createPlant} = require("../helpers/plantApis");
 const multer = require("multer");
 const axios = require("axios");
 const storage = multer.memoryStorage();
@@ -29,21 +27,21 @@ router.post('/upload', upload.single('plantImg'), async (req, res, next) => {
       return res.status(400).json({error: 'Incorrect file type. Please upload a jpeg'});
     }
     const scientificName = await getScientificNameFromImage(req.file);
-    console.log('scientificName:', scientificName);
-		// return res.status(201).json({scientificName});
+    // console.log('scientificName:', scientificName);
 
-    const plantData = await axios.get(`https://trefle.io/api/v1/plants/search?token=${PLANT_INFO_API_KEY}&q=${scientificName}`);
-    // console.log('plantData:', plantData);
-    const foundPlantId = plantData.data.data[0].id;
-    console.log('foundPlantId:', foundPlantId);
-    // return res.json({foundPlantId});
-    if (!plantData.data.data || plantData.data.data.length === 0) throw new NotFoundError("No plant found");
+    const plantData = await getPlantData(scientificName);
+    console.log('plantData:', plantData);
 
-    const plantDetails = await axios.get(`https://trefle.io/api/v1/plants/${foundPlantId}?token=${PLANT_INFO_API_KEY}`);
-    const common_name = plantDetails.data.data.common_name;
-    console.log('common_name:', plantDetails.data.data.common_name);
-    return res.status(201).json({common_name});
+    // const validator = jsonschema.validate(req.body, plantNewSchema);
+    // if (!validator.valid) {
+    //   const errs = validator.errors.map(e => e.stack);
+    //   throw new BadRequestError(errs);
+    // }
+    return res.status(201).json({plantData});
+    // const plant = await createPlant(plantData);
 
+    // return res.status(201).json({plant});
+  
   } catch (err) {
     console.error('Error', err);
     return next(err);
