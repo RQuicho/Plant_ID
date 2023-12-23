@@ -54,6 +54,8 @@ describe("POST /plants/upload", function() {
     // const plant = await createPlant(plantData);
     // expect(scientificName).toEqual('')
 
+    // ALREADY TESTED PLANTAPIS
+
   });
 });
 

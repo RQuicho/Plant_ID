@@ -32,11 +32,10 @@ router.post('/upload', upload.single('plantImg'), async (req, res, next) => {
 
     const plantData = await getPlantData(scientificName);
     // console.log('plantData:', plantData);
+    // return res.status(201).json({plantData});
 
-    return res.status(201).json({plantData});
-
-    // const plant = await createPlant(plantData);
-    // return res.status(201).json({plant});
+    const plant = await createPlant(plantData);
+    return res.status(201).json({plant});
   
   } catch (err) {
     console.error('Error', err);

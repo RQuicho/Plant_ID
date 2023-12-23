@@ -5,48 +5,33 @@
     "default": {},
     "title": "Root Schema",
     "required": [
-        "listNew"
+        "name",
+        "description"
     ],
     "properties": {
-        "listNew": {
-            "type": "object",
-            "default": {},
-            "title": "The listNew Schema",
-            "required": [
-                "name",
+        "name": {
+            "type": "string",
+            "default": "",
+            "title": "The name Schema",
+            "examples": [
+                "Mountain Trail"
+            ]
+        },
+        "description": {
+            "type": "string",
+            "default": "",
+            "title": "The description Schema",
+            "examples": [
                 "description"
-            ],
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "default": "",
-                    "title": "The name Schema",
-                    "examples": [
-                        "Mountain Trail"
-                    ]
-                },
-                "description": {
-                    "type": "string",
-                    "default": "",
-                    "title": "The description Schema",
-                    "examples": [
-                        "description"
-                    ]
-                },
-                "plantId": {
-                    "type": "integer",
-                    "default": 0,
-                    "title": "The plantId Schema",
-                    "examples": [
-                        4
-                    ]
-                }
-            },
-            "examples": [{
-                "name": "Mountain Trail",
-                "description": "description",
-                "plantId": 4
-            }]
+            ]
+        },
+        "plantId": {
+            "type": "integer",
+            "default": 0,
+            "title": "The plantId Schema",
+            "examples": [
+                4
+            ]
         }
     },
     "examples": [{
