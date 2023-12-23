@@ -26,6 +26,7 @@ const getScientificNameFromImage = (async (uploadedFile) => {
 		);
 		const scientificName = data.results[0].species.scientificNameWithoutAuthor;
 		console.log('scientificName:', scientificName);
+		// console.log('typeof scientificName:', typeof scientificName);
 		return scientificName;
 		} catch (err) {
 			console.error('Error:', err.message);
@@ -46,7 +47,7 @@ const getPlantData = async (scientificName) => {
 		const foundPlantId = response.data.data[0].id;
 		const rawData = await axios.get(`${trefleBaseUrl}/${foundPlantId}?token=${PLANT_INFO_API_KEY}`);
 		const plantData = rawData.data.data.main_species;
-		// console.log('plantData:', plantData);
+		console.log('plantData:', plantData);
 		console.log('plantDataCommonName:', plantData.common_name);
 		console.log('plantDataEdiblePart:', plantData.edible_part);
 		console.log('plantDataFlowerColor:', plantData.flower.color);

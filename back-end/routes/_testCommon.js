@@ -24,7 +24,7 @@ async function commonBeforeAll() {
   testPlantIds[0] = 
     (await Plant.create({
       commonName: 'Pine Tree',
-      scientificName: 'Pine Tree in Latin',
+      scientificName: 'Pineeeetreee',
       imageUrl: 'https://i.pinimg.com/originals/1c/4e/bd/1c4ebddd9cfe015080fcbd25751bbae9.jpg',
       vegetable: false,
       ediblePart: null,
@@ -41,7 +41,7 @@ async function commonBeforeAll() {
   testPlantIds[1] =  
     (await Plant.create({
       commonName: 'Cactus',
-      scientificName: 'Cactus in Latin',
+      scientificName: 'Cactussssss',
       imageUrl: 'https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2F7p6iiofyg0q41.jpg',
       vegetable: false,
       ediblePart: null,

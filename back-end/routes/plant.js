@@ -10,6 +10,7 @@ const {PLANT_INFO_API_KEY} = require("../my_secret");
 const {getScientificNameFromImage, getPlantData, createPlant} = require("../helpers/plantApis");
 const multer = require("multer");
 const axios = require("axios");
+const Plant = require("../models/plant");
 const storage = multer.memoryStorage();
 const upload = multer({storage: storage});
 
@@ -32,17 +33,10 @@ router.post('/upload', upload.single('plantImg'), async (req, res, next) => {
     const plantData = await getPlantData(scientificName);
     // console.log('plantData:', plantData);
 
-    // const validator = jsonschema.validate(req.body, plantNewSchema);
-    // if (!validator.valid) {
-    //   const errs = validator.errors.map(e => e.stack);
-    //   throw new BadRequestError(errs);
-    // }
+    return res.status(201).json({plantData});
 
-    // return res.status(201).json({plantData});
-    // return plantData;
-
-    const plant = await createPlant(plantData);
-    return res.status(201).json({plant});
+    // const plant = await createPlant(plantData);
+    // return res.status(201).json({plant});
   
   } catch (err) {
     console.error('Error', err);
@@ -50,16 +44,26 @@ router.post('/upload', upload.single('plantImg'), async (req, res, next) => {
   }
 });
 
-// router.get('/details', async (req, res, next) => {
-//   // stringify result from json to string
+router.get('/details/:scientificName', async (req, res, next) => {
+  try {
+    const scientificName = req.params.scientificName;
+    const plantDetails = await Plant.get(scientificName);
+    return res.status(200).json({plantDetails});
+  } catch (err) {
+    console.error('Error', err);
+    return next(err);
+  }
+});
 
-//   try {
-    
-//   } catch (err) {
-//     console.error('Error', err);
-//     return next(err);
-//   }
-// });
-
+router.delete('/delete/:scientificName', async (req, res, next) => {
+  try {
+    const scientificName = req.params.scientificName;
+    await Plant.remove(scientificName);
+    return res.json({deleted: scientificName});
+  } catch (err) {
+    console.error('Error', err);
+    return next(err);
+  }
+});
 
 module.exports = router;
