@@ -4,35 +4,19 @@
     "type": "object",
     "default": {},
     "title": "Root Schema",
-    "required": [
-        "listUpdate"
-    ],
     "properties": {
-        "listUpdate": {
-            "type": "object",
-            "default": {},
-            "title": "The listUpdate Schema",
-            "required": [
-                "description"
-            ],
-            "properties": {
-                "description": {
-                    "type": "string",
-                    "default": "",
-                    "title": "The description Schema",
-                    "examples": [
-                        "description"
-                    ]
-                }
-            },
-            "examples": [{
-                "description": "description"
-            }]
+        "description": {
+            "type": "string",
+            "default": "",
+            "title": "The description Schema",
+            "examples": [
+                "Updated description"
+            ]
         }
     },
     "examples": [{
         "listUpdate": {
-            "description": "description"
+            "description": "Updated description"
         }
     }]
 }

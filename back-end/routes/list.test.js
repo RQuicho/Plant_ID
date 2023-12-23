@@ -68,4 +68,42 @@ describe('GET /lists/:name', () => {
     expect(resp.body.list).toHaveProperty('description');
     expect(resp.body.list).toHaveProperty('listplant');
   });
+  test('throws error with no existing list', async() => {
+    const resp = await request(app).get('/lists/nope');
+    expect(resp.statusCode).toEqual(404);
+  })
+});
+
+// UPDATE /lists/:name
+describe('UPDATE /lists/:name', () => {
+  test('works', async() => {
+    const resp = await request(app)
+      .patch('/lists/List1')
+      .send({
+        description: 'updated description for list 1',
+      });
+    expect(resp.body).toEqual({
+      list: {
+        name: 'List1',
+        description: 'updated description for list 1',
+      }
+    });
+  });
+  test('thows error if trying to change list name', async() => {
+    const resp = await request(app)
+    .patch('/lists/List1')
+    .send({
+      name: 'NewList1',
+    });
+  expect(resp.statusCode).toEqual(500);
+  });
+});
+
+// DELETE /lists/:name
+describe('DELETE /lists/:name', () => {
+  test('works', async() => {
+    const resp = await request(app)
+      .delete('/lists/List1');
+    expect(resp.body).toEqual({deleted: 'List1'});
+  });
 });
