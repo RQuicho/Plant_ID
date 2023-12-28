@@ -11,12 +11,13 @@ const {getScientificNameFromImage, getPlantData, createPlant} = require("../help
 const multer = require("multer");
 const axios = require("axios");
 const Plant = require("../models/plant");
+const { ensureLoggedIn } = require("../middleware/auth");
 const storage = multer.memoryStorage();
 const upload = multer({storage: storage});
 
 // Upload a photo and use API to id image
 // from myplantnet.org/docs and multer docs
-router.post('/upload', upload.single('plantImg'), async (req, res, next) => {
+router.post('/upload', ensureLoggedIn, upload.single('plantImg'), async (req, res, next) => {
   // check that image is jpeg image.. return some error message
   // check that first call returns proper result before calling next api
   try {

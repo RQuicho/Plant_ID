@@ -55,8 +55,20 @@ describe("POST /plants/upload", function() {
     // expect(scientificName).toEqual('')
 
     // ALREADY TESTED PLANTAPIS
-
   });
+  test('works for logged in user', async() => {
+    const resp = await request(app)
+      .post('/plants/upload')
+      .set("Content-type", "multipart/form-data")
+      .set("username", 'user1');
+      expect(resp.statusCode).toEqual(201);
+      // const res = {locals: {user: {username: "testUser"}}};
+  });
+  // test('return 400 status code for invalid image type', async() => {
+  //   const resp = await request(app)
+  //     .post('/plants/upload')
+  //     .attach('testImg', '')
+  // })
 });
 
   // GET plant details

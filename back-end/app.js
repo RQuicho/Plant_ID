@@ -6,6 +6,7 @@ const {authenticateJWT} = require("./middleware/auth");
 const authRoutes = require("./routes/auth");
 const plantRoutes = require("./routes/plant");
 const listRoutes = require("./routes/list");
+const userRoutes = require("./routes/user");
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(authenticateJWT);
 app.use("/auth", authRoutes);
 app.use("/plants", plantRoutes);
 app.use("/lists", listRoutes);
+app.use("/users", userRoutes);
 
 
 // 404 Error
