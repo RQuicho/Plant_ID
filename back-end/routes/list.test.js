@@ -13,6 +13,7 @@ const {
   commonAfterEach,
   commonAfterAll,
   testListNames,
+  testPlantIds,
   user1Token,
   user2Token,
   user3Token
@@ -89,7 +90,7 @@ describe('UPDATE /lists/:name', () => {
       }
     });
   });
-  test('thows error if trying to change list name', async() => {
+  test('throws error if trying to change list name', async() => {
     const resp = await request(app)
     .patch('/lists/List1')
     .send({
@@ -105,5 +106,24 @@ describe('DELETE /lists/:name', () => {
     const resp = await request(app)
       .delete('/lists/List1');
     expect(resp.body).toEqual({deleted: 'List1'});
+  });
+});
+
+// POST /lists/:name/plants/:id
+describe('POST /lists/:name/plants/:id', () => {
+  test('works', async() => {
+    const resp = await request(app)
+      .post(`/lists/List1/plants/${testPlantIds[0]}`);
+    expect(resp.body).toEqual({added: testPlantIds[0]});
+  });
+  test('throws error if list does not exist', async() => {
+    const resp = await request(app)
+      .post(`/lists/nope/plants/${testPlantIds[0]}`);
+    expect(resp.statusCode).toEqual(404);
+  });
+  test('throws error if plant does not exist', async() => {
+    const resp = await request(app)
+      .post(`/lists/List1/plants/123564798`);
+    expect(resp.statusCode).toEqual(404);
   });
 });

@@ -122,6 +122,8 @@ module.exports = {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
+  testListNames,
+  testPlantIds,
   user1Token,
   user2Token,
   user3Token

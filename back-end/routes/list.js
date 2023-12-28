@@ -57,4 +57,14 @@ router.delete('/:name', async (req, res, next) => {
 });
 
 
+router.post('/:name/plants/:id', async (req, res, next) => {
+  try {
+    const plantId = +req.params.id;
+    await List.addPlantToList(req.params.name, plantId);
+    return res.json({added: plantId});
+  } catch (err) {
+    return next(err);
+  }
+});
+
 module.exports = router;
