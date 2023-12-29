@@ -2,10 +2,6 @@
 
 const request = require("supertest");
 const app = require("../app");
-const PLANT_INFO_API_KEY = require("../my_secret");
-const axios = require("axios");
-const Plant = require("../models/plant");
-const db = require("../db");
 
 const {
   commonBeforeAll,
@@ -72,7 +68,7 @@ describe('GET /lists/:name', () => {
   test('throws error with no existing list', async() => {
     const resp = await request(app).get('/lists/nope');
     expect(resp.statusCode).toEqual(404);
-  })
+  });
 });
 
 // UPDATE /lists/:name
