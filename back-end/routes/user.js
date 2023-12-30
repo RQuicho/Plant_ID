@@ -57,6 +57,15 @@ router.delete('/:username', async (req, res, next) => {
   }
 });
 
+// router.get('/:username/lists', async (req, res, next) => {
+//   try {
+//     const lists = await User.getAllLists(req.params.username);
+//     return res.json({lists});
+//   } catch (err) {
+//     return next(err);
+//   }
+// });
+
 router.post('/:username/lists/:name', async (req, res, next) => {
   try {
     const listName = req.params.name;
@@ -66,6 +75,7 @@ router.post('/:username/lists/:name', async (req, res, next) => {
     return next(err);
   }
 });
+
 
 
 

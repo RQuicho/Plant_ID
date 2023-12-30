@@ -66,6 +66,11 @@ async function commonBeforeAll() {
     [testListNames[0]]);
 
   await db.query(`
+  INSERT INTO userList(username, list_name)
+  VALUES ('user1', $1)`,
+  [testListNames[2]]);
+
+  await db.query(`
     INSERT INTO listPlant(list_name, plant_id)
     VALUES ($1, $2)`,
     [testListNames[0], testPlantIds[0]]);

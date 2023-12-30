@@ -74,6 +74,20 @@ class User {
     return user;
   }
 
+  // GET all lists
+  static async getAllLists(username) {
+    const listsRes = await db.query(
+      `SELECT username, list_name
+       FROM userList
+       WHERE username = $1`,
+       [username],
+    );
+    const lists = listsRes.rows[0];
+
+    if (!lists) throw new NotFoundError(`No lists`);
+    return lists;
+  }
+
   // GET
   static async get(username) {
     const userRes = await db.query(

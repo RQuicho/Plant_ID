@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_API_URL = process.env.REACT_APP_BASE_URL || "http://loclahost:5000";
+const BASE_API_URL = process.env.REACT_APP_BASE_URL || "http://loclahost:3000";
 
 class PlantIdApi {
   static token;

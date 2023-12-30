@@ -86,7 +86,7 @@ describe("get", function() {
       firstName: 'Jane',
       lastName: 'Doe',
       email: 'user1@email.com',
-      userlist: [testListNames[0]]
+      userlist: [testListNames[0], testListNames[2]]
     });
   });
   test("not found if no such user", async function() {
@@ -96,6 +96,17 @@ describe("get", function() {
     } catch (err) {
       expect(err instanceof NotFoundError).toBeTruthy();
     }
+  });
+});
+
+// GET user lists
+describe("get user lists", () => {
+  test("works", async() => {
+    let lists = await User.getAllLists('user1');
+    expect(lists).toEqual({
+      username: 'user1',
+      list_name: 'list1'
+    });
   });
 });
 
