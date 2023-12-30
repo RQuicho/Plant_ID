@@ -1,10 +1,13 @@
-import React, {useState} from "react";
-import {Navigate} from "react-router-dom";
+import React, {useState} from 'react';
+import { Navigate } from 'react-router-dom';
 
-const LoginForm = ({login}) => {
+const SingupForm = ({signup}) => {
   const initialState = {
     username: '',
-    password: ''
+    password: '',
+    firstName: '',
+    lastName: '',
+    email: ''
   }
   const [formData, setFormData] = useState(initialState);
 
@@ -18,7 +21,7 @@ const LoginForm = ({login}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let result = await login(formData);
+    let result = await signup(formData);
     if (result.success) {
       // <Navigate to={`/users/${formData.username}`} />
       <Navigate to={`/plants/upload`} />
@@ -30,7 +33,7 @@ const LoginForm = ({login}) => {
 
   return (
     <div>
-      <h3>Log In</h3>
+      <h3>Signup</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username</label>
           <input
@@ -52,11 +55,40 @@ const LoginForm = ({login}) => {
             onChange={handleChange}
             required
           />
+        <label htmlFor="firstName">First Name</label>
+          <input
+            id="firstName"
+            type="text"
+            name="firstName"
+            placeholder="first name"
+            value={formData.firstName}
+            onChange={handleChange}
+            required
+          />
+        <label htmlFor="lastName">Last Name</label>
+          <input
+            id="lastName"
+            type="text"
+            name="lastName"
+            placeholder="last name"
+            value={formData.lastName}
+            onChange={handleChange}
+            required
+          />
+        <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="text"
+            name="email"
+            placeholder="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
         <button>Submit</button>
       </form>
     </div>
   )
 }
 
-export default LoginForm;
-
+export default SingupForm;
