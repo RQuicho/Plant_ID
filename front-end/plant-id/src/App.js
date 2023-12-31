@@ -4,7 +4,8 @@ import PlantIdApi from './api';
 import jwt from 'jsonwebtoken';
 import useLocalStorage from './hooks/useLocalStorage';
 import { BrowserRouter } from 'react-router-dom';
-
+import RoutePahts from './routes-nav/RoutePaths';
+import UserContext from './UserContext';
 
 export const TOKEN_STORAGE_ID = 'plantid-token';
 
@@ -39,7 +40,7 @@ function App() {
       return {success: true};
     } catch (err) {
       console.error('login failed', err);
-      return {success: false, e};
+      return {success: false, err};
     }
   }
 
@@ -58,11 +59,14 @@ function App() {
     return <p>Loading &hellip;</p>
   }
 
-
   return (
-    <div className="App">
-      <h1>test</h1>
-    </div>
+    <BrowserRouter>
+      <UserContext.Provider value={{currentUser, setCurrentUser}}>
+        <div className='App'>
+          <RoutePahts login={login} signup={signup} />
+        </div>
+      </UserContext.Provider>
+    </BrowserRouter>
   );
 }
 
