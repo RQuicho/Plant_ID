@@ -7,6 +7,7 @@ import LoginForm from '../Forms/LoginForm';
 import SignupForm from '../Forms/SignupForm';
 import ProfileForm from '../Forms/ProfileForm';
 import ProtectedRoute from './ProtectedRoute';
+import NotFound from '../NotFound';
 
 const RoutePaths = ({login, signup}) => {
   const {currentUser} = useContext(UserContext);
@@ -16,11 +17,8 @@ const RoutePaths = ({login, signup}) => {
       <Route path='/' element={<Homepage />} />
       <Route path='/login' element={<LoginForm login={login}/>} />
       <Route path='/signup' element={<SignupForm signup={signup}/>} />
-      {/* <ProtectedRoute path='/profile' element={<ProfileForm />} /> */}
-      {/* <ProtectedRoute path='/profile'>
-        <Route index element={<ProfileForm />} />
-      </ProtectedRoute> */}
       <Route path='/profile' element={currentUser ? <ProfileForm /> : <Navigate to='/login' />} />
+      <Route path='*' element={<NotFound />} />
     </Routes>
   );
 }
