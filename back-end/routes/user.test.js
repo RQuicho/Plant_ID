@@ -86,6 +86,19 @@ describe('GET /users/:username', () => {
   });
 });
 
+//GET /users/:username/lists
+describe('GET /users/:username/lists', () => {
+  test('works', async() => {
+    const resp = await request(app).get('/users/user1/lists');
+    expect(resp.body).toEqual({
+      lists: {
+        username: 'user1',
+        list_name: 'List1'
+      }
+    });
+  });
+});
+
 // UPDATE /users/:username
 describe('UPDATE /users/:username', () => {
   test('works', async() => {

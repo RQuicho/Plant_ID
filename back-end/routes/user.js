@@ -34,6 +34,15 @@ router.get('/:username', async (req, res, next) => {
   }
 });
 
+router.get('/:username/lists', async (req, res, next) => {
+  try {
+    const lists = await User.getAllLists(req.params.username);
+    return res.json({lists});
+  } catch (err) {
+    return next(err);
+  }
+});
+
 router.patch('/:username', async (req, res, next) => {
   try {
     const validator = jsonschema.validate(req.body, userUpdateSchema);
@@ -56,15 +65,6 @@ router.delete('/:username', async (req, res, next) => {
     return next(err);
   }
 });
-
-// router.get('/:username/lists', async (req, res, next) => {
-//   try {
-//     const lists = await User.getAllLists(req.params.username);
-//     return res.json({lists});
-//   } catch (err) {
-//     return next(err);
-//   }
-// });
 
 router.post('/:username/lists/:name', async (req, res, next) => {
   try {

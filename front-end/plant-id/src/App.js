@@ -4,7 +4,8 @@ import PlantIdApi from './api';
 import jwt from 'jsonwebtoken';
 import useLocalStorage from './hooks/useLocalStorage';
 import { BrowserRouter } from 'react-router-dom';
-import RoutePahts from './routes-nav/RoutePaths';
+import RoutePaths from './routes-nav/RoutePaths';
+import NavBar from './routes-nav/NavBar';
 import UserContext from './UserContext';
 
 export const TOKEN_STORAGE_ID = 'plantid-token';
@@ -44,6 +45,11 @@ function App() {
     }
   }
 
+  const logout = () => {
+    setCurrentUser(null);
+    setToken(null);
+  }
+
   const signup = async (signupData) => {
     try {
       let token = await PlantIdApi.signup(signupData);
@@ -63,7 +69,8 @@ function App() {
     <BrowserRouter>
       <UserContext.Provider value={{currentUser, setCurrentUser}}>
         <div className='App'>
-          <RoutePahts login={login} signup={signup} />
+          <NavBar logout={logout} />
+          <RoutePaths login={login} signup={signup} />
         </div>
       </UserContext.Provider>
     </BrowserRouter>
