@@ -28,12 +28,15 @@ class User {
 
     if (user) {
       const isValid = await bcrypt.compare(password, user.password);
-      if (isValid === true) {
+      if (isValid) {
         delete user.password;
         return user;
+      } else {
+        throw new UnauthorizedError("Invalid username/password");
       }
+    } else {
+      throw new UnauthorizedError("Invalid username/password");
     }
-    throw new UnauthorizedError("Invalid username/password");
   }
 
   // Register

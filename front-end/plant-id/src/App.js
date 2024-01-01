@@ -43,7 +43,11 @@ function App() {
       setToken(token);
       // console.log('successfully logged in'); // good
       // console.log('token:', token); // undefined
-      return {success: true};
+      if (token) {
+        return {success: true};
+      } else {
+        return {success: false};
+      }
     } catch (err) {
       console.error('login failed', err);
       return {success: false, err};

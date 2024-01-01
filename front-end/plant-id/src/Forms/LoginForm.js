@@ -1,12 +1,16 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import {Navigate, redirect} from "react-router-dom";
+import UserContext from "../UserContext";
+
 
 const LoginForm = ({login}) => {
+  const {currentUser} = useContext(UserContext);
   const initialState = {
     username: '',
     password: ''
   }
   const [formData, setFormData] = useState(initialState);
+  const [errorMsg, setErrorMsg] = useState(false);
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -19,19 +23,22 @@ const LoginForm = ({login}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let result = await login(formData);
-    // console.log('result in front end LoginForm: ', result);
+    console.log('result in front end LoginForm: ', result);
     // console.log('result.success in front end LoginForm: ', result.success);
     if (result.success) {
-      <Navigate to="/upload" />;
+      return <Navigate to="/upload" />;
       // return redirect("/upload");
+      // return result.success
     } else {
       console.error('form error', result.errors);
-      return (<p>{`Error: ${result.errors}`}</p>);
+      setErrorMsg(true);
     }
   }
 
   return (
     <div>
+      {errorMsg ? <Navigate to="/login/error"/> : <Navigate to="/login"/>}
+      {currentUser ? <Navigate to="/upload"/> : <Navigate to="/login"/>}
       <h3>Log In</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username</label>
