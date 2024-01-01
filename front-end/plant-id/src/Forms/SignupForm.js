@@ -24,7 +24,8 @@ const SingupForm = ({signup}) => {
     let result = await signup(formData);
     if (result.success) {
       // <Navigate to={`/users/${formData.username}`} />
-      <Navigate to={`/plants/upload`} />
+      // <Navigate to={`/users/${formData.username}/lists`} />
+      <Navigate to='/lists' />
     } else {
       console.error('form error', result.errors);
       return (<p>{`Error: ${result.errors}`}</p>)

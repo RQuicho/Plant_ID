@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Navigate} from "react-router-dom";
+import {Navigate, redirect} from "react-router-dom";
 
 const LoginForm = ({login}) => {
   const initialState = {
@@ -19,9 +19,13 @@ const LoginForm = ({login}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let result = await login(formData);
+    console.log('result in front end LoginForm: ', result);
     if (result.success) {
       // <Navigate to={`/users/${formData.username}`} />
-      <Navigate to={`/plants/upload`} />
+      // <Navigate to={`/users/${formData.username}/lists`} />
+      return <Navigate to='/' />
+      // return redirect('/lists');
+
     } else {
       console.error('form error', result.errors);
       return (<p>{`Error: ${result.errors}`}</p>)

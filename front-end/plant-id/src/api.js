@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_API_URL = process.env.REACT_APP_BASE_URL || "http://loclahost:3000";
+const BASE_API_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
 class PlantIdApi {
   static token;
@@ -50,7 +50,9 @@ class PlantIdApi {
   static async getUser(username) {
     try {
       const result = await axios.get(`${BASE_API_URL}/users/${username}`);
-      return result.user;
+      console.log('result in front end api for getUser: ', result);
+      console.log('result.data.user: ', result.data.user);
+      return result.data.user;
     } catch (err) {
       console.log(err);
     }
@@ -58,7 +60,9 @@ class PlantIdApi {
   static async login(data) {
     try {
       const result = await axios.post(`${BASE_API_URL}/auth/token`, data);
-      return result.token;
+      console.log('result in front end PlantIdApi: ', result); //good
+      console.log('token in front end PlantIdApi: ', result.data.token); //good
+      return result.data.token;
     } catch (err) {
       console.log(err);
     }
