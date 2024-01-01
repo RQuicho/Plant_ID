@@ -19,13 +19,13 @@ function App() {
     const getUserInfo = async () => {
       if (token) {
         try {
-          console.log('token in front end App: ', token);
+          // console.log('token in front end App: ', token);
           let {username} = jwt.decode(token);
-          console.log('username in front end App: ', username);
+          // console.log('username in front end App: ', username);
           PlantIdApi.token = token;
           let currentUser = await PlantIdApi.getUser(username);
           setCurrentUser(currentUser);
-          console.log('currentUser in front end App: ', currentUser); // undefined
+          // console.log('currentUser in front end App: ', currentUser);
         } catch (err) {
           console.error('Unable to get user info in App.js', err);
           setCurrentUser(null);

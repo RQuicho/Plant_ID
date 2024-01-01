@@ -3,6 +3,7 @@ import {Routes, Route, Navigate} from 'react-router-dom';
 import UserContext from '../UserContext';
 
 import Homepage from '../Homepage';
+import UploadPage from '../UploadPage';
 import LoginForm from '../Forms/LoginForm';
 import SignupForm from '../Forms/SignupForm';
 import ProfileForm from '../Forms/ProfileForm';
@@ -15,10 +16,11 @@ const RoutePaths = ({login, signup}) => {
   return (
     <Routes>
       <Route path='/' element={<Homepage />} />
+      <Route path='/upload' element={<UploadPage />} />
       <Route path='/login' element={<LoginForm login={login}/>} />
       <Route path='/signup' element={<SignupForm signup={signup}/>} />
       <Route path='/profile' element={currentUser ? <ProfileForm /> : <Navigate to='/login' />} />
-      <Route path='/lists' element={currentUser ? <ListsList /> : <Navigate to='/login' />} />
+      <Route path={currentUser ? `/${currentUser.username}/lists` : '/login'} element={currentUser ? <ListsList /> : <Navigate to='/login' />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
   );

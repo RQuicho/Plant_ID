@@ -19,16 +19,14 @@ const LoginForm = ({login}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let result = await login(formData);
-    console.log('result in front end LoginForm: ', result);
+    // console.log('result in front end LoginForm: ', result);
+    // console.log('result.success in front end LoginForm: ', result.success);
     if (result.success) {
-      // <Navigate to={`/users/${formData.username}`} />
-      // <Navigate to={`/users/${formData.username}/lists`} />
-      return <Navigate to='/' />
-      // return redirect('/lists');
-
+      <Navigate to="/upload" />;
+      // return redirect("/upload");
     } else {
       console.error('form error', result.errors);
-      return (<p>{`Error: ${result.errors}`}</p>)
+      return (<p>{`Error: ${result.errors}`}</p>);
     }
   }
 
