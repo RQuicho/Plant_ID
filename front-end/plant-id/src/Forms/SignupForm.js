@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Navigate } from 'react-router-dom';
+import UserContext from "../UserContext";
 
 const SingupForm = ({signup}) => {
+  const {currentUser} = useContext(UserContext);
   const initialState = {
     username: '',
     password: '',
@@ -27,7 +29,7 @@ const SingupForm = ({signup}) => {
     console.log('result in front end SignupForm: ', result);
     if (result.success) {
       setIsSubmitted(true);
-      return <Navigate to='/signup/success' />;
+      return <Navigate to="/upload" />;
     } else {
       console.error('form error', result.errors);
       setErrorMsg(true);

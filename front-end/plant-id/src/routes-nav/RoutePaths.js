@@ -14,14 +14,15 @@ import SignupError from '../NotFoundErrors/SignupError';
 
 const RoutePaths = ({login, signup}) => {
   const {currentUser} = useContext(UserContext);
+  // console.log('currentUser in front end RoutePaths: ', currentUser);
   
   return (
     <Routes>
       <Route path='/' 
              element={<Homepage />} 
       />
-      <Route path='/upload' 
-             element={<UploadPage />} 
+      <Route path={currentUser ? '/upload' : '/login'} 
+             element={currentUser ? <UploadPage /> : <LoginForm login={login} />} 
       />
       <Route path='/login' 
              element={<LoginForm login={login}/>} 
@@ -30,10 +31,10 @@ const RoutePaths = ({login, signup}) => {
              element={<SignupForm signup={signup}/>} 
       />
       <Route path='/profile' 
-             element={currentUser ? <ProfileForm /> : <Navigate to='/login' />} 
+             element={currentUser ? <ProfileForm /> : <LoginForm login={login}/>} 
       />
       <Route path={currentUser ? `/${currentUser.username}/lists` : '/login'} 
-             element={currentUser ? <ListsList /> : <Navigate to='/login' />} 
+             element={currentUser ? <ListsList /> : <LoginForm login={login}/>} 
       />
       <Route path='/login/error' 
              element={<LoginError />} 

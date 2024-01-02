@@ -14,6 +14,9 @@ const NavBar = ({logout}) => {
         </NavLink>
         <Nav className="ml-auto" navbar>
           <NavItem>
+            <NavLink to={`/upload`}>Upload Image</NavLink>
+          </NavItem>
+          <NavItem>
             <NavLink to={`/${currentUser.username}/lists`}>Lists</NavLink>
           </NavItem>
           <NavItem>
