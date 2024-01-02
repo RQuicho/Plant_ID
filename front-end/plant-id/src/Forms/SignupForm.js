@@ -39,7 +39,7 @@ const SingupForm = ({signup}) => {
   return (
     <div>
       {errorMsg ? <Navigate to="/signup/error"/> : <Navigate to="/signup"/>}
-      {isSubmitted ? <Navigate to="/upload"/> : <Navigate to="/signup"/>}
+      {isSubmitted ? <Navigate to="/signup/success"/> : <Navigate to="/signup"/>}
       
       <h3>Signup</h3>
       <form onSubmit={handleSubmit}>

@@ -66,7 +66,7 @@ class PlantIdApi {
   static async signup(data) {
     try {
       const result = await axios.post(`${BASE_API_URL}/auth/register`, data);
-      console.log('result in front end signup PlantIdApi: ', result);
+      // console.log('result in front end signup PlantIdApi: ', result);
       return result.data.token;
     } catch (err) {
       console.log(err);
@@ -75,7 +75,8 @@ class PlantIdApi {
   static async updateUserProfile(username, data) {
     try {
       const result = await axios.patch(`${BASE_API_URL}/users/${username}`, data);
-      return result.user;
+      console.log('result in front end for PlantIdApi: ', result);
+      return result.data.user;
     } catch (err) {
       console.log(err);
     }

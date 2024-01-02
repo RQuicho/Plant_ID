@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import PlantCard from '../Plants/PlantCard';
 import PlantIdApi from '../api';
-import NotFound from '../NotFoundErrors/NotFound';
+import NotFound from '../ErrorSuccessMessages/NotFound';
 
 const ListsList = () => {
   const [plant, setPlant] = useState('');

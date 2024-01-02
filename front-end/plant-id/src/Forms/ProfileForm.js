@@ -1,4 +1,5 @@
 import React, {useContext, useState} from 'react';
+import { Navigate } from 'react-router-dom';
 import PlantIdApi from '../api';
 import UserContext from '../UserContext';
 
@@ -10,7 +11,8 @@ const ProfileForm = () => {
     email: currentUser.email,
     password: ''
   });
-
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  
   const handleChange = (e) => {
     const {name, value} = e.target;
     setFormData(formData => ({
@@ -24,17 +26,28 @@ const ProfileForm = () => {
     let profileData = {
       firstName: formData.firstName,
       lastName: formData.lastName,
-      email: formData.email,
-      password: formData.password
+      email: formData.email
     };
-    let username = formData.username;
+    let username = currentUser.username;
+    if (formData.password.trim() !== '') {
+      profileData.password = formData.password;
+    }
     let updatedUser;
     try {
       updatedUser = await PlantIdApi.updateUserProfile(username, profileData);
+      console.log('updatedUser in front end for ProfileForm: ', updatedUser);
+      if (updatedUser) {
+        setIsSubmitted(true);
+      } else {
+        console.log('No updated user');
+      }
     } catch (err) {
       console.error('Error updating profile', err);
       return;
     }
+    setIsSubmitted(true);
+    console.log('isSubmitted in front end for ProfileForm: ', isSubmitted);
+
     setFormData(data => ({
       ...data,
       password: ''
@@ -44,10 +57,9 @@ const ProfileForm = () => {
 
   return (
     <div>
-      <h3>Profile</h3>
+      {isSubmitted ? <Navigate to="/profile/updated"/> : <Navigate to="/profile"/>}
+      <h3>{`${currentUser.username}'s Profile`}</h3>
       <form onSubmit={handleSubmit}>
-        <label htmlFor='username'>Username</label>
-        <p>{formData.username}</p>
         <label htmlFor='firtName'>First Name</label>
           <input 
             id='firstName'

@@ -8,9 +8,11 @@ import LoginForm from '../Forms/LoginForm';
 import SignupForm from '../Forms/SignupForm';
 import ProfileForm from '../Forms/ProfileForm';
 import ListsList from '../List/ListsList';
-import NotFound from '../NotFoundErrors/NotFound';
-import LoginError from '../NotFoundErrors/LoginError';
-import SignupError from '../NotFoundErrors/SignupError';
+import NotFound from '../ErrorSuccessMessages/NotFound';
+import LoginError from '../ErrorSuccessMessages/LoginError';
+import SignupError from '../ErrorSuccessMessages/SignupError';
+import SignupSuccess from '../ErrorSuccessMessages/SignupSuccess';
+import ProfileUpdated from '../ErrorSuccessMessages/ProfileUpdated';
 
 const RoutePaths = ({login, signup}) => {
   const {currentUser} = useContext(UserContext);
@@ -30,8 +32,14 @@ const RoutePaths = ({login, signup}) => {
       <Route path='/signup' 
              element={<SignupForm signup={signup}/>} 
       />
+      <Route path='/signup/success' 
+             element={<SignupSuccess />} 
+      />
       <Route path='/profile' 
              element={currentUser ? <ProfileForm /> : <LoginForm login={login}/>} 
+      />
+      <Route path='/profile/updated' 
+             element={<ProfileUpdated />} 
       />
       <Route path={currentUser ? `/${currentUser.username}/lists` : '/login'} 
              element={currentUser ? <ListsList /> : <LoginForm login={login}/>} 

@@ -28,6 +28,7 @@ router.post('/', async (req, res, next) => {
 router.get('/:username', async (req, res, next) => {
   try {
     const user = await User.get(req.params.username);
+    // console.log('user in back end of user route: ', user); //good
     return res.json({user});
   } catch (err) {
     return next(err);
@@ -51,6 +52,7 @@ router.patch('/:username', async (req, res, next) => {
       throw new BadRequestError(errs);
     }
     const user = await User.update(req.params.username, req.body);
+    console.log('user in back end for user route: ', user);
     return res.json({user});
   } catch (err) {
     return next(err);
