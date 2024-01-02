@@ -10,6 +10,7 @@ import ProfileForm from '../Forms/ProfileForm';
 import ListsList from '../List/ListsList';
 import NotFound from '../NotFoundErrors/NotFound';
 import LoginError from '../NotFoundErrors/LoginError';
+import SignupError from '../NotFoundErrors/SignupError';
 
 const RoutePaths = ({login, signup}) => {
   const {currentUser} = useContext(UserContext);
@@ -36,6 +37,9 @@ const RoutePaths = ({login, signup}) => {
       />
       <Route path='/login/error' 
              element={<LoginError />} 
+      />
+      <Route path='/signup/error' 
+             element={<SignupError />} 
       />
       <Route path='*' 
              element={<NotFound />} 

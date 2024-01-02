@@ -50,8 +50,6 @@ class PlantIdApi {
   static async getUser(username) {
     try {
       const result = await axios.get(`${BASE_API_URL}/users/${username}`);
-      // console.log('result in front end api for getUser: ', result);
-      // console.log('result.data.user: ', result.data.user);
       return result.data.user;
     } catch (err) {
       console.log(err);
@@ -60,8 +58,6 @@ class PlantIdApi {
   static async login(data) {
     try {
       const result = await axios.post(`${BASE_API_URL}/auth/token`, data);
-      // console.log('result in front end PlantIdApi: ', result);
-      // console.log('token in front end PlantIdApi: ', result.data.token);
       return result.data.token;
     } catch (err) {
       console.log(err);
@@ -70,7 +66,8 @@ class PlantIdApi {
   static async signup(data) {
     try {
       const result = await axios.post(`${BASE_API_URL}/auth/register`, data);
-      return result.token;
+      console.log('result in front end signup PlantIdApi: ', result);
+      return result.data.token;
     } catch (err) {
       console.log(err);
     }

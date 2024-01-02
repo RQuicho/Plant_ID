@@ -19,13 +19,10 @@ function App() {
     const getUserInfo = async () => {
       if (token) {
         try {
-          // console.log('token in front end App: ', token);
           let {username} = jwt.decode(token);
-          // console.log('username in front end App: ', username);
           PlantIdApi.token = token;
           let currentUser = await PlantIdApi.getUser(username);
           setCurrentUser(currentUser);
-          // console.log('currentUser in front end App: ', currentUser);
         } catch (err) {
           console.error('Unable to get user info in App.js', err);
           setCurrentUser(null);
@@ -41,8 +38,6 @@ function App() {
     try {
       let token = await PlantIdApi.login(loginData);
       setToken(token);
-      // console.log('successfully logged in'); // good
-      // console.log('token:', token); // undefined
       if (token) {
         return {success: true};
       } else {
@@ -63,7 +58,11 @@ function App() {
     try {
       let token = await PlantIdApi.signup(signupData);
       setToken(token);
-      return {success: true};
+      if (token) {
+        return {success: true};
+      } else {
+        return {success: false};
+      }
     } catch (err) {
       console.error('signup failed', err);
       return {success: false, err};

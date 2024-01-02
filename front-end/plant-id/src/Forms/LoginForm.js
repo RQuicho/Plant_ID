@@ -1,7 +1,6 @@
 import React, {useState, useContext} from "react";
-import {Navigate, redirect} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import UserContext from "../UserContext";
-
 
 const LoginForm = ({login}) => {
   const {currentUser} = useContext(UserContext);
@@ -23,12 +22,8 @@ const LoginForm = ({login}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let result = await login(formData);
-    console.log('result in front end LoginForm: ', result);
-    // console.log('result.success in front end LoginForm: ', result.success);
     if (result.success) {
       return <Navigate to="/upload" />;
-      // return redirect("/upload");
-      // return result.success
     } else {
       console.error('form error', result.errors);
       setErrorMsg(true);

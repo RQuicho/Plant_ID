@@ -10,6 +10,8 @@ const SingupForm = ({signup}) => {
     email: ''
   }
   const [formData, setFormData] = useState(initialState);
+  const [errorMsg, setErrorMsg] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -22,18 +24,21 @@ const SingupForm = ({signup}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let result = await signup(formData);
+    console.log('result in front end SignupForm: ', result);
     if (result.success) {
-      // <Navigate to={`/users/${formData.username}`} />
-      // <Navigate to={`/users/${formData.username}/lists`} />
-      <Navigate to='/lists' />
+      setIsSubmitted(true);
+      return <Navigate to='/signup/success' />;
     } else {
       console.error('form error', result.errors);
-      return (<p>{`Error: ${result.errors}`}</p>)
+      setErrorMsg(true);
     }
   }
 
   return (
     <div>
+      {errorMsg ? <Navigate to="/signup/error"/> : <Navigate to="/signup"/>}
+      {isSubmitted ? <Navigate to="/upload"/> : <Navigate to="/signup"/>}
+      
       <h3>Signup</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username</label>
