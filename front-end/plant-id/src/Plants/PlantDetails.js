@@ -27,13 +27,13 @@ const PlantDetails = () => {
 
   console.log('plant in front end from PlantDetails component: ', plant);
 
-  // if (plant === null || (plant && !plant.scientificName)) {
-  //   return (
-  //     <>
-  //       <NotFound />
-  //     </>
-  //   );
-  // }
+  if (plant === null) {
+    return (
+      <>
+        <h1>No plant found</h1>
+      </>
+    );
+  }
 
   if (isLoading) {
     return <p>Loading &hellip;</p>
@@ -42,38 +42,27 @@ const PlantDetails = () => {
   return (
     <div>
       <p>Plant Details go here</p>
-      <img src={plant.plantDetails.imageUrl} alt={`${plant.plantDetails.commonName}`} />
-      <h3>{plant.plantDetails.commonName}</h3>
-      <p>{plant.plantDetails.scientificName}</p>
-      <p>{plant.plantDetails.vegetable}</p>
-      <p>{plant.plantDetails.ediblePart}</p>
-      <p>{plant.plantDetails.edible}</p>
-      <p>{plant.plantDetails.flowerColor}</p>
-      <p>{plant.plantDetails.foliageTexture}</p>
-      <p>{plant.plantDetails.foliageColor}</p>
-      <p>{plant.plantDetails.fruitOrSeedColor}</p>
-      <p>{plant.plantDetails.fruitOrSeedShape}</p>
-      <p>{plant.plantDetails.growthForm}</p>
-      <p>{plant.plantDetails.growthHabit}</p>
-      <p>{plant.plantDetails.toxicity}</p>
-		
-		{/* "imageUrl": "https://bs.plantnet.org/image/o/e4f2713e640f0a4d549e9517b5c3f0f12b531188",
-		"vegetable": false,
-		"ediblePart": null,
-		"edible": false,
-		"flowerColor": null,
-		"foliageTexture": null,
-		"foliageColor": null,
-		"fruitOrSeedColor": null,
-		"fruitOrSeedShape": null,
-		"growthForm": null,
-		"growthHabit": null,
-		"toxicity": null */}
+      {plant.plantDetails && (
+        <>
+          <img src={plant.plantDetails.imageUrl} alt={`${plant.plantDetails.commonName}`} />
+          <h1>{plant.plantDetails.commonName}</h1>
+          <h3>{plant.plantDetails.scientificName}</h3>
+          <p>Vegetable: {plant.plantDetails.vegetable !== null ? plant.plantDetails.vegetable.toString() : "null"}</p>
+          <p>Edible Part: {plant.plantDetails.ediblePart !== null ? plant.plantDetails.ediblePart.toString() : "null"}</p>
+          <p>Edible: {plant.plantDetails.edible !== null ? plant.plantDetails.edible.toString() : "null"}</p>
+          <p>Flower Color: {plant.plantDetails.flowerColor !== null ? plant.plantDetails.flowerColor.toString() : "null"}</p>
+          <p>Foliage Texture: {plant.plantDetails.foliageTexture !== null ? plant.plantDetails.foliageTexture.toString() : "null"}</p>
+          <p>Foliage Color: {plant.plantDetails.foliageColor !== null ? plant.plantDetails.foliageColor.toString() : "null"}</p>
+          <p>Fruit or Seed Color: {plant.plantDetails.fruitOrSeedColor !== null ? plant.plantDetails.fruitOrSeedColor.toString() : "null"}</p>
+          <p>Fruit or Seed Shape: {plant.plantDetails.fruitOrSeedShape !== null ? plant.plantDetails.fruitOrSeedShape.toString() : "null"}</p>
+          <p>Growth Form: {plant.plantDetails.growthForm !== null ? plant.plantDetails.growthForm.toString() : "null"}</p>
+          <p>Growth Habit: {plant.plantDetails.growthHabit !== null ? plant.plantDetails.growthHabit.toString() : "null"}</p>
+          <p>Toxicity: {plant.plantDetails.toxicity !== null ? plant.plantDetails.toxicity.toString() : "null"}</p>
+        </>
+      )}
     </div>
   );
 
 }
 
 export default PlantDetails;
-
-
