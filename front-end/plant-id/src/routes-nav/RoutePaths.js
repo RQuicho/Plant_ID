@@ -13,6 +13,7 @@ import LoginError from '../ErrorSuccessMessages/LoginError';
 import SignupError from '../ErrorSuccessMessages/SignupError';
 import SignupSuccess from '../ErrorSuccessMessages/SignupSuccess';
 import ProfileUpdated from '../ErrorSuccessMessages/ProfileUpdated';
+import PlantDetails from '../Plants/PlantDetails';
 
 const RoutePaths = ({login, signup}) => {
   const {currentUser} = useContext(UserContext);
@@ -22,9 +23,6 @@ const RoutePaths = ({login, signup}) => {
     <Routes>
       <Route path='/' 
              element={<Homepage />} 
-      />
-      <Route path={currentUser ? '/upload' : '/login'} 
-             element={currentUser ? <UploadPage /> : <LoginForm login={login} />} 
       />
       <Route path='/login' 
              element={<LoginForm login={login}/>} 
@@ -49,6 +47,12 @@ const RoutePaths = ({login, signup}) => {
       />
       <Route path='/signup/error' 
              element={<SignupError />} 
+      />
+      <Route path={currentUser ? '/upload' : '/login'} 
+             element={currentUser ? <UploadPage /> : <LoginForm login={login} />} 
+      />
+      <Route path={currentUser ? '/plant/details' : '/login'} 
+             element={currentUser ? <PlantDetails /> : <LoginForm login={login} />} 
       />
       <Route path='*' 
              element={<NotFound />} 

@@ -13,12 +13,20 @@ class PlantIdApi {
       console.log(err);
     }
   }
-  static async postPlantPhoto() {
+  static async postPlantPhoto(file) {
     try {
-      const result = await axios.post(`${BASE_API_URL}/plants/upload`);
+      const formData = new FormData();
+      formData.append('plantImg', file);
+
+      const result = await axios.post(`${BASE_API_URL}/plants/upload`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('result in front end for PlantIdApi postPlantPhoto: ', result);
       return result.data;
     } catch (err) {
-      console.log(err);
+      console.log('Error for front end api postPlantPhoto: ', err);
     }
   }
   // List routes

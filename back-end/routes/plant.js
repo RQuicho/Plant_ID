@@ -17,26 +17,31 @@ const upload = multer({storage: storage});
 
 // Upload a photo and use API to id image
 // from myplantnet.org/docs and multer docs
-router.post('/upload', ensureLoggedIn, upload.single('plantImg'), async (req, res, next) => {
-  // check that image is jpeg image.. return some error message
-  // check that first call returns proper result before calling next api
+router.post('/upload', upload.single('plantImg'), async (req, res, next) => {
   try {
-    console.log('req.file:', req.file);
+    // console.log('req from back end in routes plant.js /upload:', req);
+    console.log('req.file from back end in routes plant.js /upload:', req.file);
     if (!req.file) {
-      return res.status(400).json({error: 'No file uploaded'});
+      return res.status(400).json({error: 'No file uploaded in plant.js route'});
     }
     if (req.file.mimetype !== 'image/jpeg') {
       return res.status(400).json({error: 'Incorrect file type. Please upload a jpeg'});
     }
     const scientificName = await getScientificNameFromImage(req.file);
-    // console.log('scientificName:', scientificName);
+    console.log('scientificName from back end in routes plant.js /upload:', scientificName);
 
     const plantData = await getPlantData(scientificName);
-    // console.log('plantData:', plantData);
+    console.log('plantData from back end in routes plant.js /upload:', plantData);
     // return res.status(201).json({plantData});
 
-    const plant = await createPlant(plantData);
-    return res.status(201).json({plant});
+    // const plant = await createPlant(plantData);
+    await createPlant(plantData);
+
+    // if (plant === "Plant not created") {
+    //   return 
+    // }
+    // return res.status(201).json({plant});
+    return res.status(201).json({plantData});
   
   } catch (err) {
     console.error('Error', err);
