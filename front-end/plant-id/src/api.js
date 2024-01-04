@@ -7,7 +7,8 @@ class PlantIdApi {
   // Plant routes
   static async getPlant(scientificName) {
     try {
-      const result = await axios.get(`${BASE_API_URL}/plants/details/${scientificName}`);
+      const result = await axios.get(`${BASE_API_URL}/plants/${scientificName}`);
+      console.log('result in front end from PlantIdApi getPlant: ', result);
       return result.data;
     } catch (err) {
       console.log(err);

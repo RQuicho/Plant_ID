@@ -51,7 +51,7 @@ const RoutePaths = ({login, signup}) => {
       <Route path={currentUser ? '/upload' : '/login'} 
              element={currentUser ? <UploadPage /> : <LoginForm login={login} />} 
       />
-      <Route path={currentUser ? '/plant/details' : '/login'} 
+      <Route path={currentUser ? '/plants/:scientificName' : '/login'} 
              element={currentUser ? <PlantDetails /> : <LoginForm login={login} />} 
       />
       <Route path='*' 

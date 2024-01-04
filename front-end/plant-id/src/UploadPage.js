@@ -5,53 +5,10 @@ import { Link, Navigate } from "react-router-dom";
 
 const UploadPage = () => {
   const [scientificName, setScientificName] = useState('');
+  const [commonName, setCommonName] = useState('');
   const [imageUploaded, setImageUploaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   
-  
-  // useEffect(() => {
-  //   const getNameFromPhoto = async() => {
-  //     try {
-  //       const resp = await PlantIdApi.postPlantPhoto();
-  //       console.log('resp in front end UploadPage: ', resp);
-  //       setScientificName(resp);
-  //       if (resp) {
-  //         setImageUploaded(true);
-  //       }
-  //     } catch (err) {
-  //       console.error('Error fetching plant name in UploadPage component', err);
-  //     }
-  //   };
-  //   getNameFromPhoto();
-  // }, [scientificName]);
-
-  // if (scientificName === null) {
-  //   return (
-  //     <>
-  //       <NotFound />
-  //     </>
-  //   );
-  // }
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     setIsLoading(true);
-  //     let result = await PlantIdApi.postPlantPhoto();
-  //     console.log('result in front end UploadPage handleSubmit: ', result);
-  //     if (result) {
-  //       setImageUploaded(true);
-  //       return <Navigate to="/plant/details"/>
-  //     } else {
-  //       console.error('Error uploading image from UploadPage component');
-  //     }
-  //   } catch (err) {
-  //     console.error('Error uploading image from UploadPage component: ', err);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -71,6 +28,8 @@ const UploadPage = () => {
 
       if (result) {
         setImageUploaded(true);
+        setScientificName(result.plantData.scientific_name);
+        setCommonName(result.plantData.common_name);
         return <Navigate to="/plant/details"/>
       } else {
         console.error('Error uploading image from UploadPage component');
@@ -97,10 +56,10 @@ const UploadPage = () => {
   const pageIfUploaded = () => {
     return (
       <div>
-        {/* <h1>Your image is: {scientificName}</h1> */}
-        <h1>Your image is: put plant name here</h1>
+        <h1>Your image is: {`${commonName}(${scientificName})`}</h1>
+        {/* <h1>Your image is: put plant name here</h1> */}
         <button>
-          <Link to='/plant/details'>Plant Details</Link>
+          <Link to={`/plants/${scientificName}`}>Plant Details</Link>
         </button>
       </div>
     );

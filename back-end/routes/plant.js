@@ -49,7 +49,7 @@ router.post('/upload', upload.single('plantImg'), async (req, res, next) => {
   }
 });
 
-router.get('/details/:scientificName', async (req, res, next) => {
+router.get('/:scientificName', async (req, res, next) => {
   try {
     const scientificName = req.params.scientificName;
     const plantDetails = await Plant.get(scientificName);
@@ -60,7 +60,7 @@ router.get('/details/:scientificName', async (req, res, next) => {
   }
 });
 
-router.delete('/delete/:scientificName', async (req, res, next) => {
+router.delete('/:scientificName', async (req, res, next) => {
   try {
     const scientificName = req.params.scientificName;
     await Plant.remove(scientificName);
