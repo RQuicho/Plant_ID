@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PlantIdApi from "../api";
 import NotFound from '../ErrorSuccessMessages/NotFound';
 import { useParams } from 'react-router-dom';
+import PlantCard from './PlantCard';
 
 const PlantDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -44,9 +45,7 @@ const PlantDetails = () => {
       <p>Plant Details go here</p>
       {plant.plantDetails && (
         <>
-          <img src={plant.plantDetails.imageUrl} alt={`${plant.plantDetails.commonName}`} />
-          <h1>{plant.plantDetails.commonName}</h1>
-          <h3>{plant.plantDetails.scientificName}</h3>
+          <PlantCard plant={plant} />
           <p>Vegetable: {plant.plantDetails.vegetable !== null ? plant.plantDetails.vegetable.toString() : "null"}</p>
           <p>Edible Part: {plant.plantDetails.ediblePart !== null ? plant.plantDetails.ediblePart.toString() : "null"}</p>
           <p>Edible: {plant.plantDetails.edible !== null ? plant.plantDetails.edible.toString() : "null"}</p>
@@ -60,6 +59,10 @@ const PlantDetails = () => {
           <p>Toxicity: {plant.plantDetails.toxicity !== null ? plant.plantDetails.toxicity.toString() : "null"}</p>
         </>
       )}
+      <form>
+        <button>Add Plant to List</button>
+        <p>Have a drop down of user created lists</p>
+      </form>
     </div>
   );
 
