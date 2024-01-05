@@ -18,7 +18,7 @@ const PlantDetails = () => {
         console.log('response in front end from PlantDetails component: ', response);
         setPlant(response);
       } catch (err) {
-        console.error('Error fetching plant detials in PlantDetails component', err);
+        console.error('Error fetching plant detials in PlantDetails component: ', err);
       } finally {
         setIsLoading(false);
       }

@@ -24,14 +24,6 @@
             "examples": [
                 "description"
             ]
-        },
-        "plantId": {
-            "type": "integer",
-            "default": 0,
-            "title": "The plantId Schema",
-            "examples": [
-                4
-            ]
         }
     },
     "examples": [{

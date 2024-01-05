@@ -31,7 +31,7 @@ const SingupForm = ({signup}) => {
       setIsSubmitted(true);
       return <Navigate to="/upload" />;
     } else {
-      console.error('form error', result.errors);
+      console.error('Signup form error', result.errors);
       setErrorMsg(true);
     }
   }
@@ -96,7 +96,7 @@ const SingupForm = ({signup}) => {
         <button>Submit</button>
       </form>
     </div>
-  )
+  );
 }
 
 export default SingupForm;

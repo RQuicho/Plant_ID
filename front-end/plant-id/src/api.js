@@ -41,10 +41,12 @@ class PlantIdApi {
   }
   static async postList(data) {
     try {
+      console.log('data in front end from api postList: ', data);
       const result = await axios.post(`${BASE_API_URL}/lists`, data);
-      return result.list;
+      console.log('result in front end from api postList: ', result);
+      return result.data;
     } catch (err) {
-      console.log(err);
+      console.log('Error in front end from api postList: ', err);
     }
   }
   static async patchList(name, data) {

@@ -16,9 +16,10 @@ router.post('/', async (req, res, next) => {
       throw new BadRequestError(errs);
     }
     const list = await List.create(req.body);
+    console.log('list in back end from list route /: ', list); // good
     return res.status(201).json({list});
   } catch (err) {
-    // console.error('Error:', err);
+    console.error('Error in back end from list route:', err);
     return next(err);
   }
 });

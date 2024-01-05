@@ -57,7 +57,6 @@ const UploadPage = () => {
     return (
       <div>
         <h1>Your image is: {`${commonName}(${scientificName})`}</h1>
-        {/* <h1>Your image is: put plant name here</h1> */}
         <button>
           <Link to={`/plants/${scientificName}`}>Plant Details</Link>
         </button>

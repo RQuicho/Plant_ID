@@ -1,38 +1,56 @@
-import React, {useEffect, useState} from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import PlantCard from '../Plants/PlantCard';
+import ListCard from './ListCard';
 import PlantIdApi from '../api';
-import NotFound from '../ErrorSuccessMessages/NotFound';
 
 const ListsList = () => {
-  const [plant, setPlant] = useState('');
-  const {scientificName} = useParams();
+  const [isLoading, setIsLoading] = useState(false);
+  const [list, setList] = useState('');
+  const {name} = useParams();
 
   useEffect(() => {
-    const getPlantData = async() => {
+    const getListData = async() => {
       try {
-        const resp = await PlantIdApi.getPlant(scientificName);
-        setPlant(resp);
+        setIsLoading(true);
+        const response = await PlantIdApi.getList(name);
+        console.log('response in front end from ListDetails component: ', response);
+        setList(response);
       } catch (err) {
-        console.error('Error fetching plant data in ListsList component', err);
+        console.error('Error fetching list data in ListDetails component: ', err);
+      } finally {
+        setIsLoading(false);
       }
     };
-    getPlantData();
-  }, [scientificName]);
+    getListData();
+  }, [name]);
 
-  if (plant === null || (plant && !plant.scientificName)) {
+  console.log('list in front end from ListDetails component: ', list);
+
+  if (list === null) {
     return (
       <>
-        <NotFound />
+        <h1>No list found</h1>
       </>
-    )
+    );
   }
 
+  if (isLoading) {
+    return <p>Loading &hellip;</p>
+  }
+  
   return (
     <div>
-      <PlantCard plant={plant} />
+      <p>List cards go here</p>
+      <ListCard list={list} />
+
+      <button>
+        <Link to='/lists/new'>Create a list</Link>
+      </button>
+
     </div>
-  );
+  )
+
 
 }
 

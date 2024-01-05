@@ -17,7 +17,7 @@ const NavBar = ({logout}) => {
             <NavLink to="/upload">Upload Image</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to={`/${currentUser.username}/lists`}>Lists</NavLink>
+            <NavLink to={`/lists`}>Lists</NavLink>
           </NavItem>
           <NavItem>
             <NavLink to="/profile">Profile</NavLink>
