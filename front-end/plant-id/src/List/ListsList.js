@@ -1,33 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import PlantCard from '../Plants/PlantCard';
 import ListCard from './ListCard';
 import PlantIdApi from '../api';
+import UserContext from "../UserContext";
 
 const ListsList = () => {
+  const {currentUser} = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
-  const [list, setList] = useState('');
+  const [lists, setLists] = useState('');
   const {name} = useParams();
 
   useEffect(() => {
-    const getListData = async() => {
+    const getLists = async() => {
       try {
         setIsLoading(true);
-        const response = await PlantIdApi.getList(name);
+        const response = await PlantIdApi.getListsByUser(currentUser.username);
         console.log('response in front end from ListsList component: ', response);
-        setList(response);
+        setLists(response);
       } catch (err) {
         console.error('Error fetching list data in ListsList component: ', err);
       } finally {
         setIsLoading(false);
       }
     };
-    getListData();
-  }, [name]);
+    getLists();
+  }, [currentUser.username]);
 
-  console.log('list in front end from ListsList component: ', list);
+  console.log('lists in front end from ListsList component: ', lists);
 
-  if (list === null) {
+  if (lists === null) {
     return (
       <>
         <h1>No list found</h1>
@@ -42,6 +43,19 @@ const ListsList = () => {
   return (
     <div>
       <p>List cards go here</p>
+
+      {/* {list.names.map(name => (
+        <div key={list.name}>
+          <ListCard list={list} />
+        </div>
+      ))} */}
+
+      {lists.lists.map(list => (
+        <div key={list.list_name}>
+          <ListCard list={list} />
+        </div>
+      ))}
+
       {/* <ListCard list={list} /> */}
 
       <button>

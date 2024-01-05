@@ -85,7 +85,8 @@ class User {
        WHERE username = $1`,
        [username],
     );
-    const lists = listsRes.rows[0];
+    // const lists = listsRes.rows[0];
+    const lists = listsRes.rows;
 
     if (!lists) throw new NotFoundError(`No lists`);
     return lists;

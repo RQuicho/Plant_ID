@@ -101,6 +101,15 @@ class PlantIdApi {
       console.log('Error in front end for PlantIdApi addListToUser: ', err);
     }
   }
+  static async getListsByUser(username) {
+    try {
+      const result = await axios.get(`${BASE_API_URL}/users/${username}/lists`);
+      console.log('result in front end for PlantIdApi getListsByUser: ', result);
+      return result.data;
+    } catch (err) {
+      console.log('Error in front end of PlantIdApi getListsByUser: ', err);
+    }
+  }
 }
 
 export default PlantIdApi;
