@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PlantIdApi from '../api';
 import { Navigate } from 'react-router-dom';
+import UserContext from "../UserContext";
 
 const ListForm = () => {
+  const {currentUser} = useContext(UserContext);
   const initialState = {
     name: '',
     description: ''
@@ -22,11 +24,15 @@ const ListForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let result = await PlantIdApi.postList(formData);
-    console.log('result in front end from ListForm: ', result);
-    if (result) {
+    const newList = await PlantIdApi.postList(formData);
+    const newUserList = await PlantIdApi.addListToUser(currentUser.username, newList.list.name);
+    console.log('newList in front end from ListForm: ', newList); // good
+    console.log('newList.list.name in front end from ListForm: ', newList.list.name); // good
+    console.log('newUserList in front end from ListForm: ', newUserList);
+    console.log('newUserList in front end from ListForm: ', newUserList);
+    if (newList) {
       setIsSubmitted(true);
-      setName(result.name);
+      // setName(newList.name);
       return <Navigate to="/lists" />;
     } else {
       console.error('List form error');

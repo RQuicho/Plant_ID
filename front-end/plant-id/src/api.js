@@ -92,6 +92,15 @@ class PlantIdApi {
       console.log(err);
     }
   }
+  static async addListToUser(username, listName) {
+    try {
+      const result = await axios.post(`${BASE_API_URL}/users/${username}/lists/${listName}`);
+      console.log('result in front end for PlantIdApi addListToUser: ', result);
+      return result.data;
+    } catch (err) {
+      console.log('Error in front end for PlantIdApi addListToUser: ', err);
+    }
+  }
 }
 
 export default PlantIdApi;

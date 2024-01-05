@@ -70,10 +70,14 @@ router.delete('/:username', async (req, res, next) => {
 
 router.post('/:username/lists/:name', async (req, res, next) => {
   try {
+    const username = req.params.username;
+    console.log('username in back end for /:username/lists/:name route: ', username);
     const listName = req.params.name;
-    await User.addListToUser(req.params.username, listName);
+    console.log('listName in back end for /:username/lists/:name route: ', listName);
+    await User.addListToUser(username, listName);
     return res.json({added: listName});
   } catch (err) {
+    console.log('Error in back end for /:username/lists/:name route: ', err);
     return next(err);
   }
 });

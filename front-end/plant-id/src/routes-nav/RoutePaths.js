@@ -7,14 +7,14 @@ import UploadPage from '../UploadPage';
 import LoginForm from '../Forms/LoginForm';
 import SignupForm from '../Forms/SignupForm';
 import ProfileForm from '../Forms/ProfileForm';
-import ListsList from '../List/ListDetails';
 import NotFound from '../ErrorSuccessMessages/NotFound';
 import LoginError from '../ErrorSuccessMessages/LoginError';
 import SignupError from '../ErrorSuccessMessages/SignupError';
 import SignupSuccess from '../ErrorSuccessMessages/SignupSuccess';
 import ProfileUpdated from '../ErrorSuccessMessages/ProfileUpdated';
 import PlantDetails from '../Plants/PlantDetails';
-import ListDetails from '../List/ListsList';
+import ListsList from '../List/ListsList';
+import ListDetails from '../List/ListDetails';
 import ListForm from '../Forms/ListForm';
 import ListsError from '../ErrorSuccessMessages/ListsError';
 

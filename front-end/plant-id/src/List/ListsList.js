@@ -14,10 +14,10 @@ const ListsList = () => {
       try {
         setIsLoading(true);
         const response = await PlantIdApi.getList(name);
-        console.log('response in front end from ListDetails component: ', response);
+        console.log('response in front end from ListsList component: ', response);
         setList(response);
       } catch (err) {
-        console.error('Error fetching list data in ListDetails component: ', err);
+        console.error('Error fetching list data in ListsList component: ', err);
       } finally {
         setIsLoading(false);
       }
@@ -25,7 +25,7 @@ const ListsList = () => {
     getListData();
   }, [name]);
 
-  console.log('list in front end from ListDetails component: ', list);
+  console.log('list in front end from ListsList component: ', list);
 
   if (list === null) {
     return (
@@ -42,7 +42,7 @@ const ListsList = () => {
   return (
     <div>
       <p>List cards go here</p>
-      <ListCard list={list} />
+      {/* <ListCard list={list} /> */}
 
       <button>
         <Link to='/lists/new'>Create a list</Link>
