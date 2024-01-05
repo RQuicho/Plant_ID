@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import ListCard from './ListCard';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import PlantIdApi from '../api';
 
 
 const ListDetails = () => {
   const [isLoading, setIsLoading] = useState('');
   const [list, setList] = useState('');
+  const {name} = useParams();
 
   useEffect(() => {
     
