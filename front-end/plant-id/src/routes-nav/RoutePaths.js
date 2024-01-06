@@ -17,6 +17,7 @@ import ListsList from '../List/ListsList';
 import ListDetails from '../List/ListDetails';
 import ListForm from '../Forms/ListForm';
 import ListsError from '../ErrorSuccessMessages/ListsError';
+import AddPlantToListSuccess from '../ErrorSuccessMessages/AddPlantToListSuccess';
 
 const RoutePaths = ({login, signup}) => {
   const {currentUser} = useContext(UserContext);
@@ -59,6 +60,9 @@ const RoutePaths = ({login, signup}) => {
       />
       <Route path={currentUser ? '/plants/:scientificName' : '/login'} 
              element={currentUser ? <PlantDetails /> : <LoginForm login={login} />} 
+      />
+      <Route path={currentUser ? '/plants/:scientificName/success' : '/login'} 
+             element={currentUser ? <AddPlantToListSuccess /> : <LoginForm login={login} />} 
       />
 
       {/* Lists */}

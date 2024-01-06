@@ -39,6 +39,24 @@ class PlantIdApi {
       console.log(err);
     }
   }
+  static async addPlantToList(listName, plantId) {
+    try {
+      const result = await axios.post(`${BASE_API_URL}/lists/${listName}/plants/${plantId}`);
+      console.log('result in front end for PlantIdApi addPlantToList: ', result);
+      return result.data;
+    } catch (err) {
+      console.log('Error in front end for PlantIdApi addPlantToList: ', err);
+    }
+  }
+  static async getPlantByListName(listName) {
+    try {
+      const result = await axios.get(`${BASE_API_URL}/lists/${listName}/plants`);
+      console.log('result in front end for PlantIdApi getPlantByListName: ', result);
+      return result.data;
+    } catch (err) {
+      console.log('Error in front end of PlantIdApi getPlantByListName: ', err);
+    }
+  }
   static async postList(data) {
     try {
       console.log('data in front end from api postList: ', data);

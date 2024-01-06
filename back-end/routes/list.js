@@ -34,6 +34,15 @@ router.get('/:name', async (req, res, next) => {
   }
 });
 
+router.get('/:name/plants', async (req, res, next) => {
+  try {
+    const plants = await List.getAllPlants(req.params.name);
+    return res.json({plants});
+  } catch (err) {
+    return next(err);
+  }
+});
+
 router.patch('/:name', async (req, res, next) => {
   try {
     const validator = jsonschema.validate(req.body, listUpdateSchema);
@@ -60,10 +69,14 @@ router.delete('/:name', async (req, res, next) => {
 
 router.post('/:name/plants/:id', async (req, res, next) => {
   try {
+    const listName = req.params.name;
+    console.log('listName in back end for /:name/plants/:id: ', listName);
     const plantId = +req.params.id;
-    await List.addPlantToList(req.params.name, plantId);
+    console.log('plantId in back end for /:name/plants/:id: ', plantId);
+    await List.addPlantToList(listName, plantId);
     return res.json({added: plantId});
   } catch (err) {
+    console.log('Error in back end for /:name/plants/:id route: ', err);
     return next(err);
   }
 });

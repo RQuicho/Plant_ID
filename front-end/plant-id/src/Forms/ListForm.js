@@ -25,11 +25,11 @@ const ListForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newList = await PlantIdApi.postList(formData);
-    const newUserList = await PlantIdApi.addListToUser(currentUser.username, newList.list.name);
+    // const newUserList = await PlantIdApi.addListToUser(currentUser.username, newList.list.name);
+    await PlantIdApi.addListToUser(currentUser.username, newList.list.name);
     console.log('newList in front end from ListForm: ', newList); // good
     console.log('newList.list.name in front end from ListForm: ', newList.list.name); // good
-    console.log('newUserList in front end from ListForm: ', newUserList);
-    console.log('newUserList in front end from ListForm: ', newUserList);
+    // console.log('newUserList in front end from ListForm: ', newUserList);
     if (newList) {
       setIsSubmitted(true);
       // setName(newList.name);

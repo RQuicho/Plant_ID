@@ -32,6 +32,20 @@ class List {
     return list;
   }
 
+  // GET all plants
+  static async getAllPlants(name) {
+    const plantsRes = await db.query(
+      `SELECT list_name, plant_id
+       FROM listPlant
+       WHERE list_name = $1`,
+       [name],
+    );
+    const plants = plantsRes.rows;
+
+    if (!plants) throw new NotFoundError('No plants');
+    return plants;
+  }
+
   // GET
   static async get(name) {
     const listRes = await db.query(

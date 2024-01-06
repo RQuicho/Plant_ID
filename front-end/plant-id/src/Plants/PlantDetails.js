@@ -1,22 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PlantIdApi from "../api";
 import NotFound from '../ErrorSuccessMessages/NotFound';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import PlantCard from './PlantCard';
+import ListCard from '../List/ListCard';
+import UserContext from '../UserContext';
 
 const PlantDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [plant, setPlant] = useState({});
+  const [lists, setLists] = useState('');
   const {scientificName} = useParams();
-  console.log('scientificName in front end from PlantDetail component: ', scientificName);
+  const {currentUser} = useContext(UserContext);
   
   useEffect(() => {
     const getPlantDetails = async() => {
       try {
         setIsLoading(true);
-        const response = await PlantIdApi.getPlant(scientificName);
-        console.log('response in front end from PlantDetails component: ', response);
-        setPlant(response);
+        // plant
+        const plantResp = await PlantIdApi.getPlant(scientificName);
+        console.log('plantResp in front end from PlantDetails component: ', plantResp);
+        setPlant(plantResp);
+        // lists
+        const listsResp = await PlantIdApi.getListsByUser(currentUser.username);
+        console.log('listsResp in front end from PlantDetails component: ', listsResp);
+        setLists(listsResp);
       } catch (err) {
         console.error('Error fetching plant detials in PlantDetails component: ', err);
       } finally {
@@ -28,10 +37,31 @@ const PlantDetails = () => {
 
   console.log('plant in front end from PlantDetails component: ', plant);
 
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   let result = await PlantIdApi.addPlantToList(list.list_name, plant.plantDetails.id);
+  //   console.log('result in front end from PlantDetails handleSubmit: ', result);
+  //   if (result) {
+  //     setIsSubmitted(true);
+  //     return <Navigate to={`/plants/${scientificName}/success`} />;
+  //   } else {
+  //     console.error('Error adding plant to list');
+  //   }
+  // }
+
   if (plant === null) {
     return (
       <>
         <h1>No plant found</h1>
+      </>
+    );
+  }
+
+  if (lists === null) {
+    return (
+      <>
+        <h1>No lists found</h1>
       </>
     );
   }
@@ -59,10 +89,24 @@ const PlantDetails = () => {
           <p>Toxicity: {plant.plantDetails.toxicity !== null ? plant.plantDetails.toxicity.toString() : "null"}</p>
         </>
       )}
-      <form>
-        <button>Add Plant to List</button>
-        <p>Have a drop down of user created lists</p>
-      </form>
+
+      {lists.lists && (
+        <>
+          {lists.lists.map(list => (
+            <div key={list.list_name}>
+              <form action={`http://localhost:3001/lists/${list.list_name}/plants/${plant.plantDetails.id}`}>
+                <label for="lists">Choose a list:</label>
+                <select name="lists" id="lists">
+                  <option value={`${list.list_name}`}>
+                    {`${list.list_name}`}
+                  </option>
+                </select>
+              </form>
+            </div>
+          ))}
+        </>
+      )}
+
     </div>
   );
 
