@@ -27,6 +27,7 @@ router.post('/', async (req, res, next) => {
 router.get('/:name', async (req, res, next) => {
   try {
     const list = await List.get(req.params.name);
+    console.log('list in back end from list route: ', list);
     return res.json({list});
   } catch (err) {
     // console.error('Error:', err);
@@ -37,6 +38,7 @@ router.get('/:name', async (req, res, next) => {
 router.get('/:name/plants', async (req, res, next) => {
   try {
     const plants = await List.getAllPlants(req.params.name);
+    console.log('plants in back end from list route /:name/plants: ', plants);
     return res.json({plants});
   } catch (err) {
     return next(err);

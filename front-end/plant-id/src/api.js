@@ -34,7 +34,8 @@ class PlantIdApi {
   static async getList(name) {
     try {
       const result = await axios.get(`${BASE_API_URL}/lists/${name}`);
-      return result.list;
+      console.log('result in front end from PlantIdApi getList: ', result);
+      return result.data.list;
     } catch (err) {
       console.log(err);
     }

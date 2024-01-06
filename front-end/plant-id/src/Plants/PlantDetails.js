@@ -10,7 +10,8 @@ const PlantDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [plant, setPlant] = useState({});
-  const [lists, setLists] = useState('');
+  const [lists, setLists] = useState([]);
+  const [selectedList, setSelectedList] = useState('');
   const {scientificName} = useParams();
   const {currentUser} = useContext(UserContext);
   
@@ -38,17 +39,17 @@ const PlantDetails = () => {
   console.log('plant in front end from PlantDetails component: ', plant);
 
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   let result = await PlantIdApi.addPlantToList(list.list_name, plant.plantDetails.id);
-  //   console.log('result in front end from PlantDetails handleSubmit: ', result);
-  //   if (result) {
-  //     setIsSubmitted(true);
-  //     return <Navigate to={`/plants/${scientificName}/success`} />;
-  //   } else {
-  //     console.error('Error adding plant to list');
-  //   }
-  // }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let result = await PlantIdApi.addPlantToList(selectedList, plant.plantDetails.id);
+    console.log('result in front end from PlantDetails handleSubmit: ', result);
+    if (result) {
+      setIsSubmitted(true);
+      return <Navigate to={`/plants/${scientificName}/success`} />;
+    } else {
+      console.error('Error adding plant to list');
+    }
+  }
 
   if (plant === null) {
     return (
@@ -92,18 +93,25 @@ const PlantDetails = () => {
 
       {lists.lists && (
         <>
-          {lists.lists.map(list => (
-            <div key={list.list_name}>
-              <form action={`http://localhost:3001/lists/${list.list_name}/plants/${plant.plantDetails.id}`}>
-                <label for="lists">Choose a list:</label>
-                <select name="lists" id="lists">
-                  <option value={`${list.list_name}`}>
-                    {`${list.list_name}`}
+          <div>
+            {isSubmitted ? <Navigate to={`/plants/${scientificName}/success`} /> : <Navigate to={`/plants/${scientificName}/error`} />}
+            <form onSubmit={handleSubmit}>
+              <label htmlFor="lists">Choose a list:</label>
+              <select 
+                name="lists" 
+                id="lists"
+                value={selectedList}
+                onChange={(e) => setSelectedList(e.target.value)}
+              >
+                {lists.lists.map(list => (
+                  <option value={`${list.list_name}`} key={list.list_name}>
+                    {list.list_name}
                   </option>
+                ))}
                 </select>
+                <button>Add plant</button>
               </form>
             </div>
-          ))}
         </>
       )}
 

@@ -83,7 +83,8 @@ class Plant {
   // Get a plant
   static async get(scientificName) {
     const plantRes = await db.query(
-      `SELECT common_name AS "commonName",
+      `SELECT id,
+              common_name AS "commonName",
               scientific_name AS "scientificName",
               image_url AS "imageUrl",
               vegetable,
