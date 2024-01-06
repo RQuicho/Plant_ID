@@ -91,10 +91,11 @@ describe('GET /users/:username/lists', () => {
   test('works', async() => {
     const resp = await request(app).get('/users/user1/lists');
     expect(resp.body).toEqual({
-      lists: {
-        username: 'user1',
-        list_name: 'List1'
-      }
+      lists: [
+        { username: 'user1',
+          list_name: 'List1'
+        }
+      ]
     });
   });
 });

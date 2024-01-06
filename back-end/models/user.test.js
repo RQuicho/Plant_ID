@@ -103,10 +103,14 @@ describe("get", function() {
 describe("get user lists", () => {
   test("works", async() => {
     let lists = await User.getAllLists('user1');
-    expect(lists).toEqual({
-      username: 'user1',
-      list_name: 'list1'
-    });
+    expect(lists).toEqual([
+      { username: 'user1',
+        list_name: 'list1'
+      },
+      { username: 'user1',
+        list_name: 'list3'
+      }
+    ]);
   });
 });
 
