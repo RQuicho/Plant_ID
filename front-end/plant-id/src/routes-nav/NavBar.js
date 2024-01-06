@@ -17,10 +17,10 @@ const NavBar = ({logout}) => {
             <NavLink to="/upload">Upload Image</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/lists">Lists</NavLink>
+            <NavLink to={`${currentUser.username}/lists`}>Lists</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/profile">Profile</NavLink>
+            <NavLink to={`${currentUser.username}/profile`}>Profile</NavLink>
           </NavItem>
           <NavItem>
             <NavLink to='/' onClick={logout}>Logout {currentUser.username}</NavLink>

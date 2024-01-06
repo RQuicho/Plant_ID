@@ -39,7 +39,7 @@ const RoutePaths = ({login, signup}) => {
       <Route path='/signup/success' 
              element={<SignupSuccess />} 
       />
-      <Route path='/profile' 
+      <Route path={currentUser ? `/${currentUser.username}/profile` : '/login'}
              element={currentUser ? <ProfileForm /> : <LoginForm login={login}/>} 
       />
       <Route path='/profile/updated' 

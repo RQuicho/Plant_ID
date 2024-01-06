@@ -57,7 +57,7 @@ const ProfileForm = () => {
 
   return (
     <div>
-      {isSubmitted ? <Navigate to="/profile/updated"/> : <Navigate to="/profile"/>}
+      {isSubmitted ? <Navigate to="/profile/updated"/> : <Navigate to={`/${currentUser.username}/profile`}/>}
       <h3>{`${currentUser.username}'s Profile`}</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor='firtName'>First Name</label>
