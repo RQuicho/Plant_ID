@@ -10,6 +10,7 @@ const ListDetails = () => {
   const [list, setList] = useState('');
   const [plants, setPlants] = useState([]);
   const {name} = useParams();
+  const [scientificName] = useState('');
 
   useEffect(() => {
     const getListDetails = async() => {

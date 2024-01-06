@@ -7,7 +7,7 @@ const Plant = require("../models/plant");
 const {createToken} = require("../helpers/tokens");
 
 const testListNames = [];
-const testPlantIds = [];
+const testPlantNames = [];
 
 async function commonBeforeAll() {
   await db.query("DELETE FROM users");
@@ -21,7 +21,7 @@ async function commonBeforeAll() {
   testListNames[2] = 
     (await List.create({name: 'List3', description: 'Description for test list 3'})).name;
 
-  testPlantIds[0] = 
+  testPlantNames[0] = 
     (await Plant.create({
       commonName: 'Pine Tree',
       scientificName: 'Pineeeetreee',
@@ -37,8 +37,8 @@ async function commonBeforeAll() {
       growthForm: null,
       growthHabit: null,
       toxicity: null
-    })).id;
-  testPlantIds[1] =  
+    })).scientificName;
+  testPlantNames[1] =  
     (await Plant.create({
       commonName: 'Cactus',
       scientificName: 'Cactussssss',
@@ -54,8 +54,8 @@ async function commonBeforeAll() {
       growthForm: 'bush',
       growthHabit: null,
       toxicity: null
-    })).id;
-  testPlantIds[2] =  
+    })).scientificName;
+  testPlantNames[2] =  
     (await Plant.create({
       commonName: 'Rose',
       scientificName: 'Rose in Latin',
@@ -71,9 +71,9 @@ async function commonBeforeAll() {
       growthForm: 'bush',
       growthHabit: null,
       toxicity: null
-    })).id;
+    })).scientificName;
   
-  await List.addPlantToList('List1', testPlantIds[0]);
+  await List.addPlantToList('List1', testPlantNames[0]);
 
   await User.register({
     username: 'user1', 
@@ -123,7 +123,7 @@ module.exports = {
   commonAfterEach,
   commonAfterAll,
   testListNames,
-  testPlantIds,
+  testPlantNames,
   user1Token,
   user2Token,
   user3Token

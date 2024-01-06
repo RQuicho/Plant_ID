@@ -3,7 +3,7 @@ const db = require("../db");
 const {BCRYPT_WORK_FACTOR} = require("../config");
 
 const testListNames = [];
-const testPlantIds = [];
+const testPlantNames = [];
 
 async function commonBeforeAll() {
   await db.query("DELETE FROM users");
@@ -18,7 +18,7 @@ async function commonBeforeAll() {
     RETURNING name`);
   testListNames.splice(0, 0, ...resultsLists.rows.map(r => r.name));
 
-  const resultsIds = await db.query(`
+  const resultsPlants = await db.query(`
     INSERT INTO plants(common_name,
                         scientific_name,
                         image_url,
@@ -48,7 +48,7 @@ async function commonBeforeAll() {
             null,
             null)
     RETURNING id`);
-  testPlantIds.splice(0, 0, ...resultsIds.rows.map(r => r.id));
+  testPlantNames.splice(0, 0, ...resultsPlants.rows.map(r => r.scientific_name));
 
   await db.query(`
     INSERT INTO users(username, first_name, last_name, password, email)
@@ -71,9 +71,9 @@ async function commonBeforeAll() {
   [testListNames[2]]);
 
   await db.query(`
-    INSERT INTO listPlant(list_name, plant_id)
+    INSERT INTO listPlant(list_name, plant_scientific_name)
     VALUES ($1, $2)`,
-    [testListNames[0], testPlantIds[0]]);
+    [testListNames[0], testPlantNames[0]]);
 }
 
 async function commonBeforeEach() {
@@ -94,5 +94,5 @@ module.exports = {
   commonAfterEach,
   commonAfterAll,
   testListNames,
-  testPlantIds
+  testPlantNames
 };

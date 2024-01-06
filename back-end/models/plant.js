@@ -20,7 +20,7 @@ class Plant {
                         growthForm,
                         growthHabit,
                         toxicity}) {
-    if (!commonName || !scientificName) throw new BadRequestError("Common name and scientific name are required.");
+    if (!scientificName) throw new BadRequestError("Scientific name is required.");
     const duplicateCheck = await db.query(
       `SELECT scientific_name AS "scientificName"
        FROM plants

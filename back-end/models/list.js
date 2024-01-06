@@ -35,7 +35,7 @@ class List {
   // GET all plants
   static async getAllPlants(name) {
     const plantsRes = await db.query(
-      `SELECT list_name, plant_id
+      `SELECT list_name, plant_scientific_name
        FROM listPlant
        WHERE list_name = $1`,
        [name],
@@ -59,13 +59,13 @@ class List {
     if (!list) throw new NotFoundError(`No list: ${name}`);
 
     const listPlantRes = await db.query(
-      `SELECT lp.plant_id
+      `SELECT lp.plant_scientific_name
        FROM listPlant AS lp
        WHERE lp.list_name = $1`,
        [name]
     );
 
-    list.listplant = listPlantRes.rows.map(lp => lp.plant_id);
+    list.listplant = listPlantRes.rows.map(lp => lp.plant_scientific_name);
     return list;
   }
 
@@ -108,7 +108,7 @@ class List {
   }
 
   // Add plant to list
-  static async addPlantToList(listName, plantId) {
+  static async addPlantToList(listName, plantName) {
     const checkListName = await db.query(
       `SELECT name
        FROM lists
@@ -118,19 +118,19 @@ class List {
     const list = checkListName.rows[0];
     if (!list) throw new NotFoundError(`No list: ${listName}`);
 
-    const checkPlantId = await db.query(
-      `SELECT id
+    const checkPlantName = await db.query(
+      `SELECT scientific_name
        FROM plants
-       WHERE id = $1`,
-       [plantId]
+       WHERE scientific_name = $1`,
+       [plantName]
     );
-    const plant = checkPlantId.rows[0];
-    if (!plant) throw new NotFoundError(`No plant: ${plantId}`);
+    const plant = checkPlantName.rows[0];
+    if (!plant) throw new NotFoundError(`No plant: ${plantName}`);
 
     await db.query(
-      `INSERT INTO listPlant (list_name, plant_id)
+      `INSERT INTO listPlant (list_name, plant_scientific_name)
        VALUES ($1, $2)`,
-       [listName, plantId]
+       [listName, plantName]
     );
   }
 }

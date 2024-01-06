@@ -41,7 +41,9 @@ const PlantDetails = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let result = await PlantIdApi.addPlantToList(selectedList, plant.plantDetails.id);
+    // let result = await PlantIdApi.addPlantToList(selectedList, plant.plantDetails.id);
+    let result = await PlantIdApi.addPlantToList(selectedList, plant.plantDetails.id); // change listplant db from plant_id to scientific_name
+
     console.log('result in front end from PlantDetails handleSubmit: ', result);
     if (result) {
       setIsSubmitted(true);

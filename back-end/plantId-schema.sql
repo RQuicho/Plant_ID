@@ -1,7 +1,7 @@
 CREATE TABLE plants (
-  id SERIAL PRIMARY KEY,
+  id SERIAL,
   common_name TEXT NOT NULL,
-  scientific_name TEXT NOT NULL,
+  scientific_name TEXT PRIMARY KEY NOT NULL,
   image_url TEXT,
   vegetable BOOLEAN,
   edible_part TEXT,
@@ -18,21 +18,17 @@ CREATE TABLE plants (
 
 CREATE TABLE lists (
   id SERIAL,
-  name TEXT PRIMARY KEY,
-  description TEXT NOT NULL,
-  plant_id INTEGER
-    REFERENCES plants(id) ON DELETE CASCADE
+  name TEXT PRIMARY KEY NOT NULL,
+  description TEXT NOT NULL
 );
 
 CREATE TABLE users (
   id SERIAL,
-  username VARCHAR(25) PRIMARY KEY,
+  username VARCHAR(25) PRIMARY KEY NOT NULL,
   first_name TEXT NOT NULL,
   last_name TEXT NOT NULL,
   password TEXT NOT NULL,
-  email TEXT NOT NULL,
-  list_name TEXT
-    REFERENCES lists(name) ON DELETE CASCADE
+  email TEXT NOT NULL
 );
 
 CREATE TABLE userList (
@@ -47,7 +43,7 @@ CREATE TABLE listPlant (
   id SERIAL PRIMARY KEY,
   list_name TEXT
     REFERENCES lists(name) ON DELETE CASCADE,
-  plant_id INTEGER
-    REFERENCES plants(id) ON DELETE CASCADE
+  plant_scientific_name TEXT
+    REFERENCES plants(scientific_name) ON DELETE CASCADE
 );
 

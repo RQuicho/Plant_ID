@@ -73,7 +73,7 @@ router.post('/:name/plants/:id', async (req, res, next) => {
   try {
     const listName = req.params.name;
     console.log('listName in back end for /:name/plants/:id: ', listName);
-    const plantId = +req.params.id;
+    const plantId = +req.params.id; // change listplant db from plant_id to scientific_name
     console.log('plantId in back end for /:name/plants/:id: ', plantId);
     await List.addPlantToList(listName, plantId);
     return res.json({added: plantId});
