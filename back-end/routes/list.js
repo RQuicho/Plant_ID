@@ -69,14 +69,14 @@ router.delete('/:name', async (req, res, next) => {
 });
 
 
-router.post('/:name/plants/:id', async (req, res, next) => {
+router.post('/:name/plants/:scientificName', async (req, res, next) => {
   try {
     const listName = req.params.name;
-    console.log('listName in back end for /:name/plants/:id: ', listName);
-    const plantId = +req.params.id; // change listplant db from plant_id to scientific_name
-    console.log('plantId in back end for /:name/plants/:id: ', plantId);
-    await List.addPlantToList(listName, plantId);
-    return res.json({added: plantId});
+    console.log('listName in back end for /:name/plants/:scientificName: ', listName);
+    const plantName = req.params.scientificName;
+    console.log('plantName in back end for /:name/plants/:scientificName: ', plantName);
+    await List.addPlantToList(listName, plantName);
+    return res.json({added: plantName});
   } catch (err) {
     console.log('Error in back end for /:name/plants/:id route: ', err);
     return next(err);

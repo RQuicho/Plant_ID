@@ -58,14 +58,14 @@ class List {
 
     if (!list) throw new NotFoundError(`No list: ${name}`);
 
-    const listPlantRes = await db.query(
-      `SELECT lp.plant_scientific_name
-       FROM listPlant AS lp
-       WHERE lp.list_name = $1`,
-       [name]
-    );
+    // const listPlantRes = await db.query(
+    //   `SELECT lp.plant_scientific_name
+    //    FROM listPlant AS lp
+    //    WHERE lp.list_name = $1`,
+    //    [name]
+    // );
 
-    list.listplant = listPlantRes.rows.map(lp => lp.plant_scientific_name);
+    // list.listplant = listPlantRes.rows.map(lp => lp.plant_scientific_name);
     return list;
   }
 

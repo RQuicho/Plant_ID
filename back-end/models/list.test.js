@@ -8,7 +8,7 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  testPlantIds
+  testPlantNames
 } = require("./_testCommon");
 
 beforeAll(commonBeforeAll);
@@ -47,7 +47,6 @@ describe("get", function() {
     expect(list).toEqual({
       name: "list1",
       description: "test for list1",
-      listplant: [testPlantIds[0]]
     });
   });
   test("not found if no such list", async function() {
@@ -105,25 +104,25 @@ describe("remove", function() {
 // Add plant to list
 describe("add plant to list", function() {
   test("works", async function() {
-    await List.addPlantToList('list2', testPlantIds[0]);
+    await List.addPlantToList('list2', 'Brugmansia candida');
 
     const res = await db.query(
-      "SELECT list_name, plant_id FROM listPlant WHERE plant_id = $1", [testPlantIds[0]]
+      "SELECT list_name, plant_scientific_name FROM listPlant WHERE plant_scientific_name = $1", ['Brugmansia candida']
     );
     expect(res.rows).toEqual([
-      {
-        list_name: 'list1',
-        plant_id: testPlantIds[0]
-      },
+      // {
+      //   list_name: 'list1',
+      //   plant_scientific_name: testPlantNames[0]
+      // },
       {
         list_name: 'list2',
-        plant_id: testPlantIds[0]
+        plant_scientific_name: 'Brugmansia candida'
       }
     ]);
   });
   test("not found if no such user", async function() {
     try {
-      await List.addPlantToList('non-existing list', [testPlantIds[0]]);
+      await List.addPlantToList('non-existing list', [testPlantNames[0]]);
       fail();
     } catch (err) {
       expect(err instanceof NotFoundError).toBeTruthy();

@@ -47,7 +47,7 @@ describe('getScientificNameFromImage', () => {
   });
 });
 
-
+// this one does not work
 describe('getPlantData', () => {
   test('returns plant data from trefle api', async() => {
     const result = await getPlantData("Strelitzia reginae");

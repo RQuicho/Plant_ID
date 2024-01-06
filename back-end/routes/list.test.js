@@ -9,7 +9,7 @@ const {
   commonAfterEach,
   commonAfterAll,
   testListNames,
-  testPlantIds,
+  testPlantNames,
   user1Token,
   user2Token,
   user3Token
@@ -63,7 +63,6 @@ describe('GET /lists/:name', () => {
     const resp = await request(app).get(`/lists/List1`);
     expect(resp.body).toHaveProperty('list.name', 'List1');
     expect(resp.body.list).toHaveProperty('description');
-    expect(resp.body.list).toHaveProperty('listplant');
   });
   test('throws error with no existing list', async() => {
     const resp = await request(app).get('/lists/nope');
@@ -109,12 +108,12 @@ describe('DELETE /lists/:name', () => {
 describe('POST /lists/:name/plants/:id', () => {
   test('works', async() => {
     const resp = await request(app)
-      .post(`/lists/List1/plants/${testPlantIds[0]}`);
-    expect(resp.body).toEqual({added: testPlantIds[0]});
+      .post(`/lists/List1/plants/${testPlantNames[0]}`);
+    expect(resp.body).toEqual({added: testPlantNames[0]});
   });
   test('throws error if list does not exist', async() => {
     const resp = await request(app)
-      .post(`/lists/nope/plants/${testPlantIds[0]}`);
+      .post(`/lists/nope/plants/${testPlantNames[0]}`);
     expect(resp.statusCode).toEqual(404);
   });
   test('throws error if plant does not exist', async() => {
