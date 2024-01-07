@@ -9,8 +9,8 @@ const ListDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [list, setList] = useState('');
   const [plants, setPlants] = useState([]);
+  const [plantImgUrl, setPlantImgUrl] = useState('');
   const {name} = useParams();
-  const [scientificName] = useState('');
 
   useEffect(() => {
     const getListDetails = async() => {
@@ -25,6 +25,14 @@ const ListDetails = () => {
         console.log('plantsResponse in front end from ListDetails component: ', plantsResponse);
         console.log('plantsResponse.plants.length in front end from ListDetails component: ', plantsResponse.plants.length);
         setPlants(plantsResponse);
+        // get plant image from plants
+        const plantImgPromises = plantsResponse.plants.map(async(plant) => {
+          const plantImg = await PlantIdApi.getPlant(plant.plant_scientific_name);
+          console.log('plantImg in front end from ListDetails component: ', plantImg);
+          return plantImg.plantDetails.imageUrl;
+        });
+        const plantsImages = await Promise.all(plantImgPromises);
+        setPlantImgUrl(plantsImages);
       } catch (err) {
         console.error('Error fetching list in ListDetails component: ', err);
       } finally {
@@ -55,8 +63,8 @@ const ListDetails = () => {
           {plants.plants.map(plant => (
             <div key={plant.plant_scientific_name}>
               <NavLink to={`/plants/${plant.plant_scientific_name}`}>
-                {/* <PlantCard plant={plant} /> */}
                 {plant.plant_scientific_name}
+                <img src={plantImgUrl} alt={`${plant.plant_scientific_name}`} />
               </NavLink>
             </div>
           ))}
@@ -69,9 +77,6 @@ const ListDetails = () => {
           </button>
         </div>
       )}
-
-      
-      
    
     </div>
   );
@@ -81,32 +86,3 @@ const ListDetails = () => {
 export default ListDetails;
 
 
-// {plants.plants && (
-//   <>
-//     {plants.plants.map(plant => (
-//       <div key={plant.plant_scientific_name}>
-//         <NavLink to={`/plants/${plant.plant_scientific_name}`}>
-//           {/* <PlantCard plant={plant} /> */}
-//           {plant.plant_scientific_name}
-//         </NavLink>
-//       </div>
-//     ))}
-//   </>
-// )}
-
-
-// {plants.plants && (
-//   <>
-//     {plants.plants.map(plant => (
-//       <div key={plant.plant_scientific_name}>
-//         <NavLink to={`/plants/${plant.plant_scientific_name}`}>
-//           {/* <PlantCard plant={plant} /> */}
-//           {plant.plant_scientific_name}
-//         </NavLink>
-//         {const plantImg = await PlantIdApi.getPlant(plant.plant_scientific_name);
-//         <img src={plantImg.plantDetails.imageUrl} alt={`${plant.plantDetails.commonName}`} />
-//         }
-//       </div>
-//     ))}
-//   </>
-// )}
