@@ -25,18 +25,6 @@ const ListDetails = () => {
         console.log('plantsResponse in front end from ListDetails component: ', plantsResponse);
         console.log('plantsResponse.plants.length in front end from ListDetails component: ', plantsResponse.plants.length);
         setPlants(plantsResponse);
-        
-
-        if (plantsResponse.plants.length === 0) {
-          return (
-            <div>
-              <h3>No plants in this list</h3>
-              <button>
-                <Link to='/lists'>Back</Link>
-              </button>
-            </div>
-          );
-        }
       } catch (err) {
         console.error('Error fetching list in ListDetails component: ', err);
       } finally {
@@ -45,6 +33,7 @@ const ListDetails = () => {
     };
     getListDetails();
   }, [name]);
+  console.log('plants in front end from ListDetails component: ', plants);
 
   if (isLoading) {
     return <p>Loading &hellip;</p>
@@ -61,7 +50,7 @@ const ListDetails = () => {
         </>
       )}
      
-      {plants.plants && (
+      {plants.plants && plants.plants.length > 0 ? (
         <>
           {plants.plants.map(plant => (
             <div key={plant.plant_scientific_name}>
@@ -72,11 +61,52 @@ const ListDetails = () => {
             </div>
           ))}
         </>
+      ) : (
+        <div>
+          <h3>No plants in this list</h3>
+          <button>
+            <Link to="/lists">Back</Link>
+          </button>
+        </div>
       )}
+
+      
       
    
     </div>
-  )
+  );
 }
 
+
 export default ListDetails;
+
+
+// {plants.plants && (
+//   <>
+//     {plants.plants.map(plant => (
+//       <div key={plant.plant_scientific_name}>
+//         <NavLink to={`/plants/${plant.plant_scientific_name}`}>
+//           {/* <PlantCard plant={plant} /> */}
+//           {plant.plant_scientific_name}
+//         </NavLink>
+//       </div>
+//     ))}
+//   </>
+// )}
+
+
+// {plants.plants && (
+//   <>
+//     {plants.plants.map(plant => (
+//       <div key={plant.plant_scientific_name}>
+//         <NavLink to={`/plants/${plant.plant_scientific_name}`}>
+//           {/* <PlantCard plant={plant} /> */}
+//           {plant.plant_scientific_name}
+//         </NavLink>
+//         {const plantImg = await PlantIdApi.getPlant(plant.plant_scientific_name);
+//         <img src={plantImg.plantDetails.imageUrl} alt={`${plant.plantDetails.commonName}`} />
+//         }
+//       </div>
+//     ))}
+//   </>
+// )}
