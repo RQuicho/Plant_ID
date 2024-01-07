@@ -40,9 +40,9 @@ class PlantIdApi {
       console.log(err);
     }
   }
-  static async addPlantToList(listName, plantId) {
+  static async addPlantToList(listName, plantName) {
     try {
-      const result = await axios.post(`${BASE_API_URL}/lists/${listName}/plants/${plantId}`); // change listplant db from plant_id to scientific_name
+      const result = await axios.post(`${BASE_API_URL}/lists/${listName}/plants/${plantName}`); // change listplant db from plant_id to scientific_name
       console.log('result in front end for PlantIdApi addPlantToList: ', result);
       return result.data;
     } catch (err) {

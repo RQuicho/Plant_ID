@@ -20,11 +20,12 @@ const ListDetails = () => {
         const listResponse = await PlantIdApi.getList(name);
         console.log('listResponse in front end from ListDetails component: ', listResponse);
         setList(listResponse);
-        // get plant
+        // get plant from listPlant
         const plantsResponse = await PlantIdApi.getPlantByListName(name);
         console.log('plantsResponse in front end from ListDetails component: ', plantsResponse);
         console.log('plantsResponse.plants.length in front end from ListDetails component: ', plantsResponse.plants.length);
         setPlants(plantsResponse);
+        
 
         if (plantsResponse.plants.length === 0) {
           return (
@@ -63,10 +64,10 @@ const ListDetails = () => {
       {plants.plants && (
         <>
           {plants.plants.map(plant => (
-            <div key={plant.plant_id}>
-              <NavLink to={`/plants/${plant.scientificName}`}>
+            <div key={plant.plant_scientific_name}>
+              <NavLink to={`/plants/${plant.plant_scientific_name}`}>
                 {/* <PlantCard plant={plant} /> */}
-                {plant.plant_id}
+                {plant.plant_scientific_name}
               </NavLink>
             </div>
           ))}

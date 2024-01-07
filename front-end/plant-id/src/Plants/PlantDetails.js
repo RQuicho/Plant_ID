@@ -41,8 +41,7 @@ const PlantDetails = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // let result = await PlantIdApi.addPlantToList(selectedList, plant.plantDetails.id);
-    let result = await PlantIdApi.addPlantToList(selectedList, plant.plantDetails.id); // change listplant db from plant_id to scientific_name
+    let result = await PlantIdApi.addPlantToList(selectedList, plant.plantDetails.scientificName); // change listplant db from plant_id to scientific_name
 
     console.log('result in front end from PlantDetails handleSubmit: ', result);
     if (result) {
@@ -53,7 +52,7 @@ const PlantDetails = () => {
     }
   }
 
-  if (plant === null) {
+  if (!plant) {
     return (
       <>
         <h1>No plant found</h1>
@@ -61,7 +60,7 @@ const PlantDetails = () => {
     );
   }
 
-  if (lists === null) {
+  if (!lists) {
     return (
       <>
         <h1>No lists found</h1>
@@ -96,7 +95,7 @@ const PlantDetails = () => {
       {lists.lists && (
         <>
           <div>
-            {isSubmitted ? <Navigate to={`/plants/${scientificName}/success`} /> : <Navigate to={`/plants/${scientificName}/error`} />}
+            {isSubmitted ? <Navigate to={`/plants/${scientificName}/success`} /> : <Navigate to={`/plants/${scientificName}`} />}
             <form onSubmit={handleSubmit}>
               <label htmlFor="lists">Choose a list:</label>
               <select 
