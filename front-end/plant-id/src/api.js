@@ -30,6 +30,23 @@ class PlantIdApi {
       console.log('Error for front end api postPlantPhoto: ', err);
     }
   }
+  // COMMENTED OUT BECAUSE THIS WILL DELETE PLANT FROM PLANTS DATABASE
+  // static async deletePlant(scientificName) {
+  //   try {
+  //     const result = await axios.delete(`${BASE_API_URL}/plants/${scientificName}`);
+  //     return result;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
+  static async deletePlantFromList(scientificName) {
+    try {
+      const result = await axios.delete(`${BASE_API_URL}/plants/${scientificName}`);
+      return result;
+    } catch (err) {
+      console.log(err);
+    }
+  }
   // List routes
   static async getList(name) {
     try {

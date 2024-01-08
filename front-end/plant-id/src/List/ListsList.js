@@ -29,12 +29,12 @@ const ListsList = () => {
 
   console.log('lists in front end from ListsList component: ', lists);
 
-  const handleClick = async (e, name) => {
+  const handleClick = async (e, listName) => {
     e.preventDefault();
     try {
-      await PlantIdApi.deleteList(name);
+      await PlantIdApi.deleteList(listName);
       setLists((prevLists) => ({
-        lists: prevLists.lists.filter((list) => list.list_name !== name),
+        lists: prevLists.lists.filter((list) => list.list_name !== listName),
       }));
     } catch (err) {
       console.error('Error deleting list: ', err);

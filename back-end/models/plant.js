@@ -124,6 +124,18 @@ class Plant {
     if (!plant) throw new NotFoundError(`No plant: ${scientificName}`);
     return {message: `Plant ${scientificName} successfully removed.`};
   }
+  static async removePlantFromList(scientificName) {
+    const result = await db.query(
+      `DELETE
+       FROM listPlant
+       WHERE plant_scientific_name = $1
+       RETURNING plant_scientific_name AS "scientificName"`,
+      [scientificName]
+    );
+    const plant = result.rows[0];
+    if (!plant) throw new NotFoundError(`No plant: ${scientificName}`);
+    return {message: `Plant ${scientificName} successfully removed from list.`};
+  }
 }
 
 module.exports = Plant;

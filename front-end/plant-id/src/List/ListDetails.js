@@ -3,6 +3,8 @@ import { Link, useParams, NavLink } from 'react-router-dom';
 import ListCard from './ListCard';
 import PlantCard from '../Plants/PlantCard';
 import PlantIdApi from '../api';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const ListDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -42,6 +44,18 @@ const ListDetails = () => {
   }, [name]);
   console.log('plants in front end from ListDetails component: ', plants);
 
+  const handleClick = async (e, plantName) => {
+    e.preventDefault();
+    try {
+      await PlantIdApi.deletePlantFromList(plantName);
+      setPlants((prevPlants) => ({
+        plants: prevPlants.plants.filter((plant) => plant.plant_scientific_name !== plantName),
+      }));
+    } catch (err) {
+      console.error('Error deleting list: ', err);
+    }
+  }
+
   if (isLoading) {
     return <p>Loading &hellip;</p>
   }
@@ -65,6 +79,7 @@ const ListDetails = () => {
                 {plant.plant_scientific_name}
                 <img src={plantImgUrl} alt={`${plant.plant_scientific_name}`} />
               </NavLink>
+              <FontAwesomeIcon icon={faTrash} onClick={(e) => handleClick(e, plant.plant_scientific_name)}/>
             </div>
           ))}
         </>
