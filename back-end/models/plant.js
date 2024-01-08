@@ -124,17 +124,17 @@ class Plant {
     if (!plant) throw new NotFoundError(`No plant: ${scientificName}`);
     return {message: `Plant ${scientificName} successfully removed.`};
   }
-  static async removePlantFromList(scientificName) {
+  static async removePlantFromList(scientificName, listName) {
     const result = await db.query(
       `DELETE
        FROM listPlant
-       WHERE plant_scientific_name = $1
-       RETURNING plant_scientific_name AS "scientificName"`,
-      [scientificName]
+       WHERE plant_scientific_name = $1 AND list_name = $2
+       RETURNING plant_scientific_name AS "scientificName", list_name AS "listName"`,
+      [scientificName, listName]
     );
     const plant = result.rows[0];
-    if (!plant) throw new NotFoundError(`No plant: ${scientificName}`);
-    return {message: `Plant ${scientificName} successfully removed from list.`};
+    if (!plant) throw new NotFoundError(`No plant: ${scientificName} in ${listName}`);
+    return {message: `Plant ${scientificName} successfully removed from ${listName}.`};
   }
 }
 

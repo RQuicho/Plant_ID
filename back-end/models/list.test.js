@@ -104,19 +104,19 @@ describe("remove", function() {
 // Add plant to list
 describe("add plant to list", function() {
   test("works", async function() {
-    await List.addPlantToList('list2', 'Brugmansia candida');
+    await List.addPlantToList('list2', testPlantNames[0]);
 
     const res = await db.query(
-      "SELECT list_name, plant_scientific_name FROM listPlant WHERE plant_scientific_name = $1", ['Brugmansia candida']
+      "SELECT list_name, plant_scientific_name FROM listPlant WHERE plant_scientific_name = $1", [testPlantNames[0]]
     );
     expect(res.rows).toEqual([
-      // {
-      //   list_name: 'list1',
-      //   plant_scientific_name: testPlantNames[0]
-      // },
+      {
+        list_name: 'list1',
+        plant_scientific_name: testPlantNames[0]
+      },
       {
         list_name: 'list2',
-        plant_scientific_name: 'Brugmansia candida'
+        plant_scientific_name: testPlantNames[0]
       }
     ]);
   });

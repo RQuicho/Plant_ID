@@ -12,7 +12,8 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  testListNames
+  testListNames,
+  testPlantNames
 } = require("./_testCommon");
 const User = require("./user");
 
@@ -72,6 +73,25 @@ describe("remove a plant", function() {
     await Plant.remove('Brugmansia candida');
     const res = await db.query(
       "SELECT * FROM plants WHERE scientific_name='Brugmansia candida'"
+    );
+    expect(res.rows.length).toEqual(0);
+  });
+  test("not found if no such plant", async function() {
+    try {
+      await User.remove("non-existing plant");
+      fail();
+    } catch (err) {
+      expect(err instanceof NotFoundError).toBeTruthy();
+    }
+  });
+});
+
+// REMOVE FROM LIST
+describe("remove a plant from a list", function() {
+  test("works", async function() {
+    await Plant.removePlantFromList('Brugmansia candida', 'list1');
+    const res = await db.query(
+      "SELECT * FROM listplant WHERE plant_scientific_name='Brugmansia candida' AND list_name='list1'"
     );
     expect(res.rows.length).toEqual(0);
   });

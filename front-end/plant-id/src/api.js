@@ -39,9 +39,9 @@ class PlantIdApi {
   //     console.log(err);
   //   }
   // }
-  static async deletePlantFromList(scientificName) {
+  static async deletePlantFromList(scientificName, listName) {
     try {
-      const result = await axios.delete(`${BASE_API_URL}/plants/${scientificName}`);
+      const result = await axios.delete(`${BASE_API_URL}/plants/${scientificName}/${listName}`);
       return result;
     } catch (err) {
       console.log(err);

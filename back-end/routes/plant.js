@@ -60,10 +60,11 @@ router.get('/:scientificName', async (req, res, next) => {
   }
 });
 
-router.delete('/:scientificName', async (req, res, next) => {
+router.delete('/:scientificName/:listName', async (req, res, next) => {
   try {
     const scientificName = req.params.scientificName;
-    await Plant.removePlantFromList(scientificName);
+    const listName = req.params.listName;
+    await Plant.removePlantFromList(scientificName, listName);
     return res.json({deleted: scientificName});
   } catch (err) {
     console.error('Error', err);

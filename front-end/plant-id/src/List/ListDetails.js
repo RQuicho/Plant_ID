@@ -44,10 +44,10 @@ const ListDetails = () => {
   }, [name]);
   console.log('plants in front end from ListDetails component: ', plants);
 
-  const handleClick = async (e, plantName) => {
+  const handleClick = async (e, plantName, listName) => {
     e.preventDefault();
     try {
-      await PlantIdApi.deletePlantFromList(plantName);
+      await PlantIdApi.deletePlantFromList(plantName, listName);
       setPlants((prevPlants) => ({
         plants: prevPlants.plants.filter((plant) => plant.plant_scientific_name !== plantName),
       }));
@@ -79,7 +79,7 @@ const ListDetails = () => {
                 {plant.plant_scientific_name}
                 <img src={plantImgUrl} alt={`${plant.plant_scientific_name}`} />
               </NavLink>
-              <FontAwesomeIcon icon={faTrash} onClick={(e) => handleClick(e, plant.plant_scientific_name)}/>
+              <FontAwesomeIcon icon={faTrash} onClick={(e) => handleClick(e, plant.plant_scientific_name, plant.list_name)}/>
             </div>
           ))}
         </>

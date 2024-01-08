@@ -57,13 +57,13 @@ describe('GET /plants/:scientificName', () => {
 });
 
 // DELETE plant
-describe('DELETE /plants/delete/:scientificName', () => {
+describe('DELETE /plants/:scientificName/:listName', () => {
   test('works', async () => {
-    const resp = await request(app).delete('/plants/Pineeeetreee');
+    const resp = await request(app).delete('/plants/Pineeeetreee/List1');
     expect(resp.body).toEqual({deleted: 'Pineeeetreee'});
   });
   test('not found for non existing plant', async () => {
-    const resp = await request(app).delete('/plants/delete/nope');
+    const resp = await request(app).delete('/plants/nope');
     expect(resp.status).toEqual(404);
   })
 });

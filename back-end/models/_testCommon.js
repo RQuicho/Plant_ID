@@ -47,7 +47,7 @@ async function commonBeforeAll() {
             null,
             null,
             null)
-    RETURNING id`);
+    RETURNING scientific_name`);
   testPlantNames.splice(0, 0, ...resultsPlants.rows.map(r => r.scientific_name));
 
   await db.query(`
