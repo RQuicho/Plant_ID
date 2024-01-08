@@ -1,6 +1,9 @@
 import React, {useContext, useState} from "react";
 import { NavLink } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ReactDOM from 'react-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLeaf } from '@fortawesome/free-solid-svg-icons';
 import './NavBar.css';
 // import { Navbar, Nav, NavItem, NavbarBrand } from "reactstrap";
 import {
@@ -50,7 +53,7 @@ const NavBar = ({logout}) => {
     return (
       <div>
         <Navbar color="success" expand="md" container="fluid">
-          <NavLink to="/" className="navbar-brand">PlantID</NavLink>
+          <NavLink to="/" className="navbar-brand">PlantID <FontAwesomeIcon icon={faLeaf} /></NavLink>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ms-auto" navbar>
@@ -93,7 +96,7 @@ const NavBar = ({logout}) => {
     return (
       <div>
         <Navbar color="success" expand="md" container="fluid">
-          <NavLink to="/" className="navbar-brand">PlantID</NavLink>
+          <NavLink to="/" className="navbar-brand">PlantID <FontAwesomeIcon icon={faLeaf} /></NavLink>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ms-auto" navbar>
