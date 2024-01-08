@@ -3,12 +3,13 @@ import { Link, NavLink, useParams } from 'react-router-dom';
 import ListCard from './ListCard';
 import PlantIdApi from '../api';
 import UserContext from "../UserContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const ListsList = () => {
   const {currentUser} = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [lists, setLists] = useState('');
-  const {name} = useParams();
 
   useEffect(() => {
     const getLists = async() => {
@@ -27,6 +28,18 @@ const ListsList = () => {
   }, [currentUser.username]);
 
   console.log('lists in front end from ListsList component: ', lists);
+
+  const handleClick = async (e, name) => {
+    e.preventDefault();
+    try {
+      await PlantIdApi.deleteList(name);
+      setLists((prevLists) => ({
+        lists: prevLists.lists.filter((list) => list.list_name !== name),
+      }));
+    } catch (err) {
+      console.error('Error deleting list: ', err);
+    }
+  }
 
   if (lists === null) {
     return (
@@ -50,6 +63,7 @@ const ListsList = () => {
               <NavLink to={`/lists/${list.list_name}`}>
                 <ListCard list={list} />
               </NavLink>
+              <FontAwesomeIcon icon={faTrash} onClick={(e) => handleClick(e, list.list_name)}/>
             </div>
           ))}
         </>

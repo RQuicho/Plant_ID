@@ -16,6 +16,7 @@ import PlantDetails from '../Plants/PlantDetails';
 import ListsList from '../List/ListsList';
 import ListDetails from '../List/ListDetails';
 import ListForm from '../Forms/ListForm';
+import ListUpdateForm from '../Forms/ListUpdateForm';
 import ListsError from '../ErrorSuccessMessages/ListsError';
 import AddPlantToListSuccess from '../ErrorSuccessMessages/AddPlantToListSuccess';
 import AddPlantToListError from '../ErrorSuccessMessages/AddPlantToListError';
@@ -77,6 +78,12 @@ const RoutePaths = ({login, signup}) => {
              element={currentUser ? <ListsList /> : <LoginForm login={login} />} 
       />
       <Route path={currentUser ? '/lists/:name' : '/login'} 
+             element={currentUser ? <ListDetails /> : <LoginForm login={login} />} 
+      />
+      {/* <Route path={currentUser ? '/lists/:name/update' : '/login'} 
+             element={currentUser ? <ListUpdateForm /> : <LoginForm login={login} />} 
+      /> */}
+      <Route path={currentUser ? '/lists/:name/delete' : '/login'} 
              element={currentUser ? <ListDetails /> : <LoginForm login={login} />} 
       />
       <Route path='/lists/error' 

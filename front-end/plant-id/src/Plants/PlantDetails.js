@@ -27,6 +27,9 @@ const PlantDetails = () => {
         const listsResp = await PlantIdApi.getListsByUser(currentUser.username);
         console.log('listsResp in front end from PlantDetails component: ', listsResp);
         setLists(listsResp);
+        if (listsResp.lists.length === 1) {
+          setSelectedList(listsResp.lists[0].list_name);
+        }
       } catch (err) {
         console.error('Error fetching plant detials in PlantDetails component: ', err);
       } finally {
@@ -37,11 +40,12 @@ const PlantDetails = () => {
   }, [scientificName]);
 
   console.log('plant in front end from PlantDetails component: ', plant);
+  console.log('lists in front end from PlantDetails component: ', lists);
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let result = await PlantIdApi.addPlantToList(selectedList, plant.plantDetails.scientificName); // change listplant db from plant_id to scientific_name
+    let result = await PlantIdApi.addPlantToList(selectedList, plant.plantDetails.scientificName);
 
     console.log('result in front end from PlantDetails handleSubmit: ', result);
     if (result) {

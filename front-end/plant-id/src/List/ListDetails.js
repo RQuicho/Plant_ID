@@ -4,7 +4,6 @@ import ListCard from './ListCard';
 import PlantCard from '../Plants/PlantCard';
 import PlantIdApi from '../api';
 
-
 const ListDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [list, setList] = useState('');
