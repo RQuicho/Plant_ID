@@ -5,6 +5,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import PlantCard from './PlantCard';
 import ListCard from '../List/ListCard';
 import UserContext from '../UserContext';
+import {Row, Col} from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -84,18 +85,29 @@ const PlantDetails = () => {
     <div>
       {plant.plantDetails && (
         <>
-          <PlantCard plant={plant} />
-          <p>Vegetable: {plant.plantDetails.vegetable !== null ? plant.plantDetails.vegetable.toString() : "null"}</p>
-          <p>Edible Part: {plant.plantDetails.ediblePart !== null ? plant.plantDetails.ediblePart.toString() : "null"}</p>
-          <p>Edible: {plant.plantDetails.edible !== null ? plant.plantDetails.edible.toString() : "null"}</p>
-          <p>Flower Color: {plant.plantDetails.flowerColor !== null ? plant.plantDetails.flowerColor.toString() : "null"}</p>
-          <p>Foliage Texture: {plant.plantDetails.foliageTexture !== null ? plant.plantDetails.foliageTexture.toString() : "null"}</p>
-          <p>Foliage Color: {plant.plantDetails.foliageColor !== null ? plant.plantDetails.foliageColor.toString() : "null"}</p>
-          <p>Fruit or Seed Color: {plant.plantDetails.fruitOrSeedColor !== null ? plant.plantDetails.fruitOrSeedColor.toString() : "null"}</p>
-          <p>Fruit or Seed Shape: {plant.plantDetails.fruitOrSeedShape !== null ? plant.plantDetails.fruitOrSeedShape.toString() : "null"}</p>
-          <p>Growth Form: {plant.plantDetails.growthForm !== null ? plant.plantDetails.growthForm.toString() : "null"}</p>
-          <p>Growth Habit: {plant.plantDetails.growthHabit !== null ? plant.plantDetails.growthHabit.toString() : "null"}</p>
-          <p>Toxicity: {plant.plantDetails.toxicity !== null ? plant.plantDetails.toxicity.toString() : "null"}</p>
+          {/* <PlantCard plant={plant} /> */}
+          <h1 className="plantDetails-title">{`${plant.plantDetails.scientificName} (${plant.plantDetails.commonName})`}</h1>
+          <div className="plantDetails-dataContainer">
+            <Row md="2" sm="1" xs="1">
+              <Col className="plantDetails-infoContainer">
+                <h4 className="plantDetails-info">Plant Details</h4>
+                <p className="plantDetails-info">Vegetable: {plant.plantDetails.vegetable !== null ? plant.plantDetails.vegetable.toString() : "null"}</p>
+                <p className="plantDetails-info">Edible Part: {plant.plantDetails.ediblePart !== null ? plant.plantDetails.ediblePart.toString() : "null"}</p>
+                <p className="plantDetails-info">Edible: {plant.plantDetails.edible !== null ? plant.plantDetails.edible.toString() : "null"}</p>
+                <p className="plantDetails-info">Flower Color: {plant.plantDetails.flowerColor !== null ? plant.plantDetails.flowerColor.toString() : "null"}</p>
+                <p className="plantDetails-info">Foliage Texture: {plant.plantDetails.foliageTexture !== null ? plant.plantDetails.foliageTexture.toString() : "null"}</p>
+                <p className="plantDetails-info">Foliage Color: {plant.plantDetails.foliageColor !== null ? plant.plantDetails.foliageColor.toString() : "null"}</p>
+                <p className="plantDetails-info">Fruit or Seed Color: {plant.plantDetails.fruitOrSeedColor !== null ? plant.plantDetails.fruitOrSeedColor.toString() : "null"}</p>
+                <p className="plantDetails-info">Fruit or Seed Shape: {plant.plantDetails.fruitOrSeedShape !== null ? plant.plantDetails.fruitOrSeedShape.toString() : "null"}</p>
+                <p className="plantDetails-info">Growth Form: {plant.plantDetails.growthForm !== null ? plant.plantDetails.growthForm.toString() : "null"}</p>
+                <p className="plantDetails-info">Growth Habit: {plant.plantDetails.growthHabit !== null ? plant.plantDetails.growthHabit.toString() : "null"}</p>
+                <p className="plantDetails-info">Toxicity: {plant.plantDetails.toxicity !== null ? plant.plantDetails.toxicity.toString() : "null"}</p>
+              </Col>
+              <Col className="plantDetails-imgContainer">
+                <img src={plant.plantDetails.imageUrl} alt={`${plant.plantDetails.commonName}`} className="plantDetails-img"/>
+              </Col>
+            </Row>
+          </div>
         </>
       )}
 
@@ -104,7 +116,7 @@ const PlantDetails = () => {
           <div>
             {isSubmitted ? <Navigate to={`/plants/${scientificName}/success`} /> : <Navigate to={`/plants/${scientificName}`} />}
             <form onSubmit={handleSubmit}>
-              <label htmlFor="lists">Choose a list:</label>
+              <label htmlFor="lists" className="plantDetails-listLabel">Choose a list:</label>
               <select 
                 name="lists" 
                 id="lists"
@@ -112,12 +124,12 @@ const PlantDetails = () => {
                 onChange={(e) => setSelectedList(e.target.value)}
               >
                 {lists.lists.map(list => (
-                  <option value={`${list.list_name}`} key={list.list_name}>
+                  <option value={`${list.list_name}`} key={list.list_name} className="plantDetails-listOptions">
                     {list.list_name}
                   </option>
                 ))}
                 </select>
-                <button>Add plant</button>
+                <button className="plantDetails-btn">Add plant</button>
               </form>
             </div>
         </>
