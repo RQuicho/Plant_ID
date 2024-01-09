@@ -69,7 +69,6 @@ const UploadPage = () => {
   }
 
   if (isLoading) {
-    // return <p>Loading &hellip;</p>
     return <h1 className="uploadPage-loading">Loading   <FontAwesomeIcon icon={faSpinner} className="loading-spinner"/></h1>
   }
 

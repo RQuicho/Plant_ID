@@ -5,6 +5,10 @@ import { Navigate, useParams } from 'react-router-dom';
 import PlantCard from './PlantCard';
 import ListCard from '../List/ListCard';
 import UserContext from '../UserContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./PlantDetails.css";
 
 const PlantDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -73,12 +77,11 @@ const PlantDetails = () => {
   }
 
   if (isLoading) {
-    return <p>Loading &hellip;</p>
+    return <h1 className="plantDetails-loading">Loading   <FontAwesomeIcon icon={faSpinner} className="loading-spinner"/></h1>
   }
 
   return (
     <div>
-      <p>Plant Details go here</p>
       {plant.plantDetails && (
         <>
           <PlantCard plant={plant} />

@@ -1,0 +1,10 @@
+.plantCard-title {
+  text-align: center;
+  margin: 35px 32% 30px;
+  color: rgb(28, 53, 79);
+}
+
+.plantCard-img {
+  max-width: 30%;
+  height: auto;
+}

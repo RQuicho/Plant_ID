@@ -16,7 +16,7 @@ const Homepage = () => {
       <h3 className="homepage-text"><FontAwesomeIcon icon={faRectangleList} /> Create lists to keep track of plants you identified</h3>
       <h3 className="homepage-text"><FontAwesomeIcon icon={faUserPlus} /> Signup or Login to start!</h3>
       <br></br>
-      <img src="https://static.vecteezy.com/system/resources/previews/000/595/596/original/ecology-logo-illustration-vectors.jpg" width={400} height={400} alt="green leaves falling"/>
+      <img src="https://static.vecteezy.com/system/resources/previews/000/595/596/original/ecology-logo-illustration-vectors.jpg" alt="green leaves falling" className="homepage-img"/>
 
     </div>
   )

@@ -4,7 +4,9 @@ import ListCard from './ListCard';
 import PlantCard from '../Plants/PlantCard';
 import PlantIdApi from '../api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./ListDetails.css";
 
 const ListDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -57,13 +59,11 @@ const ListDetails = () => {
   }
 
   if (isLoading) {
-    return <p>Loading &hellip;</p>
+    return <h1 className="listDetails-loading">Loading   <FontAwesomeIcon icon={faSpinner} className="loading-spinner"/></h1>
   }
 
   return (
     <div>
-      <p>List card and Plant cards go here</p>
-
       {list.name && (
         <>
           <h1>{list.name}</h1>
