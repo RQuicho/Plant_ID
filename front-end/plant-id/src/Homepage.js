@@ -1,11 +1,11 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "./Homepage.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import { faRectangleList } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./Homepage.css";
 
 const Homepage = () => {
   return (

@@ -1,0 +1,50 @@
+/* .uploadPage-container {
+
+} */
+
+.uploadPage-title {
+  text-align: center;
+  margin: 35px 32% 30px;
+  color: rgb(28, 53, 79);
+}
+
+.uploadPage-input {
+  margin: 0;
+}
+
+.uploadPage-btn {
+  margin: 30px 30px 30px 0;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  background-color: rgb(39, 124, 124);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.uploadPage-btn:hover {
+  background-color: rgb(146, 197, 109);
+}
+
+.uploadPage-link {
+  text-decoration: none;
+  color: white;
+}
+
+.uploadPage-loading {
+  margin: 0 5px 0 0;
+  color: rgb(28, 53, 79);
+}
+
+.loading-spinner {
+  width: 75px;
+  height: 75px;
+  margin: 50px 0 0 10px;
+  color: rgb(28, 53, 79);
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
