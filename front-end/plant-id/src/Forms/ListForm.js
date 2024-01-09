@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import PlantIdApi from '../api';
 import { Navigate } from 'react-router-dom';
 import UserContext from "../UserContext";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./Forms.css";
 
 const ListForm = () => {
   const {currentUser} = useContext(UserContext);
@@ -49,14 +51,14 @@ const ListForm = () => {
   }
 
   return (
-    <div>
+    <div className="form-container">
       {errorMsg ? <Navigate to="/lists/error"/> : <Navigate to="/lists/new"/>}
       {/* {isSubmitted ? <Navigate to={`/lists/${name}`}/> : <Navigate to="/lists/new"/>} */}
       {isSubmitted ? <Navigate to="/lists"/> : <Navigate to="/lists/new"/>}
 
-      <h3>Create List</h3>
+      <h3 className="form-title">Create List</h3>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name" className="form-label">Name</label>
           <input 
             id="name"
             type="text"
@@ -65,8 +67,10 @@ const ListForm = () => {
             value={formData.name}
             onChange={handleChange}
             required
+            className="form-input"
           />
-        <label htmlFor="description">Description</label>
+        <br></br>
+        <label htmlFor="description" className="form-label">Description</label>
           <input 
             id="description"
             type="text"
@@ -75,8 +79,10 @@ const ListForm = () => {
             value={formData.description}
             onChange={handleChange}
             required
+            className="form-input"
           />
-        <button>Create</button>
+          <br></br>
+        <button className="form-btn">Create</button>
       </form>
     </div>
   );

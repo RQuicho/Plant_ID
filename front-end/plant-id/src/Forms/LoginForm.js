@@ -1,6 +1,8 @@
 import React, {useState, useContext} from "react";
 import {Navigate} from "react-router-dom";
 import UserContext from "../UserContext";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./Forms.css";
 
 const LoginForm = ({login}) => {
   const {currentUser} = useContext(UserContext);
@@ -31,13 +33,13 @@ const LoginForm = ({login}) => {
   }
 
   return (
-    <div>
+    <div className="form-container">
       {/* {console.log('currentUser in front end LoginForm: ', currentUser)} */}
       {errorMsg ? <Navigate to="/login/error"/> : <Navigate to="/login"/>}
       {currentUser ? <Navigate to="/upload"/> : <Navigate to="/login"/>}
-      <h3>Log In</h3>
+      <h3 className="form-title">Log In</h3>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username</label>
+        <label htmlFor="username" className="form-label">Username</label>
           <input
             id="username"
             type="text"
@@ -46,8 +48,10 @@ const LoginForm = ({login}) => {
             value={formData.username}
             onChange={handleChange}
             required
+            className="form-input"
           />
-        <label htmlFor="password">Password</label>
+        <br></br>
+        <label htmlFor="password" className="form-label">Password</label>
           <input
             id="password"
             type="password"
@@ -56,8 +60,10 @@ const LoginForm = ({login}) => {
             value={formData.password}
             onChange={handleChange}
             required
+            className="form-input"
           />
-        <button>Submit</button>
+          <br></br>
+        <button className="form-btn">Submit</button>
       </form>
     </div>
   )

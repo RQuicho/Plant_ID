@@ -2,6 +2,8 @@ import React, {useContext, useState} from 'react';
 import { Navigate } from 'react-router-dom';
 import PlantIdApi from '../api';
 import UserContext from '../UserContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./Forms.css";
 
 const ProfileForm = () => {
   const {currentUser, setCurrentUser} = useContext(UserContext);
@@ -56,43 +58,51 @@ const ProfileForm = () => {
   }
 
   return (
-    <div>
+    <div className="form-container">
       {isSubmitted ? <Navigate to="/profile/updated"/> : <Navigate to={`/${currentUser.username}/profile`}/>}
-      <h3>{`${currentUser.username}'s Profile`}</h3>
+      <h3 className="form-title">{`${currentUser.username}'s Profile`}</h3>
       <form onSubmit={handleSubmit}>
-        <label htmlFor='firtName'>First Name</label>
+        <label htmlFor='firtName' className="form-label">First Name</label>
           <input 
             id='firstName'
             type='text'
             name='firstName'
             value={formData.firstName}
             onChange={handleChange}
+            className="form-input"
           />
-        <label htmlFor='lastName'>Last Name</label>
+        <br></br>
+        <label htmlFor='lastName' className="form-label">Last Name</label>
           <input 
             id='lastName'
             type='text'
             name='lastName'
             value={formData.lastName}
             onChange={handleChange}
+            className="form-input"
           />
-        <label htmlFor='email'>Email</label>
+        <br></br>
+        <label htmlFor='email' className="form-label">Email</label>
           <input 
             id='email'
             type='text'
             name='email'
             value={formData.email}
             onChange={handleChange}
+            className="form-input"
           />
-        <label htmlFor='password'>Password</label>
+        <br></br>
+        <label htmlFor='password' className="form-label">Password</label>
           <input 
             id='password'
             type='password'
             name='password'
             value={formData.password}
             onChange={handleChange}
+            className="form-input"
           />
-        <button>Save</button>
+        <br></br>
+        <button className="form-btn">Save</button>
       </form>
     </div>
   )

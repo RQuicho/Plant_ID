@@ -1,21 +1,29 @@
-.form-container {
-  text-align: center;
-}
-
 .form-title {
   text-align: center;
-  margin: 20px 30% 10px;
+  margin: 35px 32% 30px;
+  color: rgb(28, 53, 79);
 }
 
 .form-label {
-  text-align: center;
+  text-align: left;
 }
 
 .form-input {
   text-align: left;
-  margin: 20px 50px 10px 10px;
+  margin: 10px 0 10px 10px;
 }
 
 .form-btn {
-  margin: 20px 30% 10px;
+  margin: 30px;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  background-color: rgb(39, 124, 124);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-btn:hover {
+  background-color: rgb(146, 197, 109);
 }
