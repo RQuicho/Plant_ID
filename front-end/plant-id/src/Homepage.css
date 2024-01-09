@@ -1,3 +1,14 @@
-.homepage {
-  margin: 50px 0 50px;
+.homepage-container {
+  margin: 7% 0 50%;
 }
+
+.homepage-title {
+  color: rgb(28, 53, 79);
+}
+
+.homepage-text {
+  color: rgb(28, 53, 79);
+  text-align: left;
+  margin: 20px 30% 10px;
+}
+

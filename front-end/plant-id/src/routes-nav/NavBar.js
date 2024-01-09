@@ -1,23 +1,15 @@
 import React, {useContext, useState} from "react";
 import { NavLink } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import ReactDOM from 'react-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './NavBar.css';
-// import { Navbar, Nav, NavItem, NavbarBrand } from "reactstrap";
 import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText,
 } from 'reactstrap';
 import UserContext from "../UserContext";
 
@@ -28,31 +20,9 @@ const NavBar = ({logout}) => {
   const toggle = () => setIsOpen(!isOpen);
 
   const navLoggedIn = () => {
-    // return (
-    //   <Navbar expand="md" color="light">
-    //     <NavLink to='/' className="navbar-brand">
-    //       PlantID
-    //     </NavLink>
-    //     <Nav className="ml-auto" navbar>
-    //       <NavItem>
-    //         <NavLink to="/upload">Upload Image</NavLink>
-    //       </NavItem>
-    //       <NavItem>
-    //         <NavLink to={`${currentUser.username}/lists`}>Lists</NavLink>
-    //       </NavItem>
-    //       <NavItem>
-    //         <NavLink to={`${currentUser.username}/profile`}>Profile</NavLink>
-    //       </NavItem>
-    //       <NavItem>
-    //         <NavLink to='/' onClick={logout}>Logout {currentUser.username}</NavLink>
-    //       </NavItem>
-    //     </Nav>
-    //   </Navbar>
-    // );
-
     return (
       <div>
-        <Navbar color="success" expand="md" container="fluid">
+        <Navbar className="navbar-container" expand="md" container="fluid">
           <NavLink to="/" className="navbar-brand">PlantID <FontAwesomeIcon icon={faLeaf} /></NavLink>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
@@ -77,25 +47,9 @@ const NavBar = ({logout}) => {
   }
 
   const navLoggedOut = () => {
-    // return (
-    //   <Navbar expand="md" color="light">
-    //     <NavLink to='/' className="navbar-brand">
-    //       PlantID
-    //     </NavLink>
-    //     <Nav className="ml-auto" navbar>
-    //       <NavItem>
-    //         <NavLink to='/login'>Login</NavLink>
-    //       </NavItem>
-    //       <NavItem>
-    //         <NavLink to='/signup'>Signup</NavLink>
-    //       </NavItem>
-    //     </Nav>
-    //   </Navbar>
-    // );
-
     return (
       <div>
-        <Navbar color="success" expand="md" container="fluid">
+        <Navbar className="navbar-container" expand="md" container="fluid">
           <NavLink to="/" className="navbar-brand">PlantID <FontAwesomeIcon icon={faLeaf} /></NavLink>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
@@ -111,8 +65,6 @@ const NavBar = ({logout}) => {
         </Navbar>
       </div>
     );
-
-
   }
 
   return (

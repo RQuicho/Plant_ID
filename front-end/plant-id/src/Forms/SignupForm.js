@@ -1,6 +1,8 @@
 import React, {useState, useContext} from 'react';
 import { Navigate } from 'react-router-dom';
 import UserContext from "../UserContext";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./Forms.css";
 
 const SingupForm = ({signup}) => {
   const {currentUser} = useContext(UserContext);
@@ -37,13 +39,13 @@ const SingupForm = ({signup}) => {
   }
 
   return (
-    <div>
+    <div className="form-container">
       {errorMsg ? <Navigate to="/signup/error"/> : <Navigate to="/signup"/>}
       {isSubmitted ? <Navigate to="/signup/success"/> : <Navigate to="/signup"/>}
       
-      <h3>Signup</h3>
+      <h3 className="form-title">Signup</h3>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username</label>
+        <label htmlFor="username" className="form-label">Username</label>
           <input
             id="username"
             type="text"
@@ -52,8 +54,10 @@ const SingupForm = ({signup}) => {
             value={formData.username}
             onChange={handleChange}
             required
+            className="form-input"
           />
-        <label htmlFor="password">Password</label>
+        <br></br>
+        <label htmlFor="password" className="form-label">Password</label>
           <input
             id="password"
             type="password"
@@ -62,8 +66,10 @@ const SingupForm = ({signup}) => {
             value={formData.password}
             onChange={handleChange}
             required
+            className="form-input"
           />
-        <label htmlFor="firstName">First Name</label>
+        <br></br>
+        <label htmlFor="firstName" className="form-label">First Name</label>
           <input
             id="firstName"
             type="text"
@@ -72,8 +78,10 @@ const SingupForm = ({signup}) => {
             value={formData.firstName}
             onChange={handleChange}
             required
+            className="form-input"
           />
-        <label htmlFor="lastName">Last Name</label>
+        <br></br>
+        <label htmlFor="lastName" className="form-label">Last Name</label>
           <input
             id="lastName"
             type="text"
@@ -82,8 +90,10 @@ const SingupForm = ({signup}) => {
             value={formData.lastName}
             onChange={handleChange}
             required
+            className="form-input"
           />
-        <label htmlFor="email">Email</label>
+        <br></br>
+        <label htmlFor="email" className="form-label">Email</label>
           <input
             id="email"
             type="text"
@@ -92,8 +102,10 @@ const SingupForm = ({signup}) => {
             value={formData.email}
             onChange={handleChange}
             required
+            className="form-input"
           />
-        <button>Submit</button>
+        <br></br>
+        <button className="form-btn">Submit</button>
       </form>
     </div>
   );

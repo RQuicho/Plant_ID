@@ -1,19 +1,43 @@
+.navbar-container {
+  background-color: rgb(146, 197, 109);
+}
+
 .navbar-navlink {
-  color: black;
+  color: white;
   text-decoration: none;
   padding-right: 20px;
   padding-left: 10px;
+  cursor: pointer;
 }
 
 .navbar-navlink:hover {
-  color: black;
+  color: rgb(39, 124, 124);
   text-decoration: none;
   padding-right: 20px;
   padding-left: 10px;
+  cursor: pointer;
 }
 
 .navbar-brand {
-  color: black;
+  color: white;
   text-decoration: none;
+  cursor: pointer;
 }
 
+.navbar-brand:hover {
+  color: rgb(39, 124, 124);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+
+
+.colorPallette {
+  color: rgb(242, 242, 242)
+  rgb(198, 224, 113)
+  rgb(146, 197, 109)
+  rgb(39, 124, 124)
+  rgb(28, 53, 79)
+}

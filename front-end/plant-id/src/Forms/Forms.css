@@ -1,0 +1,21 @@
+.form-container {
+  text-align: center;
+}
+
+.form-title {
+  text-align: center;
+  margin: 20px 30% 10px;
+}
+
+.form-label {
+  text-align: center;
+}
+
+.form-input {
+  text-align: left;
+  margin: 20px 50px 10px 10px;
+}
+
+.form-btn {
+  margin: 20px 30% 10px;
+}
