@@ -1,9 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import PlantIdApi from "../api";
-import NotFound from '../ErrorSuccessMessages/NotFound';
 import { Navigate, useParams } from 'react-router-dom';
-import PlantCard from './PlantCard';
-import ListCard from '../List/ListCard';
 import UserContext from '../UserContext';
 import {Row, Col} from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,11 +23,9 @@ const PlantDetails = () => {
         setIsLoading(true);
         // plant
         const plantResp = await PlantIdApi.getPlant(scientificName);
-        console.log('plantResp in front end from PlantDetails component: ', plantResp);
         setPlant(plantResp);
         // lists
         const listsResp = await PlantIdApi.getListsByUser(currentUser.username);
-        console.log('listsResp in front end from PlantDetails component: ', listsResp);
         setLists(listsResp);
         if (listsResp.lists.length === 1) {
           setSelectedList(listsResp.lists[0].list_name);
@@ -44,15 +39,9 @@ const PlantDetails = () => {
     getPlantDetails();
   }, [scientificName]);
 
-  console.log('plant in front end from PlantDetails component: ', plant);
-  console.log('lists in front end from PlantDetails component: ', lists);
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     let result = await PlantIdApi.addPlantToList(selectedList, plant.plantDetails.scientificName);
-
-    console.log('result in front end from PlantDetails handleSubmit: ', result);
     if (result) {
       setIsSubmitted(true);
       return <Navigate to={`/plants/${scientificName}/success`} />;
@@ -85,7 +74,6 @@ const PlantDetails = () => {
     <div>
       {plant.plantDetails && (
         <>
-          {/* <PlantCard plant={plant} /> */}
           <h1 className="plantDetails-title">{`${plant.plantDetails.scientificName} (${plant.plantDetails.commonName})`}</h1>
           <div className="plantDetails-dataContainer">
             <Row md="2" sm="1" xs="1">
