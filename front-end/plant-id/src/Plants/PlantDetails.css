@@ -1,6 +1,6 @@
 .plantDetails-title {
   text-align: center;
-  margin: 35px 32% 30px;
+  margin: 50px 30% 50px 30%;
   color: rgb(28, 53, 79);
 }
 
@@ -11,17 +11,19 @@
 .plantDetails-img {
   max-width: 40%;
   height: auto;
-  margin: 5px 30%;
+  margin: 20px 30% 20px 10%;
+  border: 3px solid rgb(39, 124, 124);
+  border-radius: 5px;
 }
 
 .plantDetails-info {
   text-align: left;
-  margin: 20px 30%;
+  margin: 20px 25% 20px 45%;
   color: rgb(28, 53, 79);
 }
 
 .plantDetails-btn {
-  margin: 20px 10px 5px 10px;
+  margin: 50px 10px 50px 10px;
   border: none;
   border-radius: 6px;
   padding: 5px 10px;

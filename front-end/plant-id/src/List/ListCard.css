@@ -1,0 +1,12 @@
+.listCard-title {
+  text-align: center;
+  text-decoration: none;
+  margin: 20px 20% 30px 20%;
+  color: rgb(28, 53, 79);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.listCard-title:hover {
+  color: rgb(39, 124, 124);
+}

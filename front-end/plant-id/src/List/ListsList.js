@@ -5,6 +5,8 @@ import PlantIdApi from '../api';
 import UserContext from "../UserContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./ListsList.css";
 
 const ListsList = () => {
   const {currentUser} = useContext(UserContext);
@@ -55,21 +57,22 @@ const ListsList = () => {
   
   return (
     <div>
-      <p>List cards go here</p>
+      <h1 className="listsList-title">Lists</h1>
       {lists.lists && (
         <>
           {lists.lists.map(list => (
-            <div key={list.list_name}>
-              <NavLink to={`/lists/${list.list_name}`}>
-                <ListCard list={list} />
+            <div key={list.list_name} className="listsList-item">
+              <NavLink to={`/lists/${list.list_name}`} className="listsList-navlink">
+                {/* <ListCard list={list} /> */}
+                <h3 className="listsList-name">{list.list_name}</h3>
               </NavLink>
-              <FontAwesomeIcon icon={faTrash} onClick={(e) => handleClick(e, list.list_name)}/>
+              <FontAwesomeIcon icon={faTrash} onClick={(e) => handleClick(e, list.list_name)} className="listsList-trashIcon"/>
             </div>
           ))}
         </>
       )}
-      <button>
-        <Link to='/lists/new'>Create a list</Link>
+      <button className="listsList-btn">
+        <Link to='/lists/new' >Create a list</Link>
       </button>
 
     </div>

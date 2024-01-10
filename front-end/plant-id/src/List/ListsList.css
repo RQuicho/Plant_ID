@@ -1,0 +1,77 @@
+.listsList-title {
+  text-align: center;
+  margin: 50px 30% 50px 30%;
+  color: rgb(28, 53, 79);
+}
+
+.listsList-item {
+  display: flex;
+  align-items: center;
+  margin: 2% 40%;
+}
+
+.listsList-navlink {
+  text-decoration: none;
+}
+
+.listsList-name {
+  text-align: center;
+  text-decoration: none;
+  margin: 0 30px 0 10px;
+  color: rgb(28, 53, 79);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.listsList-name:hover {
+  color: rgb(39, 124, 124);
+}
+
+.listsList-trashIcon {
+  color: rgb(28, 53, 79);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.listsList-trashIcon:hover {
+  color: red;
+}
+
+@media only screen and (max-width: 768px) {
+  .listsList-item {
+    margin: 3% 20%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .listsList-item {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0;
+  }
+
+  .listsList-name {
+    margin: 0;
+  }
+}
+
+.listsList-btn {
+  margin: 50px 10px 50px 10px;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  background-color: rgb(39, 124, 124);
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.listsList-btn:hover {
+  background-color: rgb(146, 197, 109);
+}
+
+.listsList-btn a {
+  color: inherit;
+  text-decoration: none;
+}
