@@ -5,7 +5,6 @@ const {sqlForPartialUpdate} = require("../helpers/sql");
 const {
   NotFoundError,
   BadRequestError,
-  UnauthorizedError
 } = require("../expressError");
 
 class List {
@@ -41,7 +40,6 @@ class List {
        [name],
     );
     const plants = plantsRes.rows;
-
     if (!plants) throw new NotFoundError('No plants');
     return plants;
   }
@@ -55,17 +53,7 @@ class List {
        [name]
     );
     const list = listRes.rows[0];
-
     if (!list) throw new NotFoundError(`No list: ${name}`);
-
-    // const listPlantRes = await db.query(
-    //   `SELECT lp.plant_scientific_name
-    //    FROM listPlant AS lp
-    //    WHERE lp.list_name = $1`,
-    //    [name]
-    // );
-
-    // list.listplant = listPlantRes.rows.map(lp => lp.plant_scientific_name);
     return list;
   }
 

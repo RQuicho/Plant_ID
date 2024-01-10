@@ -8,13 +8,8 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  testListNames,
   testPlantNames,
-  user1Token,
-  user2Token,
-  user3Token
 } = require("./_testCommon");
-const { getScientificNameFromImage, getPlantData, createPlant } = require("../helpers/plantApis");
 
 beforeAll(commonBeforeAll);
 beforeEach(commonBeforeEach);

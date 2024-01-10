@@ -2,8 +2,6 @@
 
 const {
   NotFoundError,
-  BadRequestError,
-  UnauthorizedError
 } = require("../expressError");
 const db = require("../db");
 const Plant = require("./plant");
@@ -12,8 +10,6 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  testListNames,
-  testPlantNames
 } = require("./_testCommon");
 const User = require("./user");
 

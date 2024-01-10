@@ -68,3 +68,22 @@
   }
 }
 
+.listDetails-backBtn {
+  text-decoration: none;
+  color: white;
+}
+
+.listDetails-btn {
+  margin: 50px 10px 50px 10px;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  background-color: rgb(39, 124, 124);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.listDetails-btn:hover {
+  background-color: rgb(146, 197, 109);
+}

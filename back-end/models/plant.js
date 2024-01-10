@@ -1,7 +1,6 @@
 "use strict";
 
 const db = require("../db");
-const {sqlForPartialUpdate} = require("../helpers/sql");
 const { BadRequestError, NotFoundError } = require("../expressError");
 
 class Plant {
@@ -108,8 +107,6 @@ class Plant {
 
     return plant;
   }
-
-  // Update? i don't think plant info should be updated since it is coming from an API
 
   // Remove
   static async remove(scientificName) {

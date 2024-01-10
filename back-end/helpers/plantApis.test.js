@@ -1,6 +1,5 @@
 "use strict";
 
-const request = require("supertest");
 const {getScientificNameFromImage, getPlantData, createPlant} = require("./plantApis");
 const axios = require('axios');
 
@@ -9,9 +8,6 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  user1Token,
-  user2Token,
-  user3Token
 } = require("./_testCommon");
 const { BadRequestError } = require("../expressError");
 
@@ -47,51 +43,14 @@ describe('getScientificNameFromImage', () => {
   });
 });
 
-// this one does not work
 describe('getPlantData', () => {
   test('returns plant data from trefle api', async() => {
     const result = await getPlantData("Strelitzia reginae");
     expect(result).toBeDefined();
-    // expect(typeof result).toBe('object');
     expect(result.common_name).toEqual('Bird of paradise');
     expect(result.image_url).toEqual('https://bs.plantnet.org/image/o/e4f2713e640f0a4d549e9517b5c3f0f12b531188');
   });
 });
-
-// describe('getPlantData', () => {
-//   test('returns plant data from trefle api', async () => {
-//     const scientificName = 'Strelitzia reginae';
-//     const mockApiResponse = {
-//       id: 150762,
-// 		  common_name: "Bird of paradise",
-// 		  scientific_name: "Strelitzia reginae",
-// 		  vegetable: false,
-// 		  image_url: "https://bs.plantnet.org/image/o/e4f2713e640f0a4d549e9517b5c3f0f12b531188",
-// 		  edible_part: null,
-// 		  edible: false,
-//       flower: {
-//         color: null,
-//       },
-//       foliage: {
-//         texture: null,
-//         color: null,
-//       },
-//       fruit_or_seed: {
-//         color: null,
-//         shape: null,
-//       },
-//       specifications: {
-//         growth_form: null,
-//         growth_habit: null,
-//         toxicity: null,
-//       }
-//     };
-//     axios.get.mockResolvedValue(mockApiResponse);
-//     const result = await getPlantData(scientificName);
-//     expect(result.common_name).toEqual('Bird of paradise');
-//   });
-// });
-
 
 describe('createPlant', () => {
   test('creates a plant in the database', async () => {

@@ -25,8 +25,6 @@ const getScientificNameFromImage = (async (uploadedFile) => {
 			}
 		);
 		const scientificName = data.results[0].species.scientificNameWithoutAuthor;
-		console.log('scientificName:', scientificName);
-		// console.log('typeof scientificName:', typeof scientificName);
 		return scientificName;
 		} catch (err) {
 			console.error('Error:', err.message);
@@ -41,16 +39,11 @@ const getPlantData = async (scientificName) => {
 	const trefleBaseUrl = "https://trefle.io/api/v1/plants";
 	try {
 		const response = await axios.get(`${trefleBaseUrl}/search?token=${PLANT_INFO_API_KEY}&q=${scientificName}`);
-		// console.log('response.data.data:', response.data.data);
 		if (!response.data.data || response.data.data.length === 0) throw new NotFoundError("No plant found");
 
 		const foundPlantId = response.data.data[0].id;
 		const rawData = await axios.get(`${trefleBaseUrl}/${foundPlantId}?token=${PLANT_INFO_API_KEY}`);
 		const plantData = rawData.data.data.main_species;
-		console.log('plantData:', plantData);
-		console.log('plantDataCommonName:', plantData.common_name);
-		console.log('plantDataEdiblePart:', plantData.edible_part);
-		console.log('plantDataFlowerColor:', plantData.flower.color);
 		return plantData;
 	} catch (err) {
 		console.error('Error:', err.message);

@@ -2,21 +2,13 @@
 
 const request = require("supertest");
 const app = require("../app");
-const PLANT_INFO_API_KEY = require("../my_secret");
-const axios = require("axios");
-const Plant = require("../models/plant");
-const db = require("../db");
 
 const {
   commonBeforeAll,
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  user1Token,
-  user2Token,
-  user3Token
 } = require("./_testCommon");
-const { getScientificNameFromImage, getPlantData, createPlant } = require("../helpers/plantApis");
 
 beforeAll(commonBeforeAll);
 beforeEach(commonBeforeEach);

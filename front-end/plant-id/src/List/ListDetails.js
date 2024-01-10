@@ -86,9 +86,9 @@ const ListDetails = () => {
         </div>
       ) : (
         <div>
-          <h3>No plants in this list</h3>
-          <button>
-            <Link to="/lists">Back</Link>
+          <h3 className="listDetails-title">No plants in this list</h3>
+          <button className="listDetails-btn">
+            <Link to="/lists" className="listDetails-backBtn">Back</Link>
           </button>
         </div>
       )}
