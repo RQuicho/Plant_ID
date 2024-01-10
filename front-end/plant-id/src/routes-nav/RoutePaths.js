@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Routes, Route, Navigate} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import UserContext from '../UserContext';
 
 import Homepage from '../Homepage';
@@ -16,14 +16,12 @@ import PlantDetails from '../Plants/PlantDetails';
 import ListsList from '../List/ListsList';
 import ListDetails from '../List/ListDetails';
 import ListForm from '../Forms/ListForm';
-import ListUpdateForm from '../Forms/ListUpdateForm';
 import ListsError from '../ErrorSuccessMessages/ListsError';
 import AddPlantToListSuccess from '../ErrorSuccessMessages/AddPlantToListSuccess';
 import AddPlantToListError from '../ErrorSuccessMessages/AddPlantToListError';
 
 const RoutePaths = ({login, signup}) => {
   const {currentUser} = useContext(UserContext);
-  // console.log('currentUser in front end RoutePaths: ', currentUser);
   
   return (
     <Routes>
@@ -80,9 +78,6 @@ const RoutePaths = ({login, signup}) => {
       <Route path={currentUser ? '/lists/:name' : '/login'} 
              element={currentUser ? <ListDetails /> : <LoginForm login={login} />} 
       />
-      {/* <Route path={currentUser ? '/lists/:name/update' : '/login'} 
-             element={currentUser ? <ListUpdateForm /> : <LoginForm login={login} />} 
-      /> */}
       <Route path={currentUser ? '/lists/:name/delete' : '/login'} 
              element={currentUser ? <ListDetails /> : <LoginForm login={login} />} 
       />

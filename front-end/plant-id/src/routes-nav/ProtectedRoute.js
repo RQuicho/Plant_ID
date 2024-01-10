@@ -13,16 +13,7 @@ const ProtectedRoute = ({path, children}) => {
     <Route path={path}>
       {children}
     </Route>
-    // <Route path={path} element={children} />
   );
-
-  // return (
-  //   <Route
-  //     path={path}
-  //     element={currentUser ? children : <Navigate to='/login' />}
-  //   />
-  // );
-
 }
 
 export default ProtectedRoute;
