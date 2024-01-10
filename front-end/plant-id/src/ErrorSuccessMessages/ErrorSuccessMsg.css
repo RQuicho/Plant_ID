@@ -1,0 +1,36 @@
+.successMsg-div {
+  text-align: center;
+  margin: 35px 10%;
+  padding: 20px;
+  color: rgb(39, 124, 124);
+  background-color: rgb(198, 224, 113);
+}
+
+.errorMsg-div {
+  text-align: center;
+  margin: 35px 10%;
+  padding: 20px;
+  color: rgb(28, 53, 79);
+  background-color: rgb(247, 107, 102);
+}
+
+.errorMsg-btn {
+  margin: 20px 10px;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  background-color: rgb(39, 124, 124);
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.errorMsg-btn:hover {
+  background-color: rgb(146, 197, 109);
+}
+
+.errorMsg-btn a {
+  color: inherit;
+  text-decoration: none;
+}
