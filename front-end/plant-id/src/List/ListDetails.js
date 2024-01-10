@@ -3,6 +3,7 @@ import { Link, useParams, NavLink } from 'react-router-dom';
 import ListCard from './ListCard';
 import PlantCard from '../Plants/PlantCard';
 import PlantIdApi from '../api';
+import {Row, Col} from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -12,7 +13,7 @@ const ListDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [list, setList] = useState('');
   const [plants, setPlants] = useState([]);
-  const [plantImgUrl, setPlantImgUrl] = useState('');
+  const [plantsImgUrl, setPlantsImgUrl] = useState([]);
   const {name} = useParams();
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const ListDetails = () => {
           return plantImg.plantDetails.imageUrl;
         });
         const plantsImages = await Promise.all(plantImgPromises);
-        setPlantImgUrl(plantsImages);
+        setPlantsImgUrl(plantsImages);
       } catch (err) {
         console.error('Error fetching list in ListDetails component: ', err);
       } finally {
@@ -65,24 +66,24 @@ const ListDetails = () => {
   return (
     <div>
       {list.name && (
-        <>
+        <div className="listDetails-title">
           <h1>{list.name}</h1>
-          <h3>{list.description}</h3>
-        </>
+          <h5>{list.description}</h5>
+        </div>
       )}
      
       {plants.plants && plants.plants.length > 0 ? (
-        <>
-          {plants.plants.map(plant => (
-            <div key={plant.plant_scientific_name}>
-              <NavLink to={`/plants/${plant.plant_scientific_name}`}>
-                {plant.plant_scientific_name}
-                <img src={plantImgUrl} alt={`${plant.plant_scientific_name}`} />
+        <div className="listDetails-container">
+          {plants.plants.map((plant, index) => (
+            <div key={plant.plant_scientific_name} className="listDetails-item">
+              <NavLink to={`/plants/${plant.plant_scientific_name}`} className="listDetails-navlink">
+                <h5 className="listDetails-name">{plant.plant_scientific_name}</h5>
               </NavLink>
-              <FontAwesomeIcon icon={faTrash} onClick={(e) => handleClick(e, plant.plant_scientific_name, plant.list_name)}/>
+              <img src={plantsImgUrl[index]} alt={`${plant.plant_scientific_name}`} className="listDetails-img"/>
+              <FontAwesomeIcon icon={faTrash} onClick={(e) => handleClick(e, plant.plant_scientific_name, plant.list_name)} className="listDetails-trashIcon"/>
             </div>
           ))}
-        </>
+        </div>
       ) : (
         <div>
           <h3>No plants in this list</h3>
