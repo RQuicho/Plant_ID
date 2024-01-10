@@ -1,11 +1,9 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import { Navigate } from 'react-router-dom';
-import UserContext from "../UserContext";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Forms.css";
 
 const SingupForm = ({signup}) => {
-  const {currentUser} = useContext(UserContext);
   const initialState = {
     username: '',
     password: '',
@@ -28,7 +26,6 @@ const SingupForm = ({signup}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let result = await signup(formData);
-    console.log('result in front end SignupForm: ', result);
     if (result.success) {
       setIsSubmitted(true);
       return <Navigate to="/upload" />;

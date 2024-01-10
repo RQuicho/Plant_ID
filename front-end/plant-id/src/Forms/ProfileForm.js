@@ -37,7 +37,6 @@ const ProfileForm = () => {
     let updatedUser;
     try {
       updatedUser = await PlantIdApi.updateUserProfile(username, profileData);
-      console.log('updatedUser in front end for ProfileForm: ', updatedUser);
       if (updatedUser) {
         setIsSubmitted(true);
       } else {
@@ -48,8 +47,6 @@ const ProfileForm = () => {
       return;
     }
     setIsSubmitted(true);
-    console.log('isSubmitted in front end for ProfileForm: ', isSubmitted);
-
     setFormData(data => ({
       ...data,
       password: ''

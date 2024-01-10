@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PlantIdApi from '../api';
 import { Navigate, useParams } from 'react-router-dom';
 
@@ -38,13 +38,10 @@ const ListUpdateForm = () => {
     }
     setIsSubmitted(true);
     console.log('isSubmitted in front end from ListUpdatedForm: ', isSubmitted);
-
-    // set
   }
 
   return (
     <div>
-      {/* {errorMsg ? <Navigate to="/lists/error"/> : <Navigate to="/lists/new"/>} */}
       {isSubmitted ? <Navigate to="/lists"/> : <Navigate to="/lists/new"/>}
 
       <h3>Create List</h3>

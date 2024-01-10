@@ -14,8 +14,7 @@ const ListForm = () => {
   const [formData, setFormData] = useState(initialState);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
-  const [name, setName] = useState('');
-  
+   
   const handleChange = (e) => {
     const {name, value} = e.target;
     setFormData(formData => ({
@@ -28,18 +27,12 @@ const ListForm = () => {
     e.preventDefault();
     try {
       const newList = await PlantIdApi.postList(formData);
-      // const newUserList = await PlantIdApi.addListToUser(currentUser.username, newList.list.name);
       if (newList && newList.list) {
         await PlantIdApi.addListToUser(currentUser.username, newList.list.name);
-        console.log('newList in front end from ListForm: ', newList); // good
-        console.log('newList.list.name in front end from ListForm: ', newList.list.name); // good
-        // console.log('newUserList in front end from ListForm: ', newUserList);
         setIsSubmitted(true);
-        console.log('isSubmitted in front end from ListForm: ', isSubmitted);
         <Navigate to="/lists"/>
       } else {
         setErrorMsg(true);
-        console.error('Error with with newList in front end from ListForm');
       }
     } catch (err) {
       if (err.response && err.response.status === 400) {
@@ -53,7 +46,6 @@ const ListForm = () => {
   return (
     <div className="form-container">
       {errorMsg ? <Navigate to="/lists/error"/> : <Navigate to="/lists/new"/>}
-      {/* {isSubmitted ? <Navigate to={`/lists/${name}`}/> : <Navigate to="/lists/new"/>} */}
       {isSubmitted ? <Navigate to="/lists"/> : <Navigate to="/lists/new"/>}
 
       <h3 className="form-title">Create List</h3>

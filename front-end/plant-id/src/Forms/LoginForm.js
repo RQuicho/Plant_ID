@@ -34,7 +34,6 @@ const LoginForm = ({login}) => {
 
   return (
     <div className="form-container">
-      {/* {console.log('currentUser in front end LoginForm: ', currentUser)} */}
       {errorMsg ? <Navigate to="/login/error"/> : <Navigate to="/login"/>}
       {currentUser ? <Navigate to="/upload"/> : <Navigate to="/login"/>}
       <h3 className="form-title">Log In</h3>
