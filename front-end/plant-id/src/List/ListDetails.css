@@ -4,10 +4,6 @@
   color: rgb(28, 53, 79);
 }
 
-/* .listDetails-container {
-  text-align: center;
-} */
-
 .listDetails-item {
   display: flex;
   align-items: center;

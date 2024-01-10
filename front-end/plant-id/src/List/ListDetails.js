@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, NavLink } from 'react-router-dom';
-import ListCard from './ListCard';
-import PlantCard from '../Plants/PlantCard';
 import PlantIdApi from '../api';
-import {Row, Col} from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,17 +19,13 @@ const ListDetails = () => {
         setIsLoading(true);
         // get list
         const listResponse = await PlantIdApi.getList(name);
-        console.log('listResponse in front end from ListDetails component: ', listResponse);
         setList(listResponse);
         // get plant from listPlant
         const plantsResponse = await PlantIdApi.getPlantByListName(name);
-        console.log('plantsResponse in front end from ListDetails component: ', plantsResponse);
-        console.log('plantsResponse.plants.length in front end from ListDetails component: ', plantsResponse.plants.length);
         setPlants(plantsResponse);
         // get plant image from plants
         const plantImgPromises = plantsResponse.plants.map(async(plant) => {
           const plantImg = await PlantIdApi.getPlant(plant.plant_scientific_name);
-          console.log('plantImg in front end from ListDetails component: ', plantImg);
           return plantImg.plantDetails.imageUrl;
         });
         const plantsImages = await Promise.all(plantImgPromises);
@@ -45,7 +38,6 @@ const ListDetails = () => {
     };
     getListDetails();
   }, [name]);
-  console.log('plants in front end from ListDetails component: ', plants);
 
   const handleClick = async (e, plantName, listName) => {
     e.preventDefault();
@@ -97,7 +89,4 @@ const ListDetails = () => {
   );
 }
 
-
 export default ListDetails;
-
-
