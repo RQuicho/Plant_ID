@@ -8,7 +8,6 @@ class PlantIdApi {
   static async getPlant(scientificName) {
     try {
       const result = await axios.get(`${BASE_API_URL}/plants/${scientificName}`);
-      console.log('result in front end from PlantIdApi getPlant: ', result);
       return result.data;
     } catch (err) {
       console.log(err);
@@ -24,7 +23,6 @@ class PlantIdApi {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log('result in front end for PlantIdApi postPlantPhoto: ', result);
       return result.data;
     } catch (err) {
       console.log('Error for front end api postPlantPhoto: ', err);
@@ -51,7 +49,6 @@ class PlantIdApi {
   static async getList(name) {
     try {
       const result = await axios.get(`${BASE_API_URL}/lists/${name}`);
-      console.log('result in front end from PlantIdApi getList: ', result);
       return result.data.list;
     } catch (err) {
       console.log(err);
@@ -59,8 +56,7 @@ class PlantIdApi {
   }
   static async addPlantToList(listName, plantName) {
     try {
-      const result = await axios.post(`${BASE_API_URL}/lists/${listName}/plants/${plantName}`); // change listplant db from plant_id to scientific_name
-      console.log('result in front end for PlantIdApi addPlantToList: ', result);
+      const result = await axios.post(`${BASE_API_URL}/lists/${listName}/plants/${plantName}`);
       return result.data;
     } catch (err) {
       console.log('Error in front end for PlantIdApi addPlantToList: ', err);
@@ -69,7 +65,6 @@ class PlantIdApi {
   static async getPlantByListName(listName) {
     try {
       const result = await axios.get(`${BASE_API_URL}/lists/${listName}/plants`);
-      console.log('result in front end for PlantIdApi getPlantByListName: ', result);
       return result.data;
     } catch (err) {
       console.log('Error in front end of PlantIdApi getPlantByListName: ', err);
@@ -77,9 +72,7 @@ class PlantIdApi {
   }
   static async postList(data) {
     try {
-      console.log('data in front end from api postList: ', data);
       const result = await axios.post(`${BASE_API_URL}/lists`, data);
-      console.log('result in front end from api postList: ', result);
       return result.data;
     } catch (err) {
       console.log('Error in front end from api postList: ', err);
@@ -121,7 +114,6 @@ class PlantIdApi {
   static async signup(data) {
     try {
       const result = await axios.post(`${BASE_API_URL}/auth/register`, data);
-      // console.log('result in front end signup PlantIdApi: ', result);
       return result.data.token;
     } catch (err) {
       console.log(err);
@@ -130,7 +122,6 @@ class PlantIdApi {
   static async updateUserProfile(username, data) {
     try {
       const result = await axios.patch(`${BASE_API_URL}/users/${username}`, data);
-      console.log('result in front end for PlantIdApi: ', result);
       return result.data.user;
     } catch (err) {
       console.log(err);
@@ -139,7 +130,6 @@ class PlantIdApi {
   static async addListToUser(username, listName) {
     try {
       const result = await axios.post(`${BASE_API_URL}/users/${username}/lists/${listName}`);
-      console.log('result in front end for PlantIdApi addListToUser: ', result);
       return result.data;
     } catch (err) {
       console.log('Error in front end for PlantIdApi addListToUser: ', err);
@@ -148,7 +138,6 @@ class PlantIdApi {
   static async getListsByUser(username) {
     try {
       const result = await axios.get(`${BASE_API_URL}/users/${username}/lists`);
-      console.log('result in front end for PlantIdApi getListsByUser: ', result);
       return result.data;
     } catch (err) {
       console.log('Error in front end of PlantIdApi getListsByUser: ', err);

@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import PlantIdApi from "./api";
-import NotFound from "./ErrorSuccessMessages/NotFound";
 import { Link, Navigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -19,17 +18,13 @@ const UploadPage = () => {
       setIsLoading(true);
       const fileInput = e.target.querySelector('input[name="plantImg"]');
       const file = fileInput.files[0];
-      console.log('fileInput in front end UploadPage', fileInput);
-      console.log('file in front end UploadPage', file);
-
+ 
       if (!file) {
         console.error('Please select an image before submitting');
         return;
       }
-
+      
       const result = await PlantIdApi.postPlantPhoto(file);
-      console.log('result in front end UploadPage handleSubmit: ', result);
-
       if (result) {
         setImageUploaded(true);
         setScientificName(result.plantData.scientific_name);
