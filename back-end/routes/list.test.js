@@ -91,10 +91,10 @@ describe('UPDATE /lists/:name', () => {
 });
 
 // DELETE /lists/:name
-describe('DELETE /lists/:name/:username', () => {
+describe('DELETE /lists/:name', () => {
   test('works', async() => {
     const resp = await request(app)
-      .delete('/lists/List1/user1');
+      .delete('/lists/List1');
     expect(resp.body).toEqual({deleted: 'List1'});
   });
 });

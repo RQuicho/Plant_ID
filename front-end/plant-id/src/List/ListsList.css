@@ -7,7 +7,9 @@
 .listsList-item {
   display: flex;
   align-items: center;
-  margin: 2% 40%;
+  margin: 0 30%;
+  padding: 8px 10% 8px 13%;
+  background-color: blanchedalmond;
 }
 
 .listsList-navlink {
@@ -17,7 +19,7 @@
 .listsList-name {
   text-align: center;
   text-decoration: none;
-  margin: 0 30px 0 10px;
+  margin: 0 50px 0 10px;
   color: rgb(28, 53, 79);
   cursor: pointer;
   transition: color 0.3s ease;
@@ -37,9 +39,17 @@
   color: red;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1920px) {
   .listsList-item {
     margin: 3% 20%;
+    padding: 8px 10% 8px 25%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .listsList-item {
+    margin: 3% 19%;
+    padding: 8px 10%;
   }
 }
 

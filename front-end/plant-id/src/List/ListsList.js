@@ -4,6 +4,7 @@ import PlantIdApi from '../api';
 import UserContext from "../UserContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { ListGroup, ListGroupItem } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./ListsList.css";
 
@@ -50,36 +51,57 @@ const ListsList = () => {
   if (isLoading) {
     return <p>Loading &hellip;</p>
   }
-  
+
   return (
     <div>
       <h1 className="listsList-title">Lists</h1>
+
       {lists.lists && lists.lists.length > 0 ? (
-        <div>
+        <ListGroup>
           {lists.lists.map(list => (
-            <div key={list.list_name} className="listsList-item">
+            <ListGroupItem key={list.list_name} className="listsList-item">
               <NavLink to={`/lists/${list.list_name}`} className="listsList-navlink">
                 <h3 className="listsList-name">{list.list_name}</h3>
               </NavLink>
               <FontAwesomeIcon icon={faTrash} onClick={(e) => handleClick(e, list.list_name)} className="listsList-trashIcon"/>
-            </div>
+            </ListGroupItem>
           ))}
-        </div>
+        </ListGroup>
       ) : (
         <div>
-          <h3 className="listsList-title">No plants in this list</h3>
+          <h3 className="listsList-title">No lists</h3>
         </div>  
       )}
       <button className="listsList-btn">
         <Link to='/lists/new' >Create a list</Link>
       </button>
-      <br></br>
-      <button className="listsList-btn">
-        <Link to="/lists" className="listsList-backBtn">Back</Link>
-      </button>
-
     </div>
-  )
+  );
+  
+  // return (
+  //   <div>
+  //     <h1 className="listsList-title">Lists</h1>
+  //     {lists.lists && lists.lists.length > 0 ? (
+  //       <div>
+  //         {lists.lists.map(list => (
+  //           <div key={list.list_name} className="listsList-item">
+  //             <NavLink to={`/lists/${list.list_name}`} className="listsList-navlink">
+  //               <h3 className="listsList-name">{list.list_name}</h3>
+  //             </NavLink>
+  //             <FontAwesomeIcon icon={faTrash} onClick={(e) => handleClick(e, list.list_name)} className="listsList-trashIcon"/>
+  //           </div>
+  //         ))}
+  //       </div>
+  //     ) : (
+  //       <div>
+  //         <h3 className="listsList-title">No lists</h3>
+  //       </div>  
+  //     )}
+  //     <button className="listsList-btn">
+  //       <Link to='/lists/new' >Create a list</Link>
+  //     </button>
+  //   </div>
+  // )
 }
 
 export default ListsList;
