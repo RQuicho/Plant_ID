@@ -18,13 +18,13 @@ User Flow:
 
 - Sign up or log in to view user's lists of plants
 - Logged in users can add/delete plants
-- Users can find a plant by uploading a photo
+- Users can identify a plant by uploading a photo
 - Lists are tied to user accounts so they will persist when user logs in
 - Logged in users can edit their profile
 
 APIs:
 
-- https://perenual.com/docs/api (plant data)
+- https://docs.trefle.io/reference (plant data)
 - https://my.plantnet.org/doc/openapi (photo recognition)
 
 Tech Stack:

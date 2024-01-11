@@ -19,7 +19,7 @@
 }
 
 .plantDetails-btn {
-  margin: 50px 10px 50px 10px;
+  margin: 20px 10px;
   border: none;
   border-radius: 6px;
   padding: 5px 10px;
@@ -31,6 +31,11 @@
 
 .plantDetails-btn:hover {
   background-color: rgb(146, 197, 109);
+}
+
+.plantDetails-backBtn {
+  text-decoration: none;
+  color: white;
 }
 
 .plantDetails-listLabel {

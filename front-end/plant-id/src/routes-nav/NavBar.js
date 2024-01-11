@@ -28,16 +28,16 @@ const NavBar = ({logout}) => {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ms-auto" navbar>
               <NavItem>
-                <NavLink to="/upload" className="navbar-navlink">Upload Image</NavLink>
+                <NavLink to="/upload" className="navbar-navlink">Upload</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink to={`${currentUser.username}/lists`} className="navbar-navlink">Lists</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to={`${currentUser.username}/profile`} className="navbar-navlink">Profile</NavLink>
+                <NavLink to={`${currentUser.username}/profile`} className="navbar-navlink">{currentUser.username}</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to='/' onClick={logout} className="navbar-navlink">Logout {currentUser.username}</NavLink>
+                <NavLink to='/' onClick={logout} className="navbar-navlink">Logout</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
@@ -55,10 +55,10 @@ const NavBar = ({logout}) => {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ms-auto" navbar>
               <NavItem>
-                <NavLink to="/login" className="navbar-navlink">Login</NavLink>
+                <NavLink to="/signup" className="navbar-navlink">Signup</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/signup" className="navbar-navlink">Singup</NavLink>
+                <NavLink to="/login" className="navbar-navlink">Login</NavLink>
               </NavItem>
             </Nav>
           </Collapse>

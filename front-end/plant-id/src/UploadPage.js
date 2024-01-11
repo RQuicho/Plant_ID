@@ -3,6 +3,7 @@ import PlantIdApi from "./api";
 import { Link, Navigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import {Form, FormGroup, FormText, Input} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./UploadPage.css";
 
@@ -41,13 +42,32 @@ const UploadPage = () => {
   }
   
   const pageIfNotUploaded = () => {
+    // return (
+    //   <div className="uploadPage-container">
+    //     <h1 className="uploadPage-title">Upload Photo</h1>
+    //     <form onSubmit={handleSubmit} action="http://localhost:3001/plants/upload" encType="multipart/form-data">
+    //       <input type="file" name="plantImg" className="uploadPage-input"/>
+    //       <input type="submit" className="uploadPage-btn"/>
+    //     </form>
+    //   </div>
+    // );
     return (
-      <div className="uploadPage-container">
+      <div>
         <h1 className="uploadPage-title">Upload Photo</h1>
-        <form onSubmit={handleSubmit} action="http://localhost:3001/plants/upload" encType="multipart/form-data">
-          <input type="file" name="plantImg" className="uploadPage-input"/>
-          <input type="submit" className="uploadPage-btn"/>
-        </form>
+        <Form onSubmit={handleSubmit} action="/plants/upload">
+          <FormGroup row>
+            <Input
+              name="plantImg"
+              type="file"
+            />
+            <button type="submit" className="uploadPage-btn">
+              Submit
+            </button>
+            <FormText>
+              Choose a file to upload.
+            </FormText>
+          </FormGroup>
+        </Form>
       </div>
     );
   }
@@ -57,7 +77,7 @@ const UploadPage = () => {
       <div className="uploadPage-container">
         <h1 className="uploadPage-title">Your image is: {`${commonName}(${scientificName})`}</h1>
         <button className="uploadPage-btn">
-          <Link to={`/plants/${scientificName}`} className="uploadPage-link">Plant Details</Link>
+          <Link to={`/plants/${scientificName}`} className="uploadPage-link">View Plant Details</Link>
         </button>
       </div>
     );

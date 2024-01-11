@@ -17,3 +17,23 @@
   height: auto;
 }
 
+.homepage-btn {
+  margin: 50px 20px 0;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  background-color: rgb(39, 124, 124);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.homepage-btn:hover {
+  background-color: rgb(146, 197, 109);
+}
+
+.homepage-signupBtn, .homepage-loginBtn {
+  text-decoration: none;
+  color: white;
+}
+

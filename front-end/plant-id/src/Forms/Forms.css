@@ -1,20 +1,24 @@
+.form-container {
+  margin: 0 20%;
+}
+
 .form-title {
   text-align: center;
   margin: 35px 32% 30px;
   color: rgb(28, 53, 79);
 }
 
-.form-label {
+/* .form-label {
   text-align: left;
 }
 
 .form-input {
   text-align: left;
   margin: 10px 0 10px 10px;
-}
+} */
 
 .form-btn {
-  margin: 30px;
+  margin: 0 0 30px;
   border: none;
   border-radius: 6px;
   padding: 5px 10px;
@@ -26,4 +30,9 @@
 
 .form-btn:hover {
   background-color: rgb(146, 197, 109);
+}
+
+.form-backBtn {
+  text-decoration: none;
+  color: white;
 }

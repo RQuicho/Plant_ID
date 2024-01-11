@@ -28,6 +28,7 @@
 }
 
 .listDetails-img {
+  /* align with text */
   max-width: 15%;
   height: 200px;
   margin: 0px;

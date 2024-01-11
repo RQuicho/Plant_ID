@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import PlantIdApi from "../api";
-import { Navigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import UserContext from '../UserContext';
 import {Row, Col} from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -122,7 +122,10 @@ const PlantDetails = () => {
             </div>
         </>
       )}
-
+      <button className="plantDetails-btn">
+        <Link to='/upload' className="plantDetails-backBtn">Back</Link>
+      </button>
+    
     </div>
   );
 
