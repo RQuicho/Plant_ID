@@ -42,30 +42,20 @@ const UploadPage = () => {
   }
   
   const pageIfNotUploaded = () => {
-    // return (
-    //   <div className="uploadPage-container">
-    //     <h1 className="uploadPage-title">Upload Photo</h1>
-    //     <form onSubmit={handleSubmit} action="http://localhost:3001/plants/upload" encType="multipart/form-data">
-    //       <input type="file" name="plantImg" className="uploadPage-input"/>
-    //       <input type="submit" className="uploadPage-btn"/>
-    //     </form>
-    //   </div>
-    // );
     return (
       <div>
         <h1 className="uploadPage-title">Upload Photo</h1>
-        <Form onSubmit={handleSubmit} action="/plants/upload">
+        <Form onSubmit={handleSubmit} action="/plants/upload" className="uploadPage-container">
           <FormGroup row>
             <Input
               name="plantImg"
               type="file"
             />
-            <button type="submit" className="uploadPage-btn">
-              Submit
-            </button>
-            <FormText>
-              Choose a file to upload.
-            </FormText>
+            <div>
+              <button type="submit" className="uploadPage-btn">
+                Submit
+              </button>
+            </div>
           </FormGroup>
         </Form>
       </div>
