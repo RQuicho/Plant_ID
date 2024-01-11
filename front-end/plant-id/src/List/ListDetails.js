@@ -100,38 +100,6 @@ const ListDetails = () => {
       </button>
     </div>
   );
-
-  // return (
-  //   <div>
-  //     {list.name && (
-  //       <div className="listDetails-title">
-  //         <h1>{list.name}</h1>
-  //         <h5>{list.description}</h5>
-  //       </div>
-  //     )}
-     
-  //     {plants.plants && plants.plants.length > 0 ? (
-  //       <div className="listDetails-container">
-  //         {plants.plants.map((plant, index) => (
-  //           <div key={plant.plant_scientific_name} className="listDetails-item">
-  //             <NavLink to={`/plants/${plant.plant_scientific_name}`} className="listDetails-navlink">
-  //               <h5 className="listDetails-name">{plant.plant_scientific_name}</h5>
-  //             </NavLink>
-  //             <img src={plantsImgUrl[index]} alt={`${plant.plant_scientific_name}`} className="listDetails-img"/>
-  //             <FontAwesomeIcon icon={faTrash} onClick={(e) => handleClick(e, plant.plant_scientific_name, plant.list_name)} className="listDetails-trashIcon"/>
-  //           </div>
-  //         ))}
-  //       </div>
-  //     ) : (
-  //       <div>
-  //         <h3 className="listDetails-title">No plants in this list</h3>
-  //       </div>
-  //     )}
-  //     <button className="listDetails-btn">
-  //       <Link to="/lists" className="listDetails-backBtn">Back</Link>
-  //     </button>
-  //   </div>
-  // );
 }
 
 export default ListDetails;
