@@ -94,6 +94,18 @@ class List {
       throw new NotFoundError(`No list: ${name}`);
     }
   }
+  static async removeListByUser(listName, username) {
+    const result = await db.query(
+      `DELETE
+       FROM userList
+       WHERE list_name = $1 AND username = $2
+       RETURNING list_name AS "listName", username`,
+      [listName, username]
+    );
+    const list = result.rows[0];
+    if (!list) throw new NotFoundError(`No list: ${listName} for ${username}`);
+    return {message: `List ${listName} successfully removed for ${username}.`};
+  }
 
   // Add plant to list
   static async addPlantToList(listName, plantName) {

@@ -101,6 +101,25 @@ describe("remove", function() {
   });
 });
 
+// REMOVE BY USER
+describe("remove a list based on user", function() {
+  test("works", async function() {
+    await List.removeListByUser('list1', 'user1');
+    const res = await db.query(
+      "SELECT * FROM userlist WHERE list_name='list1' AND username='user1'"
+    );
+    expect(res.rows.length).toEqual(0);
+  });
+  test("not found if no such list", async function() {
+    try {
+      await List.remove("non-existing list");
+      fail();
+    } catch (err) {
+      expect(err instanceof NotFoundError).toBeTruthy();
+    }
+  });
+});
+
 // Add plant to list
 describe("add plant to list", function() {
   test("works", async function() {

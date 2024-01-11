@@ -94,6 +94,14 @@ class PlantIdApi {
       console.log(err);
     }
   }
+  static async deleteListByUser(listName, username) {
+    try {
+      const result = await axios.delete(`${BASE_API_URL}/lists/${listName}/${username}`);
+      return result;
+    } catch (err) {
+      console.log(err);
+    }
+  }
   // User routes
   static async getUser(username) {
     try {
