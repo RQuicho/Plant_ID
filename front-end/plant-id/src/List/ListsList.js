@@ -39,7 +39,7 @@ const ListsList = () => {
     }
   }
 
-  if (lists === null) {
+  if (!lists) {
     return (
       <>
         <h1>No list found</h1>
@@ -54,8 +54,8 @@ const ListsList = () => {
   return (
     <div>
       <h1 className="listsList-title">Lists</h1>
-      {lists.lists && (
-        <>
+      {lists.lists && lists.lists.length > 0 ? (
+        <div>
           {lists.lists.map(list => (
             <div key={list.list_name} className="listsList-item">
               <NavLink to={`/lists/${list.list_name}`} className="listsList-navlink">
@@ -64,10 +64,18 @@ const ListsList = () => {
               <FontAwesomeIcon icon={faTrash} onClick={(e) => handleClick(e, list.list_name)} className="listsList-trashIcon"/>
             </div>
           ))}
-        </>
+        </div>
+      ) : (
+        <div>
+          <h3 className="listsList-title">No plants in this list</h3>
+        </div>  
       )}
       <button className="listsList-btn">
         <Link to='/lists/new' >Create a list</Link>
+      </button>
+      <br></br>
+      <button className="listsList-btn">
+        <Link to="/lists" className="listsList-backBtn">Back</Link>
       </button>
 
     </div>

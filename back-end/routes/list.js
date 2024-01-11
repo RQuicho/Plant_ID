@@ -55,10 +55,12 @@ router.patch('/:name', async (req, res, next) => {
   }
 });
 
-router.delete('/:name', async (req, res, next) => {
+router.delete('/:name/:username', async (req, res, next) => {
   try {
-    await List.remove(req.params.name);
-    return res.json({deleted: req.params.name});
+    const listName = req.params.name;
+    const username = req.params.username;
+    await List.removeListByUser(listName, username);
+    return res.json({deleted: listName});
   } catch (err) {
     return next(err);
   }

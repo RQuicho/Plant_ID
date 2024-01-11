@@ -79,12 +79,11 @@ const ListDetails = () => {
       ) : (
         <div>
           <h3 className="listDetails-title">No plants in this list</h3>
-          <button className="listDetails-btn">
-            <Link to="/lists" className="listDetails-backBtn">Back</Link>
-          </button>
         </div>
       )}
-   
+      <button className="listDetails-btn">
+        <Link to="/lists" className="listDetails-backBtn">Back</Link>
+      </button>
     </div>
   );
 }
