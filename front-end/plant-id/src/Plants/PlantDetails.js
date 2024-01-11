@@ -123,7 +123,7 @@ const PlantDetails = () => {
         </>
       )}
       <button className="plantDetails-btn">
-        <Link to='/upload' className="plantDetails-backBtn">Back</Link>
+        <Link to='/lists' className="plantDetails-backBtn">Back</Link>
       </button>
     
     </div>

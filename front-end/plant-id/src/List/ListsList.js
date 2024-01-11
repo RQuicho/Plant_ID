@@ -77,31 +77,6 @@ const ListsList = () => {
       </button>
     </div>
   );
-  
-  // return (
-  //   <div>
-  //     <h1 className="listsList-title">Lists</h1>
-  //     {lists.lists && lists.lists.length > 0 ? (
-  //       <div>
-  //         {lists.lists.map(list => (
-  //           <div key={list.list_name} className="listsList-item">
-  //             <NavLink to={`/lists/${list.list_name}`} className="listsList-navlink">
-  //               <h3 className="listsList-name">{list.list_name}</h3>
-  //             </NavLink>
-  //             <FontAwesomeIcon icon={faTrash} onClick={(e) => handleClick(e, list.list_name)} className="listsList-trashIcon"/>
-  //           </div>
-  //         ))}
-  //       </div>
-  //     ) : (
-  //       <div>
-  //         <h3 className="listsList-title">No lists</h3>
-  //       </div>  
-  //     )}
-  //     <button className="listsList-btn">
-  //       <Link to='/lists/new' >Create a list</Link>
-  //     </button>
-  //   </div>
-  // )
 }
 
 export default ListsList;

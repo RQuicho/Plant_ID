@@ -8,6 +8,11 @@
   display: flex;
   align-items: center;
   margin: 0 0 30px 40%;
+  background-color: blanchedalmond;
+}
+
+.listDetails-item.card {
+  margin: 2% 10%;
 }
 
 .listDetails-navlink {
@@ -17,7 +22,7 @@
 .listDetails-name {
   text-align: center;
   text-decoration: none;
-  margin: 0 5%;
+  margin: 0;
   color: rgb(28, 53, 79);
   cursor: pointer;
   transition: color 0.3s ease;
@@ -28,12 +33,15 @@
 }
 
 .listDetails-img {
-  /* align with text */
-  max-width: 15%;
-  height: 200px;
-  margin: 0px;
+  max-width: 40%;
+  height: auto;
+  margin: 30px 10%;
   border: 3px solid rgb(39, 124, 124);
   border-radius: 5px;
+}
+
+.listDetails-trashContainer {
+  margin: 30px 15% 10px 0;
 }
 
 .listDetails-trashIcon {
@@ -47,9 +55,15 @@
   color: red;
 }
 
+@media only screen and (max-width: 1920px) {
+  .listDetails-item {
+    margin: 3% 10%;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .listDetails-item {
-    margin: 3% 20%;
+    margin: 3% 10%;
   }
 }
 

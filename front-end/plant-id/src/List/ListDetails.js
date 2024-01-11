@@ -3,6 +3,7 @@ import { Link, useParams, NavLink } from 'react-router-dom';
 import PlantIdApi from '../api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { CardGroup, Card, CardImg, CardBody, CardTitle, Button} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./ListDetails.css";
 
@@ -55,6 +56,7 @@ const ListDetails = () => {
     return <h1 className="listDetails-loading">Loading   <FontAwesomeIcon icon={faSpinner} className="loading-spinner"/></h1>
   }
 
+
   return (
     <div>
       {list.name && (
@@ -65,17 +67,29 @@ const ListDetails = () => {
       )}
      
       {plants.plants && plants.plants.length > 0 ? (
-        <div className="listDetails-container">
+        <CardGroup className="listDetails-container">
           {plants.plants.map((plant, index) => (
-            <div key={plant.plant_scientific_name} className="listDetails-item">
-              <NavLink to={`/plants/${plant.plant_scientific_name}`} className="listDetails-navlink">
-                <h5 className="listDetails-name">{plant.plant_scientific_name}</h5>
-              </NavLink>
-              <img src={plantsImgUrl[index]} alt={`${plant.plant_scientific_name}`} className="listDetails-img"/>
-              <FontAwesomeIcon icon={faTrash} onClick={(e) => handleClick(e, plant.plant_scientific_name, plant.list_name)} className="listDetails-trashIcon"/>
-            </div>
+            <Card key={plant.plant_scientific_name} className="listDetails-item">
+              <CardImg 
+                className="listDetails-img"
+                alt={`${plant.plant_scientific_name}`}
+                src={plantsImgUrl[index]}
+                top
+                width="100%"
+              />
+              <CardBody>
+                <CardTitle tag="h5">
+                  <NavLink to={`/plants/${plant.plant_scientific_name}`} className="listDetails-navlink">
+                    <h4 className="listDetails-name">{plant.plant_scientific_name}</h4>
+                  </NavLink>
+                </CardTitle>
+                <div className="listDetails-trashContainer">
+                  <FontAwesomeIcon icon={faTrash} size='lg' onClick={(e) => handleClick(e, plant.plant_scientific_name, plant.list_name)} className="listDetails-trashIcon"/>
+                </div>
+              </CardBody>
+            </Card>
           ))}
-        </div>
+        </CardGroup>
       ) : (
         <div>
           <h3 className="listDetails-title">No plants in this list</h3>
@@ -86,6 +100,38 @@ const ListDetails = () => {
       </button>
     </div>
   );
+
+  // return (
+  //   <div>
+  //     {list.name && (
+  //       <div className="listDetails-title">
+  //         <h1>{list.name}</h1>
+  //         <h5>{list.description}</h5>
+  //       </div>
+  //     )}
+     
+  //     {plants.plants && plants.plants.length > 0 ? (
+  //       <div className="listDetails-container">
+  //         {plants.plants.map((plant, index) => (
+  //           <div key={plant.plant_scientific_name} className="listDetails-item">
+  //             <NavLink to={`/plants/${plant.plant_scientific_name}`} className="listDetails-navlink">
+  //               <h5 className="listDetails-name">{plant.plant_scientific_name}</h5>
+  //             </NavLink>
+  //             <img src={plantsImgUrl[index]} alt={`${plant.plant_scientific_name}`} className="listDetails-img"/>
+  //             <FontAwesomeIcon icon={faTrash} onClick={(e) => handleClick(e, plant.plant_scientific_name, plant.list_name)} className="listDetails-trashIcon"/>
+  //           </div>
+  //         ))}
+  //       </div>
+  //     ) : (
+  //       <div>
+  //         <h3 className="listDetails-title">No plants in this list</h3>
+  //       </div>
+  //     )}
+  //     <button className="listDetails-btn">
+  //       <Link to="/lists" className="listDetails-backBtn">Back</Link>
+  //     </button>
+  //   </div>
+  // );
 }
 
 export default ListDetails;
