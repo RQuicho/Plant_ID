@@ -1,6 +1,7 @@
 import React, {useState, useContext} from "react";
-import {Navigate} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import UserContext from "../UserContext";
+import {Form, FormGroup, Col, Label, Input} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Forms.css";
 
@@ -33,37 +34,48 @@ const LoginForm = ({login}) => {
   }
 
   return (
-    <div className="form-container">
+    <div>
       {errorMsg ? <Navigate to="/login/error"/> : <Navigate to="/login"/>}
       {currentUser ? <Navigate to="/upload"/> : <Navigate to="/login"/>}
+
       <h3 className="form-title">Log In</h3>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username" className="form-label">Username</label>
-          <input
-            id="username"
-            type="text"
-            name="username"
-            placeholder="username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-            className="form-input"
-          />
+      <Form onSubmit={handleSubmit} className="form-container">
+        <FormGroup row>
+          <Label for="username" sm={2} className="form-label">Username</Label>
+          <Col sm={10}>
+            <Input
+              id="username"
+              type="text"
+              name="username"
+              placeholder="username"
+              value={formData.username}
+              onChange={handleChange}
+              required
+              className="form-input"
+            />
+          </Col>
+        </FormGroup>
+        <FormGroup row>
+          <Label for="password" sm={2} className="form-label">Password</Label>
+          <Col sm={10}>
+            <Input
+              id="password"
+              type="password"
+              name="password"
+              placeholder="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              className="form-input"
+            />
+          </Col>
+        </FormGroup>
         <br></br>
-        <label htmlFor="password" className="form-label">Password</label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            placeholder="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-            className="form-input"
-          />
-          <br></br>
         <button className="form-btn">Submit</button>
-      </form>
+      </Form>
+      <button className="form-btn">
+        <Link to='/' className="form-backBtn">Back</Link>
+      </button>
     </div>
   )
 }

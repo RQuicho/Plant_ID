@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
 import PlantIdApi from '../api';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import UserContext from "../UserContext";
+import {Form, FormGroup, Col, Label, Input} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Forms.css";
 
@@ -44,38 +45,48 @@ const ListForm = () => {
   }
 
   return (
-    <div className="form-container">
+    <div>
       {errorMsg ? <Navigate to="/lists/error"/> : <Navigate to="/lists/new"/>}
       {isSubmitted ? <Navigate to="/lists"/> : <Navigate to="/lists/new"/>}
 
       <h3 className="form-title">Create List</h3>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name" className="form-label">Name</label>
-          <input 
-            id="name"
-            type="text"
-            name="name"
-            placeholder="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="form-input"
-          />
+      <Form onSubmit={handleSubmit} className="form-container">
+        <FormGroup row>
+          <Label for="name" sm={2} className="form-label">Name</Label>
+          <Col sm={10}>
+            <Input 
+              id="name"
+              type="text"
+              name="name"
+              placeholder="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="form-input"
+            />
+          </Col>
+        </FormGroup>
+        <FormGroup row>
+          <Label for="description" sm={2} className="form-label">Description</Label>
+          <Col sm={10}>
+            <Input 
+              id="description"
+              type="text"
+              name="description"
+              placeholder="description"
+              value={formData.description}
+              onChange={handleChange}
+              required
+              className="form-input"
+            />
+          </Col>
+        </FormGroup>
         <br></br>
-        <label htmlFor="description" className="form-label">Description</label>
-          <input 
-            id="description"
-            type="text"
-            name="description"
-            placeholder="description"
-            value={formData.description}
-            onChange={handleChange}
-            required
-            className="form-input"
-          />
-          <br></br>
         <button className="form-btn">Create</button>
-      </form>
+      </Form>
+      <button className="form-btn">
+        <Link to='/lists' className="form-backBtn">Back</Link>
+      </button>
     </div>
   );
 }

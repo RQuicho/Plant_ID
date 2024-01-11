@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import { Navigate } from 'react-router-dom';
 import PlantIdApi from '../api';
 import UserContext from '../UserContext';
+import {Form, FormGroup, Col, Label, Input} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Forms.css";
 
@@ -57,50 +58,64 @@ const ProfileForm = () => {
   return (
     <div className="form-container">
       {isSubmitted ? <Navigate to="/profile/updated"/> : <Navigate to={`/${currentUser.username}/profile`}/>}
+
       <h3 className="form-title">{`${currentUser.username}'s Profile`}</h3>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='firtName' className="form-label">First Name</label>
-          <input 
-            id='firstName'
-            type='text'
-            name='firstName'
-            value={formData.firstName}
-            onChange={handleChange}
-            className="form-input"
-          />
-        <br></br>
-        <label htmlFor='lastName' className="form-label">Last Name</label>
-          <input 
-            id='lastName'
-            type='text'
-            name='lastName'
-            value={formData.lastName}
-            onChange={handleChange}
-            className="form-input"
-          />
-        <br></br>
-        <label htmlFor='email' className="form-label">Email</label>
-          <input 
-            id='email'
-            type='text'
-            name='email'
-            value={formData.email}
-            onChange={handleChange}
-            className="form-input"
-          />
-        <br></br>
-        <label htmlFor='password' className="form-label">Password</label>
-          <input 
-            id='password'
-            type='password'
-            name='password'
-            value={formData.password}
-            onChange={handleChange}
-            className="form-input"
-          />
+      <Form onSubmit={handleSubmit}>
+        <FormGroup row>
+          <Label for='firtName' sm={2} className="form-label">First Name</Label>
+          <Col sm={10}>
+            <Input 
+              id='firstName'
+              type='text'
+              name='firstName'
+              value={formData.firstName}
+              onChange={handleChange}
+              className="form-input"
+            />
+          </Col>
+        </FormGroup>
+        <FormGroup row>
+          <Label for='lastName' sm={2} className="form-label">Last Name</Label>
+          <Col sm={10}>
+            <Input 
+              id='lastName'
+              type='text'
+              name='lastName'
+              value={formData.lastName}
+              onChange={handleChange}
+              className="form-input"
+            />
+          </Col>
+        </FormGroup>
+        <FormGroup row>
+          <Label for='email' sm={2} className="form-label">Email</Label>
+          <Col sm={10}>
+            <Input 
+              id='email'
+              type='text'
+              name='email'
+              value={formData.email}
+              onChange={handleChange}
+              className="form-input"
+            />
+          </Col>
+        </FormGroup>
+        <FormGroup row>
+          <Label for='password' sm={2} className="form-label">Password</Label>
+          <Col sm={10}>
+            <Input 
+              id='password'
+              type='password'
+              name='password'
+              value={formData.password}
+              onChange={handleChange}
+              className="form-input"
+              />
+          </Col>
+        </FormGroup>
         <br></br>
         <button className="form-btn">Save</button>
-      </form>
+      </Form>
     </div>
   )
 }
