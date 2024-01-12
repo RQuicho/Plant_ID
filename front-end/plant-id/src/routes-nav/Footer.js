@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
-import {faEnvelope} from '@fortawesome/free-solid-svg-icons';
+import {faEnvelope, faCopyright} from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Footer.css';
 
@@ -11,6 +11,7 @@ const Footer = () => {
       <section className="footer-container">
         <div>
           <h5>
+            <FontAwesomeIcon icon={faCopyright} /> {new Date().getFullYear()} Raymond Quicho
             <a href="https://www.linkedin.com/in/raymond-quicho/" target="_blank" className="footer-text">
               <FontAwesomeIcon icon={faLinkedin} />  LinkedIn
             </a>

@@ -60,8 +60,6 @@ function App() {
   const signup = async (signupData) => {
     try {
       let newUser = await PlantIdApi.signup(signupData);
-      console.log('newUser in front end App signup: ',newUser);
-      // setToken(token);
       if (newUser) {
         return {success: true};
       } else {

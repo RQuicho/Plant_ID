@@ -33,10 +33,7 @@ router.post("/register", async function(req, res, next) {
       throw new BadRequestError(errs);
     }
     const newUser = await User.register(req.body);
-    console.log('newUser in back end routes>auth /register', newUser); // good
     return res.status(201).json({newUser});
-    // const token = createToken(newUser);
-    // return res.status(201).json({token});
   } catch (err) {
     return next(err);
   }

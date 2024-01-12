@@ -27,7 +27,6 @@ const SingupForm = ({signup}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let result = await signup(formData);
-    console.log('result in front end SignupForm> handleSubmit: ', result);
     if (result.success) {
       setIsSubmitted(true);
       return <Navigate to="/upload" />;

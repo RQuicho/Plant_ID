@@ -1,16 +1,23 @@
-.homepage-container {
+/* .homepage-container {
+  flex-direction: column;
+  min-height: 90vh;
+} */
+
+.homepage-cardContainer {
+  margin: auto;
   flex-direction: column;
   min-height: 90vh;
 }
 
 .homepage-title {
   color: rgb(28, 53, 79);
+  margin: 10px 0 0 0;
 }
 
 .homepage-text {
   color: rgb(28, 53, 79);
   text-align: center;
-  margin: 35px 32% 0px;
+  margin: 20px 0;
 }
 
 .homepage-img {
@@ -19,7 +26,7 @@
 }
 
 .homepage-btn {
-  margin: 50px 20px 0;
+  margin: 20px 20px 0;
   border: none;
   border-radius: 6px;
   padding: 5px 10px;
@@ -38,9 +45,9 @@
   color: white;
 }
 
-/* @media only screen and (max-width: 768px) {
-  .homepage-container {
-    margin: 5% 0 330px;
+@media only screen and (max-width: 768px) {
+  .homepage-cardContainer {
+    margin: auto;
   }
-} */
+}
 
