@@ -78,7 +78,7 @@ const ListDetails = () => {
                 width="100%"
               />
               <CardBody>
-                <CardTitle tag="h5">
+                <CardTitle tag="h4">
                   <NavLink to={`/plants/${plant.plant_scientific_name}`} className="listDetails-navlink">
                     <h4 className="listDetails-name">{plant.plant_scientific_name}</h4>
                   </NavLink>

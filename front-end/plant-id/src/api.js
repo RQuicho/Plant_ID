@@ -122,7 +122,8 @@ class PlantIdApi {
   static async signup(data) {
     try {
       const result = await axios.post(`${BASE_API_URL}/auth/register`, data);
-      return result.data.token;
+      console.log('result in front end api.js> signup: ', result);
+      return result.data.newUser;
     } catch (err) {
       console.log(err);
     }

@@ -28,6 +28,8 @@ function App() {
           console.error('Unable to get user info in App.js', err);
           setCurrentUser(null);
         }
+      } else {
+        setCurrentUser(null);
       }
       setIsLoading(false);
     }
@@ -57,9 +59,10 @@ function App() {
 
   const signup = async (signupData) => {
     try {
-      let token = await PlantIdApi.signup(signupData);
-      setToken(token);
-      if (token) {
+      let newUser = await PlantIdApi.signup(signupData);
+      console.log('newUser in front end App signup: ',newUser);
+      // setToken(token);
+      if (newUser) {
         return {success: true};
       } else {
         return {success: false};
