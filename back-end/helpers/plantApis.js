@@ -3,7 +3,9 @@
 const fs = require('fs'); // File System | Node.js
 const axios = require('axios'); // HTTP client
 const FormData = require('form-data'); // Readable "multipart/form-data" streams
-const {PLANT_IMAGE_API_KEY, PLANT_INFO_API_KEY} = require("../my_secret");
+// const {PLANT_IMAGE_API_KEY, PLANT_INFO_API_KEY} = require("../my_secret");
+const PLANT_IMAGE_API_KEY = process.env.PLANT_IMAGE_API_KEY;
+const PLANT_INFO_API_KEY = process.env.PLANT_INFO_API_KEY;
 const { NotFoundError } = require('../expressError');
 const Plant = require("../models/plant");
 
