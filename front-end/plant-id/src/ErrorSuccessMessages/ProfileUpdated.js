@@ -4,10 +4,14 @@ import "./ErrorSuccessMsg.css";
 
 const ProfileUpdated = () => {
   return (
-    <div className="successMsg-div">
-      <h1>Profile successfully updated!</h1>
-      <h1>Use the navbar to navigate through the application.</h1>
-    </div>
+    <>
+      <div className="successMsg-div">
+        <h1>Profile successfully updated!</h1>
+        <h1>Use the navbar to navigate through the application.</h1>
+      </div>
+      <div className="form-btnContainer"></div>
+    </>
+  
   );
 }
 

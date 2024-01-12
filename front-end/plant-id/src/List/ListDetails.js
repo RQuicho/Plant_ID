@@ -95,9 +95,11 @@ const ListDetails = () => {
           <h3 className="listDetails-title">No plants in this list</h3>
         </div>
       )}
-      <button className="listDetails-btn">
-        <Link to="/lists" className="listDetails-backBtn">Back</Link>
-      </button>
+      <div className="form-btnContainer">
+        <button className="listDetails-btn">
+          <Link to="/lists" className="listDetails-backBtn">Back</Link>
+        </button>
+      </div>
     </div>
   );
 }

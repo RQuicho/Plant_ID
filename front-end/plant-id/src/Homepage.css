@@ -1,5 +1,6 @@
 .homepage-container {
-  margin: 7% 0 50%;
+  flex-direction: column;
+  min-height: 90vh;
 }
 
 .homepage-title {
@@ -8,7 +9,7 @@
 
 .homepage-text {
   color: rgb(28, 53, 79);
-  text-align: left;
+  text-align: center;
   margin: 35px 32% 0px;
 }
 
@@ -36,4 +37,10 @@
   text-decoration: none;
   color: white;
 }
+
+/* @media only screen and (max-width: 768px) {
+  .homepage-container {
+    margin: 5% 0 330px;
+  }
+} */
 

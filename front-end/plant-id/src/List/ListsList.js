@@ -72,9 +72,11 @@ const ListsList = () => {
           <h3 className="listsList-title">No lists</h3>
         </div>  
       )}
-      <button className="listsList-btn">
-        <Link to='/lists/new' >Create a list</Link>
-      </button>
+      <div className="form-btnContainer">
+        <button className="listsList-btn">
+          <Link to='/lists/new' >Create a list</Link>
+        </button>
+      </div>
     </div>
   );
 }

@@ -60,7 +60,7 @@ const ProfileForm = () => {
       {isSubmitted ? <Navigate to="/profile/updated"/> : <Navigate to={`/${currentUser.username}/profile`}/>}
 
       <h3 className="form-title">{`${currentUser.username}'s Profile`}</h3>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} className="form-btnContainer">
         <FormGroup row>
           <Label for='firtName' sm={2} className="form-label">First Name</Label>
           <Col sm={10}>

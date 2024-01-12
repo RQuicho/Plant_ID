@@ -6,6 +6,7 @@ import useLocalStorage from './hooks/useLocalStorage';
 import { BrowserRouter } from 'react-router-dom';
 import RoutePaths from './routes-nav/RoutePaths';
 import NavBar from './routes-nav/NavBar';
+import Footer from './routes-nav/Footer';
 import UserContext from './UserContext';
 
 export const TOKEN_STORAGE_ID = 'plantid-token';
@@ -79,6 +80,7 @@ function App() {
         <div className='App'>
           <NavBar logout={logout} />
           <RoutePaths login={login} signup={signup} />
+          <Footer />
         </div>
       </UserContext.Provider>
     </BrowserRouter>

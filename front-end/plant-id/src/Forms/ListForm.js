@@ -84,9 +84,11 @@ const ListForm = () => {
         <br></br>
         <button className="form-btn">Create</button>
       </Form>
-      <button className="form-btn">
-        <Link to='/lists' className="form-backBtn">Back</Link>
-      </button>
+      <div className="form-btnContainer">
+        <button className="form-btn">
+          <Link to='/lists' className="form-backBtn">Back</Link>
+        </button>
+      </div>
     </div>
   );
 }

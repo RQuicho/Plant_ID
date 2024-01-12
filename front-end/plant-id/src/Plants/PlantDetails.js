@@ -107,31 +107,6 @@ const PlantDetails = () => {
             </Card>
           </div>
         </>
-
-        // <>
-          // <h1 className="plantDetails-title">{`${plant.plantDetails.scientificName} (${plant.plantDetails.commonName})`}</h1>
-          // <div className="plantDetails-dataContainer">
-          //   <Row md="2" sm="1" xs="1">
-          //     <Col className="plantDetails-infoContainer">
-          //       <h4 className="plantDetails-info">Plant Details</h4>
-          //       <p className="plantDetails-info">Vegetable: {plant.plantDetails.vegetable !== null ? plant.plantDetails.vegetable.toString() : "null"}</p>
-          //       <p className="plantDetails-info">Edible Part: {plant.plantDetails.ediblePart !== null ? plant.plantDetails.ediblePart.toString() : "null"}</p>
-          //       <p className="plantDetails-info">Edible: {plant.plantDetails.edible !== null ? plant.plantDetails.edible.toString() : "null"}</p>
-          //       <p className="plantDetails-info">Flower Color: {plant.plantDetails.flowerColor !== null ? plant.plantDetails.flowerColor.toString() : "null"}</p>
-          //       <p className="plantDetails-info">Foliage Texture: {plant.plantDetails.foliageTexture !== null ? plant.plantDetails.foliageTexture.toString() : "null"}</p>
-          //       <p className="plantDetails-info">Foliage Color: {plant.plantDetails.foliageColor !== null ? plant.plantDetails.foliageColor.toString() : "null"}</p>
-          //       <p className="plantDetails-info">Fruit or Seed Color: {plant.plantDetails.fruitOrSeedColor !== null ? plant.plantDetails.fruitOrSeedColor.toString() : "null"}</p>
-          //       <p className="plantDetails-info">Fruit or Seed Shape: {plant.plantDetails.fruitOrSeedShape !== null ? plant.plantDetails.fruitOrSeedShape.toString() : "null"}</p>
-          //       <p className="plantDetails-info">Growth Form: {plant.plantDetails.growthForm !== null ? plant.plantDetails.growthForm.toString() : "null"}</p>
-          //       <p className="plantDetails-info">Growth Habit: {plant.plantDetails.growthHabit !== null ? plant.plantDetails.growthHabit.toString() : "null"}</p>
-          //       <p className="plantDetails-info">Toxicity: {plant.plantDetails.toxicity !== null ? plant.plantDetails.toxicity.toString() : "null"}</p>
-          //     </Col>
-          //     <Col className="plantDetails-imgContainer">
-          //       <img src={plant.plantDetails.imageUrl} alt={`${plant.plantDetails.commonName}`} className="plantDetails-img"/>
-          //     </Col>
-          //   </Row>
-          // </div>
-        // </>
       )}
 
       {lists.lists && (
@@ -157,10 +132,11 @@ const PlantDetails = () => {
             </div>
         </>
       )}
-      <button className="plantDetails-btn">
-        <Link to='/lists' className="plantDetails-backBtn">Back</Link>
-      </button>
-    
+      <div className="form-btnContainer">
+        <button className="plantDetails-btn">
+          <Link to='/lists' className="plantDetails-backBtn">Back</Link>
+        </button>
+      </div>
     </div>
   );
 

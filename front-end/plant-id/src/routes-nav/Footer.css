@@ -1,0 +1,22 @@
+.footer-container {
+  background-color: rgb(146, 197, 109);
+  margin-top: auto;
+  text-align: center;
+  padding: 20px;
+  /* display: flex;
+  justify-content: space-around;
+  align-items: center; */
+}
+
+.footer-text {
+  color: white;
+  text-decoration: none;
+  padding: 20px 25px;
+  cursor: pointer;
+}
+
+.footer-text:hover {
+  color: rgb(39, 124, 124);
+  text-decoration: none;
+  cursor: pointer;
+}

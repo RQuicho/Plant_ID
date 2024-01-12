@@ -121,9 +121,11 @@ const SingupForm = ({signup}) => {
         <br></br>
         <button className="form-btn">Submit</button>
       </Form>
-      <button className="form-btn">
-        <Link to='/' className="form-backBtn">Back</Link>
-      </button>
+      <div className="form-btnContainer">
+        <button className="form-btn">
+          <Link to='/' className="form-backBtn">Back</Link>
+        </button>
+      </div>
     </div>
   );
 }
