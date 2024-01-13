@@ -1,6 +1,6 @@
 # Plant ID
 
-(link to website)
+(https://plant-id-front-end.onrender.com)
 
 This application uses the perenual plant api to retreive data on plants, and the plantnet api to get a plant name based on an uploaded image. A user can upload a photo and get information on that plant based on the photo. Plants can be added/deleted to user-created lists. Lists are tied to user accounts and will be remembered!
 
