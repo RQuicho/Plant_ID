@@ -22,9 +22,9 @@ app.use("/users", userRoutes);
 
 
 // 404 Error
-app.use(function(req, res, next) {
-  return next(new NotFoundError());
-});
+// app.use(function(req, res, next) {
+//   return next(new NotFoundError());
+// });
 
 // Generic error handler
 app.use(function(err, req, res, next) {
