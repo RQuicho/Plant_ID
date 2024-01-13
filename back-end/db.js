@@ -3,9 +3,9 @@ const {DB_NAME} = require("./config");
 const {DATABASE_URL} = require("./config");
 
 const db = new Client({
-  // host: "/var/run/postgresql/",
-  // database: DATABASE_URL
-  connectionString: DATABASE_URL,
+  host: process.env.DATABASE_URL,
+  database: DB_NAME
+  // connectionString: DATABASE_URL,
 });
 
 db.connect();
