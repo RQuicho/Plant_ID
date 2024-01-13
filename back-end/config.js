@@ -2,8 +2,7 @@
 
 const SECRET_KEY = process.env.SECRET_KEY || "secret";
 const PORT = +process.env.PORT || 3001;
-const DATABASE_URL = process.env.DATABASE_URL;
-// const DATABASE_URL = process.env.DATABASE_URL || "postgresql://username:password@host:3001/plantid";
+const DATABASE_URL = process.env.DATABASE_URL || "postgresql://fjtvudll:jKMCbvSfl9T_FFKYqpmxwbwWG_SKfF8O@heffalump.db.elephantsql.com/fjtvudll";
 
 let DB_NAME;
 
