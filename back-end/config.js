@@ -1,9 +1,8 @@
 "use strict";
 
-// const SECRET_KEY = process.env.SECRET_KEY || "secret";
-// const PORT = process.env.PORT || 3001;
 const SECRET_KEY = process.env.SECRET_KEY || "secret";
-const PORT = process.env.DATABASE_URL || 3001;
+const PORT = +process.env.PORT || 3001;
+const DATABASE_URL = process.env.DATABASE_URL || "postgresql://username:password@host:3001/plantid";
 
 let DB_NAME;
 
@@ -19,5 +18,6 @@ module.exports = {
   SECRET_KEY,
   PORT,
   DB_NAME,
-  BCRYPT_WORK_FACTOR
+  BCRYPT_WORK_FACTOR,
+  DATABASE_URL
 }

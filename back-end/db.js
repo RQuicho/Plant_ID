@@ -1,9 +1,10 @@
 const {Client} = require("pg");
 const {DB_NAME} = require("./config");
+const {DATABASE_URL} = require("./config");
 
 const db = new Client({
   host: "/var/run/postgresql/",
-  database: DB_NAME
+  database: DATABASE_URL
 });
 
 db.connect();
