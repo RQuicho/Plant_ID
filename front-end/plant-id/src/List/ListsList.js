@@ -43,7 +43,7 @@ const ListsList = () => {
   if (!lists) {
     return (
       <>
-        <h1>No list found</h1>
+        <h1 className="listsList-noList">No list found</h1>
       </>
     );
   }
